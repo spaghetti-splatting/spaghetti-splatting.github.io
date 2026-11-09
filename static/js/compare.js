@@ -63,7 +63,7 @@
       players: [
         { dataset: 'hair_gt', title: 'Ground truth strands', single: true },
         { dataset: 'hair_gh', title: 'Gaussian Haircut' },
-        { dataset: 'hair_ours', title: 'Ours, Gaussian' },
+        { dataset: 'hair_ours', title: 'Ours, Gaussian Kernel' },
       ],
       scenes: [
         { id: '381', label: '381', tooltip: 'chin-length bob, straight' },
