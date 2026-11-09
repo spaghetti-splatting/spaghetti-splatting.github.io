@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="3 10 58 58">
+  <!-- Spaghetti bowl favicon of the Spaghetti Splatting page. -->
+  <path d="M7 35 C8 17, 56 17, 57 35 Z" fill="#f4c650"/>
+  <g fill="none" stroke="#d39226" stroke-width="2.4" stroke-linecap="round">
+    <path d="M12 32 C16 25, 21 33, 26 27 S35 31, 39 26 S47 31, 52 30"/>
+    <path d="M16 27 C20 22, 25 28, 30 23 S38 26, 43 22 S49 26, 50 25"/>
+  </g>
+  <path d="M23 24 C24 16, 40 16, 41 24 C36 27.5, 28 27.5, 23 24 Z" fill="#d63f28"/>
+  <circle cx="32" cy="21" r="3.4" fill="#8a2c1a"/>
+  <path d="M4 34 H60 C59 48, 48 57, 32 57 C16 57, 5 48, 4 34 Z" fill="#3c6d9e"/>
+  <rect x="3" y="32" width="58" height="4.5" rx="2.2" fill="#5b8fc3"/>
+  <path d="M24 56.5 H40 L38 61 H26 Z" fill="#2b5277"/>
+</svg>

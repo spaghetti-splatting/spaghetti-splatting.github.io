@@ -328,15 +328,21 @@
       this.visible = false;
       this.resyncing = false; // True while a resync waits for the seeks of its videos.
       this.resyncCount = 0; // Number of resyncs. A newer resync cancels an older resync that still waits.
+      this.userPaused = false; // True after a click on Pause. The videos stay paused until a click on Play.
 
       const bar = element('div', 'scene-bar');
       const tabs = element('div', 'scene-tabs');
       tabs.setAttribute('role', 'group');
       tabs.setAttribute('aria-label', 'Scenes');
+      // Pause and Play: stop or start all videos of the section.
+      this.pauseButton = element('button', 'resync-button pause-button', 'Pause');
+      this.pauseButton.type = 'button';
+      this.pauseButton.setAttribute('aria-pressed', 'false');
+      this.pauseButton.addEventListener('click', () => this.setPaused(!this.userPaused));
       const resync = element('button', 'resync-button', 'Resync');
       resync.type = 'button';
       resync.addEventListener('click', () => this.resync());
-      bar.append(tabs, resync);
+      bar.append(tabs, this.pauseButton, resync);
       // The player count selects the layout class: one, two, or three players.
       const layout = ['player-single', 'player-pair', 'player-triple'][config.players.length - 1];
       const players = element('div', layout);
@@ -358,10 +364,9 @@
       // Call play() directly in the click handler. A play() after a promise can lose the gesture on iOS.
       this.players.forEach((player) => {
         player.playButton.addEventListener('click', () => {
-          this.showPlayButtons(false);
           this.resyncing = false;
           this.visible = true;
-          this.players.forEach((item) => playQuietly(item.video, () => this.showPlayButtons(true)));
+          this.setPaused(false);
         });
       });
 
@@ -402,8 +407,23 @@
     }
 
     // Start all videos of the section. If the browser refuses autoplay, show the play buttons.
+    // After a click on Pause, the videos stay paused.
     playAll() {
+      if (this.userPaused) return;
       this.players.forEach((player) => playQuietly(player.video, () => this.showPlayButtons(true)));
+    }
+
+    // Pause or play all videos of the section. A click calls this, so play() runs inside the user gesture.
+    setPaused(paused) {
+      this.userPaused = paused;
+      this.pauseButton.textContent = paused ? 'Play' : 'Pause';
+      this.pauseButton.setAttribute('aria-pressed', paused ? 'true' : 'false');
+      if (paused) {
+        this.players.forEach((player) => player.video.pause());
+      } else {
+        this.showPlayButtons(false);
+        this.playAll();
+      }
     }
 
     showPlayButtons(show) {
