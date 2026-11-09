@@ -116,7 +116,7 @@
       <div class="method-row-title">Kernel and Dirac mass</div>
       <p class="abstract">
         A 3D Gaussian is the convolution of a Dirac mass at a point with a Gaussian kernel.
-        We replace the point with a segment of learnable length and convolve its measure with the same kernel.
+        We replace the point with a segment of learnable length and convolve the measure of the segment with the same kernel.
         The same construction holds for other kernels, such as the Beta kernels of Deformable Beta Splatting.
       </p>
       <div class="method-grid">
@@ -135,10 +135,10 @@
       <div class="method-row-title">One EWA per segment, scaled by inverse depth</div>
       <p class="abstract">
         The optical depth of a Gaussian-convolved segment along a camera ray has a closed form in the error function.
-        Evaluating it for every pair of segment and pixel is too slow for training, as it needs ray-dependent quantities at every pixel.
+        The closed form needs ray-dependent quantities for every pair of segment and pixel, which is too slow for training.
         For fast training and inference, we linearize the perspective projection once per frame at the midpoint of each segment, as in EWA splatting.
-        We then scale the projected kernel along the segment with inverse depth, so the kernel keeps its 3D shape under perspective.
-        This linearization also supports the Beta kernels of Deformable Beta Splatting.
+        We then scale the projected kernel along the segment with inverse depth, so the projected kernel shrinks with depth along the segment.
+        This linearization also supports Beta kernels.
       </p>
       <video src="videos/method/7_ewa_inverse_depth.mp4" poster="videos/method/7_ewa_inverse_depth.jpg" autoplay muted loop playsinline preload="metadata"
              style="display:block;width:100%;height:auto;border-radius:4px;background:#fff"></video>
@@ -146,11 +146,11 @@
            out/tweet_thread_20261109/video3_exact_subdivision_v17_loop.mp4 of Kernel_Curves. -->
       <div class="method-row-title">Exact subdivision</div>
       <p class="abstract">
-        We render the density of each segment.
-        Each segment contributes an optical depth &tau; along a ray, and alpha blending composites the segments front to back with &alpha;&nbsp;=&nbsp;1&nbsp;&minus;&nbsp;e<sup>&minus;&tau;</sup>.
-        As the measure of a segment is linear, splitting a segment into two halves that inherit its density splits its optical depth into two terms that sum to the original.
+        Each segment has an optical depth &tau; along a ray and the opacity &alpha;&nbsp;=&nbsp;1&nbsp;&minus;&nbsp;e<sup>&minus;&tau;</sup>.
+        We composite the segments front to back.
+        As the convolution and the optical depth are linear, splitting a segment into two halves that inherit its density per unit length splits its optical depth into two terms that sum to the original.
         Alpha blending of the two halves then gives (1&nbsp;&minus;&nbsp;&alpha;<sub>1</sub>)(1&nbsp;&minus;&nbsp;&alpha;<sub>2</sub>)&nbsp;=&nbsp;e<sup>&minus;&tau;<sub>1</sub>&minus;&tau;<sub>2</sub></sup>&nbsp;=&nbsp;1&nbsp;&minus;&nbsp;&alpha;, the same transmittance as the parent.
-        Splitting long segments during optimization therefore leaves the rendered image exactly unchanged.
+        Splitting a long segment during optimization thus keeps its density field and its opacity along every ray, so the rendered image does not change.
       </p>
       <video src="videos/method/8_exact_subdivision.mp4" poster="videos/method/8_exact_subdivision.jpg" autoplay muted loop playsinline preload="metadata"
              style="display:block;width:100%;height:auto;border-radius:4px;background:#fff"></video>
@@ -158,9 +158,8 @@
            (session "Gaussian haircut view 380 covariance alignment", from Yizheng's cov_align handoff). -->
       <div class="method-row-title">Covariance alignment</div>
       <p class="abstract">
-        Our kernel shares its rotation with its segment.
-        When a polyline deforms, for example in a physics simulation, each kernel stays aligned with its segment.
-        A deformation moves the mean of a 3D Gaussian but gives no rule for its covariance.
+        The local x axis of each kernel is the direction of its segment.
+        When a polyline deforms, for example in a physics simulation, each kernel thus stays aligned with its segment.
       </p>
       <video src="videos/method/9_covariance_alignment.mp4" poster="videos/method/9_covariance_alignment.jpg" autoplay muted loop playsinline preload="metadata"
              style="display:block;width:100%;height:auto;border-radius:4px;background:#fff"></video>
@@ -168,7 +167,7 @@
            update of 2026-11-08 21:23, Pages commit db54f55), restored after cb47261 removed it. -->
       <div class="method-row-title">Many shapes from polylines</div>
       <p class="abstract">
-        With the same kernel, polylines represent a wide range of shapes, from a needle of one segment to a twisted ribbon.
+        Polylines with one kernel type represent shapes from a needle of one segment to a twisted ribbon.
       </p>
       <video src="videos/method/method_primitives_wip.mp4" autoplay muted loop playsinline preload="metadata"
              style="display:block;width:100%;height:auto;border-radius:4px;background:#fff"></video>
