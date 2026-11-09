@@ -112,10 +112,16 @@ body {
   margin: 0;
 }
 
-.teaser img {
+.teaser img,
+.teaser video {
   display: block;
   width: 100%;
   height: auto;
+}
+
+/* The zoom comparison video under the teaser. */
+.zoom-compare {
+  margin-top: 28px;
 }
 
 .teaser-caption {
