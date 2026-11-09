@@ -66,13 +66,32 @@
       </p>
     </section>
 
-    <!-- Method videos, work in progress (George, 2026-11-08). Session "Method film shots"; files in videos/method/. -->
+    <!-- Method loops, work in progress (George, 2026-11-08): 2 rows x 3 columns, one caption under
+         each clip, as the method grid of the PowerFoam page. Session "Method film shots"; the
+         clips are in videos/method/ (our CUDA rasterizer for the coverage, the drawing layer of
+         the paper figures for the shading). -->
     <section class="section" id="method-wip">
+      <style>
+        .method-row-title { margin: 20px 0 10px; font-size: 1.1rem; font-weight: 600; }
+        .method-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+        .method-cell { margin: 0; }
+        .method-cell video { display: block; width: 100%; height: auto; border-radius: 4px; background: #fff; }
+        .method-cell figcaption { margin-top: 6px; text-align: center; font-size: 0.95rem; }
+        @media (max-width: 700px) { .method-grid { grid-template-columns: 1fr; } }
+      </style>
       <h2>Method <span style="color:#8a9096;font-weight:400">(WIP)</span></h2>
-      <p class="section-intro">The kernel and the Dirac mass are independent choices.</p>
-      <video src="videos/method/method_kernel_dirac_wip.mp4" controls autoplay muted loop playsinline preload="metadata" style="display:block;width:100%;height:auto;margin:0 0 24px;border-radius:4px"></video>
-      <p class="section-intro">Sixteen polylines, drawn at the same time.</p>
-      <video src="videos/method/method_primitives_wip.mp4?v=20261108g" controls autoplay muted loop playsinline preload="metadata" style="display:block;width:100%;height:auto;margin:0 0 12px;border-radius:4px"></video>
+      <div class="method-row-title">Kernel and Dirac mass</div>
+      <div class="method-grid">
+        <figure class="method-cell"><video src="videos/method/1_point_to_curve_gaussian.mp4" poster="videos/method/1_point_to_curve_gaussian.jpg" autoplay muted loop playsinline preload="metadata"></video><figcaption>Point to curve, Gaussian kernel</figcaption></figure>
+        <figure class="method-cell"><video src="videos/method/2_point_to_curve_beta.mp4" poster="videos/method/2_point_to_curve_beta.jpg" autoplay muted loop playsinline preload="metadata"></video><figcaption>Point to curve, Beta kernel</figcaption></figure>
+        <figure class="method-cell"><video src="videos/method/3_beta_anisotropic.mp4" poster="videos/method/3_beta_anisotropic.jpg" autoplay muted loop playsinline preload="metadata"></video><figcaption>Anisotropic Beta kernel</figcaption></figure>
+      </div>
+      <div class="method-row-title">Per-segment rasterizer</div>
+      <div class="method-grid">
+        <figure class="method-cell"><video src="videos/method/4_perspective_projection.mp4" poster="videos/method/4_perspective_projection.jpg" autoplay muted loop playsinline preload="metadata"></video><figcaption>Perspective projection</figcaption></figure>
+        <figure class="method-cell"><video src="videos/method/5_convolution.mp4" poster="videos/method/5_convolution.jpg" autoplay muted loop playsinline preload="metadata"></video><figcaption>Closed-form convolution</figcaption></figure>
+        <figure class="method-cell"><video src="videos/method/6_compositing.mp4" poster="videos/method/6_compositing.jpg" autoplay muted loop playsinline preload="metadata"></video><figcaption>Front-to-back compositing</figcaption></figure>
+      </div>
     </section>
 
     <!-- Fly-throughs. compare.js fills each data-flythrough element with the scene tabs and the compare players.
