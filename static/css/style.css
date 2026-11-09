@@ -1,0 +1,347 @@
+/* Project page: one centred column on a white background. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: #fff;
+  color: #1a1a1a;
+  font-family: "Noto Sans", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+/* The column is at most 1100 px wide. The side gutter is 16 px. */
+.page,
+.footer {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* Title, authors, and link buttons. */
+.hero {
+  padding: 48px 0 28px;
+  text-align: center;
+}
+
+.title {
+  margin: 0 0 8px;
+  font-size: clamp(2rem, 6vw, 2.9rem);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.subtitle {
+  margin: 0 0 18px;
+  color: #333;
+  font-size: clamp(1.1rem, 3.2vw, 1.4rem);
+  line-height: 1.35;
+}
+
+.authors {
+  margin: 0 0 22px;
+  color: #555;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.link-button {
+  display: inline-block;
+  padding: 7px 20px;
+  border-radius: 999px;
+  background: #222;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* A placeholder link has no URL yet. It looks disabled and ignores clicks. */
+.link-button.is-disabled {
+  background: #e3e3e3;
+  color: #8a8a8a;
+  pointer-events: none;
+}
+
+/* Teaser. */
+.teaser {
+  margin: 0;
+}
+
+.teaser img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.teaser-caption {
+  margin-top: 10px;
+  color: #444;
+  font-size: 0.95rem;
+}
+
+/* The caption takes no space while it is empty. */
+.teaser-caption:empty {
+  display: none;
+}
+
+/* Sections. */
+.section {
+  padding-top: 44px;
+}
+
+.section h2 {
+  margin: 0 0 12px;
+  font-size: 1.6rem;
+  line-height: 1.25;
+}
+
+.abstract {
+  margin: 0;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* Justified text gets wide word gaps in a narrow column. Left-aligned text needs no hyphenation. */
+@media (max-width: 700px) {
+  .abstract {
+    text-align: left;
+    hyphens: manual;
+  }
+}
+
+.section-intro {
+  margin: 0 0 16px;
+}
+
+/* Scene tabs on the left, the Resync button on the right. */
+.scene-bar {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0 0 14px;
+}
+
+.scene-tabs {
+  display: flex;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+}
+
+.resync-button {
+  flex: none;
+  padding: 4px 12px;
+  border: 1px solid #c8c8c8;
+  border-radius: 4px;
+  background: #fff;
+  color: #222;
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.resync-button:hover {
+  border-color: #777;
+}
+
+.resync-button:focus-visible {
+  outline: 2px solid #2f6fdd;
+  outline-offset: 2px;
+}
+
+.scene-tab {
+  padding: 4px 14px;
+  border: 1px solid #c8c8c8;
+  border-radius: 999px;
+  background: #fff;
+  color: #222;
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.scene-tab:hover {
+  border-color: #777;
+}
+
+.scene-tab[aria-pressed="true"] {
+  border-color: #222;
+  background: #222;
+  color: #fff;
+}
+
+.scene-tab:focus-visible {
+  outline: 2px solid #2f6fdd;
+  outline-offset: 2px;
+}
+
+/* Compare players. Two or three players stand side by side in equal columns. On phones they stack. */
+.player-pair,
+.player-triple {
+  display: grid;
+  gap: 16px;
+}
+
+.player-pair {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.player-triple {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 700px) {
+  .player-pair,
+  .player-triple {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.player {
+  margin: 0;
+}
+
+.player-title {
+  margin: 0 0 6px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* compare.js sets the aspect ratio of the stage from the video. 16 / 9 applies until then. */
+.player-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 4px;
+  background: #f0f0f0;
+}
+
+.player-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: ew-resize;
+  /* A horizontal drag moves the split. A vertical drag scrolls the page. */
+  touch-action: pan-y pinch-zoom;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* A single-stream player has no split. Its canvas keeps the default cursor and the default touch gestures. */
+.player-single-stream .player-canvas {
+  cursor: auto;
+  touch-action: auto;
+}
+
+/* The video stays in the layout. It is 1 px by 1 px and fully transparent.
+   Do not use display: none. iOS Safari does not autoplay a video that is not visible. */
+.player-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.player-label {
+  position: absolute;
+  top: 8px;
+  padding: 1px 7px;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  pointer-events: none;
+}
+
+.player-label-left {
+  left: 8px;
+}
+
+.player-label-right {
+  right: 8px;
+}
+
+.player-loading {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  font-size: 0.9rem;
+  pointer-events: none;
+}
+
+.player-loading[hidden] {
+  display: none;
+}
+
+/* BibTeX. */
+.bibtex {
+  position: relative;
+}
+
+.bibtex pre {
+  margin: 0;
+  padding: 16px 84px 16px 16px;
+  border-radius: 4px;
+  background: #f5f5f5;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.copy-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 3px 12px;
+  border: 1px solid #c8c8c8;
+  border-radius: 4px;
+  background: #fff;
+  color: #222;
+  font: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.copy-button:hover {
+  border-color: #777;
+}
+
+/* Footer. */
+.footer {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  color: #777;
+  font-size: 0.9rem;
+}

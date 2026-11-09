@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Spaghetti Splatting</title>
+  <meta name="description" content="Spaghetti Splatting: Differentiating Curvilinear Dirac Masses via Convolution">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,600;0,700;1,400&amp;display=swap">
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+  <main class="page">
+
+    <header class="hero">
+      <h1 class="title">Spaghetti Splatting</h1>
+      <p class="subtitle">Differentiating Curvilinear Dirac Masses via Convolution</p>
+      <!-- TODO: Replace the placeholder with the author list. -->
+      <p class="authors">Anonymous authors</p>
+      <!-- TODO: Add the URLs. Then remove the is-disabled class, aria-disabled, and tabindex. -->
+      <nav class="links" aria-label="Paper links">
+        <a class="link-button is-disabled" href="#" aria-disabled="true" tabindex="-1">Paper</a>
+        <a class="link-button is-disabled" href="#" aria-disabled="true" tabindex="-1">Supplement</a>
+        <a class="link-button is-disabled" href="#" aria-disabled="true" tabindex="-1">Code</a>
+        <a class="link-button is-disabled" href="#" aria-disabled="true" tabindex="-1">BibTeX</a>
+      </nav>
+    </header>
+
+    <figure class="teaser">
+      <img src="static/images/teaser.jpg" width="4125" height="1470"
+           alt="Teaser: a render of a table scene, with zoomed regions that show the render next to the clay primitives">
+      <figcaption class="teaser-caption"><!-- TODO: Write the teaser caption. --></figcaption>
+    </figure>
+
+    <section class="section" id="abstract">
+      <h2>Abstract</h2>
+      <p class="abstract">
+        In production systems, 3D geometry is represented by primitives such as points, lines, and triangles, as rendering hardware is optimized to generate images from them very efficiently.
+        Learning such primitives from images by volume rendering is challenging, as they are Dirac masses defined at infinitesimal locations in space.
+        EWA splatting, Poisson reconstruction, and 3D Gaussian Splatting overcome this by convolving Dirac masses with a low-frequency kernel, a recipe that generalizes along two axes: the kernel and the primitive.
+        As points and triangles have already received significant attention, we investigate this recipe for <em>curvilinear</em> primitives, and introduce Spaghetti Splatting.
+        We approximate curves by polylines whose convolution converges to that of the convolution of the continuous curve, and volume render each segment so that connected segments composite without overcounting at their joints.
+        For fast training and inference, we linearize the camera projection per segment, which accommodates kernels beside Gaussians, such as Beta kernels.
+        As a point is a curve of zero length, our representation is a strict superset of 3D Gaussian Splatting.
+        Hence, it remains competitive with the state-of-the-art on general scenes, outperforms methods specialized to line-like geometry, natively supports anti-aliasing, and produces long connected strands that are directly amenable to physics simulation.
+      </p>
+    </section>
+
+    <!-- Fly-throughs. compare.js fills each data-flythrough element with the scene tabs and the compare players.
+         The scene table is at the top of static/js/compare.js. -->
+    <section class="section" id="mipnerf360">
+      <h2>Mip-NeRF 360</h2>
+      <p class="section-intro">TODO: One-line introduction to the Mip-NeRF 360 fly-throughs.</p>
+      <div class="flythrough" data-flythrough="mipnerf360"></div>
+    </section>
+
+    <section class="section" id="shelly">
+      <h2>Shelly</h2>
+      <p class="section-intro">TODO: One-line introduction to the Shelly fly-throughs.</p>
+      <div class="flythrough" data-flythrough="shelly"></div>
+    </section>
+
+    <section class="section" id="fuzzy">
+      <h2>Fuzzy</h2>
+      <p class="section-intro">TODO: One-line introduction to the Fuzzy fly-throughs.</p>
+      <div class="flythrough" data-flythrough="fuzzy"></div>
+    </section>
+
+    <section class="section" id="hair">
+      <h2>Hair: comparison with Gaussian Haircut</h2>
+      <p class="section-intro">TODO: One-line introduction to the hair comparison.</p>
+      <div class="flythrough" data-flythrough="hair"></div>
+    </section>
+
+    <section class="section" id="bibtex">
+      <h2>BibTeX</h2>
+      <div class="bibtex">
+        <button class="copy-button" id="copy-bibtex" type="button">Copy</button>
+        <pre id="bibtex-entry">@inproceedings{spaghetti2027,
+  title={Spaghetti Splatting: Differentiating Curvilinear Dirac Masses via Convolution},
+  author={Anonymous},
+  booktitle={TODO},
+  year={2027}
+}</pre>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer"><!-- TODO: Write the footer line. --></footer>
+
+  <script src="static/js/compare.js"></script>
+  <script>
+    // Copy the BibTeX entry to the clipboard.
+    (function () {
+      'use strict';
+      var button = document.getElementById('copy-bibtex');
+      var entry = document.getElementById('bibtex-entry');
+
+      function showResult(text) {
+        button.textContent = text;
+        setTimeout(function () { button.textContent = 'Copy'; }, 1500);
+      }
+
+      // The Clipboard API needs a secure context. On plain http, select the text and use execCommand.
+      function copyBySelection() {
+        var range = document.createRange();
+        range.selectNodeContents(entry);
+        var selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        var copied = false;
+        try { copied = document.execCommand('copy'); } catch (error) { copied = false; }
+        if (copied) showResult('Copied');
+      }
+
+      button.addEventListener('click', function () {
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(entry.textContent).then(function () { showResult('Copied'); }, copyBySelection);
+        } else {
+          copyBySelection();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
