@@ -103,8 +103,22 @@
         .method-cell figcaption { margin-top: 6px; text-align: center; font-size: 0.95rem; }
         @media (max-width: 700px) { .method-grid { grid-template-columns: 1fr; } }
       </style>
-      <h2>Method <span style="color:#8a9096;font-weight:400">(WIP)</span></h2>
+      <h2>Method</h2>
+      <p class="abstract">
+        Spaghetti Splatting extends the primitive of 3D Gaussian Splatting from points to curves.
+        EWA splatting, Poisson reconstruction, and 3D Gaussian Splatting all convolve Dirac masses with a low-frequency kernel.
+        This recipe generalizes along two axes: the kernel and the primitive.
+        As prior work studies points and triangles, we convolve curvilinear Dirac masses.
+        We approximate each curve by a polyline.
+        Its convolution with a kernel converges to that of the continuous curve as the segments shrink.
+        As a point is a curve of zero length, our representation is a strict superset of 3D Gaussian Splatting.
+      </p>
       <div class="method-row-title">Kernel and Dirac mass</div>
+      <p class="abstract">
+        A 3D Gaussian is the convolution of a Dirac mass at a point with a Gaussian kernel.
+        We replace the point with a segment of learnable length and convolve its measure with the same kernel.
+        The same construction holds for other kernels, such as the Beta kernels of Deformable Beta Splatting.
+      </p>
       <div class="method-grid">
         <figure class="method-cell"><video src="videos/method/1_point_to_curve_gaussian.mp4" poster="videos/method/1_point_to_curve_gaussian.jpg" autoplay muted loop playsinline preload="metadata"></video><figcaption>Point to curve, Gaussian kernel</figcaption></figure>
         <figure class="method-cell"><video src="videos/method/2_point_to_curve_beta.mp4" poster="videos/method/2_point_to_curve_beta.jpg" autoplay muted loop playsinline preload="metadata"></video><figcaption>Point to curve, Beta kernel</figcaption></figure>
@@ -119,16 +133,43 @@
       <!-- EWA at the segment midpoint, scaled along the segment by g = z_m / z (Yizheng's prototype v2d of
            George's tweet-thread video 2; source /localscratch/yxa153/george_tweet_thread_20261109/proto/video2d.py). -->
       <div class="method-row-title">One EWA per segment, scaled by inverse depth</div>
+      <p class="abstract">
+        The optical depth of a Gaussian-convolved segment along a camera ray has a closed form in the error function.
+        Evaluating it for every pair of segment and pixel is too slow for training, as it needs ray-dependent quantities at every pixel.
+        For fast training and inference, we linearize the perspective projection once per frame at the midpoint of each segment, as in EWA splatting.
+        We then scale the projected kernel along the segment with inverse depth, so the kernel keeps its 3D shape under perspective.
+        This linearization also supports the Beta kernels of Deformable Beta Splatting.
+      </p>
       <video src="videos/method/7_ewa_inverse_depth.mp4" poster="videos/method/7_ewa_inverse_depth.jpg" autoplay muted loop playsinline preload="metadata"
              style="display:block;width:100%;height:auto;border-radius:4px;background:#fff"></video>
       <!-- Exact subdivision (George 2026-11-09): tweet-thread video 3 v17 (seamless loop), our CUDA renderer, Gaussian kernel;
            out/tweet_thread_20261109/video3_exact_subdivision_v17_loop.mp4 of Kernel_Curves. -->
       <div class="method-row-title">Exact subdivision</div>
+      <p class="abstract">
+        We render the density of each segment.
+        Each segment contributes an optical depth &tau; along a ray, and alpha blending composites the segments front to back with &alpha;&nbsp;=&nbsp;1&nbsp;&minus;&nbsp;e<sup>&minus;&tau;</sup>.
+        As the measure of a segment is linear, splitting a segment into two halves that inherit its density splits its optical depth into two terms that sum to the original.
+        Alpha blending of the two halves then gives (1&nbsp;&minus;&nbsp;&alpha;<sub>1</sub>)(1&nbsp;&minus;&nbsp;&alpha;<sub>2</sub>)&nbsp;=&nbsp;e<sup>&minus;&tau;<sub>1</sub>&minus;&tau;<sub>2</sub></sup>&nbsp;=&nbsp;1&nbsp;&minus;&nbsp;&alpha;, the same transmittance as the parent.
+        Splitting long segments during optimization therefore leaves the rendered image exactly unchanged.
+      </p>
       <video src="videos/method/8_exact_subdivision.mp4" poster="videos/method/8_exact_subdivision.jpg" autoplay muted loop playsinline preload="metadata"
+             style="display:block;width:100%;height:auto;border-radius:4px;background:#fff"></video>
+      <!-- Covariance alignment (George 2026-11-09): cov_align_v14.mp4 of /data/george/kernel_curves/cov_align_adopt_v1
+           (session "Gaussian haircut view 380 covariance alignment", from Yizheng's cov_align handoff). -->
+      <div class="method-row-title">Covariance alignment</div>
+      <p class="abstract">
+        Our kernel shares its rotation with its segment.
+        When a polyline deforms, for example in a physics simulation, each kernel stays aligned with its segment.
+        A deformation moves the mean of a 3D Gaussian but gives no rule for its covariance.
+      </p>
+      <video src="videos/method/9_covariance_alignment.mp4" poster="videos/method/9_covariance_alignment.jpg" autoplay muted loop playsinline preload="metadata"
              style="display:block;width:100%;height:auto;border-radius:4px;background:#fff"></video>
       <!-- The 4 x 4 grid of polylines drawn at the same time (Yizheng's volume renderer; page session
            update of 2026-11-08 21:23, Pages commit db54f55), restored after cb47261 removed it. -->
       <div class="method-row-title">Many shapes from polylines</div>
+      <p class="abstract">
+        With the same kernel, polylines represent a wide range of shapes, from a needle of one segment to a twisted ribbon.
+      </p>
       <video src="videos/method/method_primitives_wip.mp4" autoplay muted loop playsinline preload="metadata"
              style="display:block;width:100%;height:auto;border-radius:4px;background:#fff"></video>
     </section>
