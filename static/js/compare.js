@@ -24,15 +24,15 @@
     mipnerf360: {
       players: [{ dataset: 'mipnerf360' }],
       scenes: [
+        { id: 'room', label: 'Room' },
+        { id: 'bonsai', label: 'Bonsai' },
         { id: 'bicycle', label: 'Bicycle' },
         { id: 'flowers', label: 'Flowers' },
         { id: 'garden', label: 'Garden' },
         { id: 'stump', label: 'Stump' },
         { id: 'treehill', label: 'Treehill' },
-        { id: 'room', label: 'Room' },
         { id: 'counter', label: 'Counter' },
         { id: 'kitchen', label: 'Kitchen' },
-        { id: 'bonsai', label: 'Bonsai' },
       ],
     },
     shelly: {
@@ -190,8 +190,9 @@
       });
     }
 
-    // Load a scene. The split position does not change.
+    // Load a scene. Each scene starts with the split in the middle.
     setSource(url) {
+      this.split = 0.5;
       if (this.frameRequest !== null) {
         this.video.cancelVideoFrameCallback(this.frameRequest);
         this.frameRequest = null;
