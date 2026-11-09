@@ -17,7 +17,14 @@
   <main class="page">
 
     <header class="hero">
-      <h1 class="title">Spaghetti Splatting</h1>
+      <!-- The title drawn by our CUDA rasterizer: one curve per word, Gaussian kernel (method-film title, commit 259d23fe on web/method-film-20261108). The video plays once and holds its last frame; the poster is that frame. -->
+      <h1 class="title title-art">
+        <video class="title-media" autoplay muted playsinline preload="auto"
+               poster="static/images/title.webp" aria-hidden="true">
+          <source src="static/images/title.mp4" type="video/mp4">
+        </video>
+        <span class="visually-hidden">Spaghetti Splatting</span>
+      </h1>
       <p class="subtitle">Differentiating Curvilinear Dirac Masses via Convolution</p>
       <!-- Authors and affiliations as in main.tex of the paper (Overleaf, 2026-11-08). Homepages from theialab.ca/data/people.json; drebain.com did not answer, so Daniel Rebain links to Google Scholar. -->
       <p class="authors">

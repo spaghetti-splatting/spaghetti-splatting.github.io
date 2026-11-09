@@ -421,3 +421,9 @@ body {
   color: #777;
   font-size: 0.9rem;
 }
+
+/* The drawn title replaces the text title; the text stays for screen readers. */
+.title-art { margin: 0 auto 4px; }
+.title-media { display: block; width: min(100%, 780px); height: auto; margin: 0 auto; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; }
