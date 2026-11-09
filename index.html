@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,600;0,700;1,400&amp;display=swap">
-  <link rel="stylesheet" href="static/css/style.css?v=20261108">
+  <link rel="stylesheet" href="static/css/style.css?v=20261108b">
 </head>
 <body>
   <main class="page">
@@ -68,25 +68,47 @@
     <section class="section" id="mipnerf360">
       <h2>Mip-NeRF 360</h2>
       <p class="section-intro">TODO: One-line introduction to the Mip-NeRF 360 fly-throughs.</p>
-      <div class="flythrough" data-flythrough="mipnerf360"></div>
+      <div class="flythrough" data-flythrough="mipnerf360">
+        <!-- Without JavaScript: standard videos of the first scene (render | clay), with the browser controls. -->
+        <noscript>
+          <video class="noscript-video" src="videos/mipnerf360/room.mp4" poster="videos/mipnerf360/room.jpg" controls autoplay muted loop playsinline preload="metadata"></video>
+        </noscript>
+      </div>
     </section>
 
     <section class="section" id="shelly">
       <h2>Shelly</h2>
       <p class="section-intro">TODO: One-line introduction to the Shelly fly-throughs.</p>
-      <div class="flythrough" data-flythrough="shelly"></div>
+      <div class="flythrough" data-flythrough="shelly">
+        <!-- Without JavaScript: standard videos of the first scene (render | clay), with the browser controls. -->
+        <noscript>
+          <video class="noscript-video" src="videos/shelly/fernvase.mp4" poster="videos/shelly/fernvase.jpg" controls autoplay muted loop playsinline preload="metadata"></video>
+        </noscript>
+      </div>
     </section>
 
     <section class="section" id="fuzzy">
       <h2>Fuzzy</h2>
       <p class="section-intro">TODO: One-line introduction to the Fuzzy fly-throughs.</p>
-      <div class="flythrough" data-flythrough="fuzzy"></div>
+      <div class="flythrough" data-flythrough="fuzzy">
+        <!-- Without JavaScript: standard videos of the first scene (render | clay), with the browser controls. -->
+        <noscript>
+          <video class="noscript-video" src="videos/fuzzy/cactus1.mp4" poster="videos/fuzzy/cactus1.jpg" controls autoplay muted loop playsinline preload="metadata"></video>
+        </noscript>
+      </div>
     </section>
 
     <section class="section" id="hair">
       <h2>Hair: comparison with Gaussian Haircut</h2>
       <p class="section-intro">TODO: One-line introduction to the hair comparison.</p>
-      <div class="flythrough" data-flythrough="hair"></div>
+      <div class="flythrough" data-flythrough="hair">
+        <!-- Without JavaScript: standard videos of the first scene (render | clay), with the browser controls. -->
+        <noscript>
+          <video class="noscript-video" src="videos/hair_gt/381.mp4" poster="videos/hair_gt/381.jpg" controls autoplay muted loop playsinline preload="metadata"></video>
+          <video class="noscript-video" src="videos/hair_gh/381.mp4" poster="videos/hair_gh/381.jpg" controls autoplay muted loop playsinline preload="metadata"></video>
+          <video class="noscript-video" src="videos/hair_ours/381.mp4" poster="videos/hair_ours/381.jpg" controls autoplay muted loop playsinline preload="metadata"></video>
+        </noscript>
+      </div>
     </section>
 
     <section class="section" id="bibtex">
@@ -106,7 +128,7 @@
 
   <footer class="footer"><!-- TODO: Write the footer line. --></footer>
 
-  <script src="static/js/compare.js?v=20261108"></script>
+  <script src="static/js/compare.js?v=20261108b"></script>
   <script>
     // Copy the BibTeX entry to the clipboard.
     (function () {

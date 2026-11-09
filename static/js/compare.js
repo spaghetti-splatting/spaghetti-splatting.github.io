@@ -92,10 +92,16 @@
     return node;
   }
 
-  // The browser can refuse playback. The player then shows the first frame.
-  function playQuietly(video) {
+  // Start a video. The browser can refuse autoplay, for example in Low Power Mode or with the
+  // Safari setting "Never Auto-Play". Then onBlocked runs, and the player shows a play button.
+  // A pause() during the start also rejects the promise (AbortError). That is not a refusal.
+  function playQuietly(video, onBlocked) {
     const promise = video.play();
-    if (promise) promise.catch(function () {});
+    if (promise) {
+      promise.catch(function (error) {
+        if (error && error.name === 'NotAllowedError' && onBlocked) onBlocked();
+      });
+    }
   }
 
   // Seek a video to time 0. The promise resolves when the seek ends or when the video cannot load.
@@ -106,7 +112,6 @@
         return;
       }
       const finish = () => {
-        video.removeEventListener('loadedmetadata', seek);
         video.removeEventListener('seeked', seeked);
         video.removeEventListener('error', finish);
         resolve();
@@ -116,14 +121,17 @@
         if (!video.seeking) finish();
       };
       const seek = () => {
-        video.removeEventListener('loadedmetadata', seek);
         video.addEventListener('seeked', seeked);
         video.currentTime = 0;
       };
+      // A video without metadata (readyState 0) is at time 0 already: a new src starts at time 0.
+      // Do not wait for its metadata. iOS loads no metadata before playback when autoplay is blocked.
+      if (video.readyState === 0) {
+        resolve();
+        return;
+      }
       video.addEventListener('error', finish);
-      // A video without metadata (readyState 0) cannot seek. Seek when the metadata arrives.
-      if (video.readyState === 0) video.addEventListener('loadedmetadata', seek);
-      else seek();
+      seek();
     });
   }
 
@@ -147,6 +155,10 @@
       this.canvas = element('canvas', 'player-canvas');
       this.ctx = this.canvas.getContext('2d');
       this.loading = element('div', 'player-loading', 'Loading…');
+      this.playButton = element('button', 'player-play');
+      this.playButton.type = 'button';
+      this.playButton.setAttribute('aria-label', 'Play');
+      this.playButton.hidden = true;
 
       const video = this.video;
       video.muted = true;
@@ -162,7 +174,7 @@
         element('span', 'player-label player-label-left', 'Render'),
         element('span', 'player-label player-label-right', 'Clay primitives'),
       ];
-      this.stage.append(video, this.canvas, ...labels, this.loading);
+      this.stage.append(video, this.canvas, ...labels, this.loading, this.playButton);
       figure.appendChild(this.stage);
       parent.appendChild(figure);
 
@@ -197,20 +209,31 @@
         this.video.cancelVideoFrameCallback(this.frameRequest);
         this.frameRequest = null;
       }
+      // The cleared canvas is transparent, so the poster of the video shows until the first frame.
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
       this.loading.hidden = false;
+      const poster = url.replace(/\.mp4$/, '.jpg');
+      this.video.poster = poster;
+      // iOS can load no video data before playback. The poster then gives the stage its aspect ratio.
+      const image = new Image();
+      image.onload = () => {
+        if (this.video.src.endsWith(url) && this.video.videoWidth === 0) this.setAspect(image.naturalWidth, image.naturalHeight);
+      };
+      image.src = poster;
       this.video.src = url;
       this.watchFrames();
     }
 
     // Give the stage the aspect ratio of one video half. In single-stream mode, use the whole frame.
     // Give the canvas one pixel per device pixel.
+    setAspect(width, height) {
+      const frameWidth = this.single ? width : width / 2;
+      this.stage.style.aspectRatio = frameWidth + ' / ' + height;
+    }
+
     resize() {
       const video = this.video;
-      if (video.videoWidth > 0 && video.videoHeight > 0) {
-        const frameWidth = this.single ? video.videoWidth : video.videoWidth / 2;
-        this.stage.style.aspectRatio = frameWidth + ' / ' + video.videoHeight;
-      }
+      if (video.videoWidth > 0 && video.videoHeight > 0) this.setAspect(video.videoWidth, video.videoHeight);
       const rect = this.stage.getBoundingClientRect();
       this.scale = window.devicePixelRatio || 1;
       const width = Math.max(1, Math.round(rect.width * this.scale));
@@ -331,6 +354,17 @@
 
       if (this.players.length > 1) this.players[0].onVideoFrame = () => this.syncFollowers();
 
+      // A click on the play button is a user gesture, so the browser lets all videos of the section play.
+      // Call play() directly in the click handler. A play() after a promise can lose the gesture on iOS.
+      this.players.forEach((player) => {
+        player.playButton.addEventListener('click', () => {
+          this.showPlayButtons(false);
+          this.resyncing = false;
+          this.visible = true;
+          this.players.forEach((item) => playQuietly(item.video, () => this.showPlayButtons(true)));
+        });
+      });
+
       // Play the videos while a player of the section is on screen. Pause them when no player is on screen.
       const onScreen = new Set();
       const observer = new IntersectionObserver((entries) => {
@@ -363,9 +397,18 @@
       this.visible = visible;
       // During a resync the videos stay paused. The resync starts them when it ends.
       if (this.resyncing) return;
+      if (visible) this.playAll();
+      else this.players.forEach((player) => player.video.pause());
+    }
+
+    // Start all videos of the section. If the browser refuses autoplay, show the play buttons.
+    playAll() {
+      this.players.forEach((player) => playQuietly(player.video, () => this.showPlayButtons(true)));
+    }
+
+    showPlayButtons(show) {
       this.players.forEach((player) => {
-        if (visible) playQuietly(player.video);
-        else player.video.pause();
+        player.playButton.hidden = !show;
       });
     }
 
@@ -378,7 +421,7 @@
       Promise.all(videos.map(seekToStart)).then(() => {
         if (count !== this.resyncCount) return;
         this.resyncing = false;
-        if (this.visible) videos.forEach(playQuietly);
+        if (this.visible) this.playAll();
       });
     }
 

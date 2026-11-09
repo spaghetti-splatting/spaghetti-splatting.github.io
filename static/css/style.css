@@ -283,16 +283,62 @@ body {
   touch-action: auto;
 }
 
-/* The video stays in the layout. It is 1 px by 1 px and fully transparent.
-   Do not use display: none. iOS Safari does not autoplay a video that is not visible. */
+/* The video is a visible standard player under the canvas. It fills the stage.
+   Safari plays a video only when it is visible, so do not hide it or make it very small.
+   Before the first canvas frame, the video shows its poster: the render half of a two-half video. */
 .player-video {
   position: absolute;
   top: 0;
   left: 0;
-  width: 1px;
-  height: 1px;
-  opacity: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left center;
   pointer-events: none;
+}
+
+.player-single-stream .player-video {
+  object-fit: contain;
+  object-position: center;
+}
+
+/* The play button shows when the browser blocks autoplay, for example in Low Power Mode. */
+.player-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 64px;
+  height: 64px;
+  margin: -32px 0 0 -32px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+}
+
+.player-play::after {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 25px;
+  border-style: solid;
+  border-width: 12px 0 12px 20px;
+  border-color: transparent transparent transparent #fff;
+}
+
+.player-play[hidden] {
+  display: none;
+}
+
+/* Without JavaScript, the page shows standard videos with the browser controls. */
+.noscript-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 0 12px;
+  border-radius: 4px;
+  background: #f0f0f0;
 }
 
 .player-label {
@@ -315,17 +361,18 @@ body {
   right: 8px;
 }
 
+/* A small note at the bottom of the stage. The poster stays visible above it. */
 .player-loading {
   position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #666;
-  font-size: 0.9rem;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1px 8px;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  font-size: 0.75rem;
+  line-height: 1.5;
   pointer-events: none;
 }
 
