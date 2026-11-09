@@ -63,12 +63,6 @@
       <figcaption class="teaser-caption"><!-- TODO: Write the teaser caption. --></figcaption>
     </figure>
 
-    <figure class="teaser zoom-compare">
-      <!-- Zoom comparison (George 2026-11-09): 3DGS-MCMC + SV8 (Table 1 runs) left, Spaghetti Splatting + SV8 (floater-prune runs) right; render above, depth clay below. X-ready encode of video 1 v18 of the Twitter thread (out/tweet_thread_20261109/video1_twitter_v18.mp4). -->
-      <video src="videos/zoom/zoom_compare.mp4" poster="videos/zoom/zoom_compare.jpg" autoplay muted loop playsinline preload="auto"
-             aria-label="Zoom into the garden grate and the counter onion bag: 3DGS-MCMC + SV8 on the left, Spaghetti Splatting + SV8 on the right, rendered image above, internal representation below"></video>
-    </figure>
-
     <section class="section" id="abstract">
       <h2>Abstract</h2>
       <p class="abstract">
@@ -80,6 +74,19 @@
         For fast training and inference, we linearize the camera projection per segment, which accommodates kernels beside Gaussians, such as Beta kernels.
         As a point is a curve of zero length, our representation is a strict superset of 3D Gaussian Splatting.
         Hence, it remains competitive with the state-of-the-art on general scenes, outperforms methods specialized to line-like geometry, natively supports anti-aliasing, and produces long connected strands that are directly amenable to physics simulation.
+      </p>
+    </section>
+
+    <section class="section" id="thin-structures">
+      <figure class="teaser">
+        <!-- Zoom comparison (George 2026-11-09): 3DGS-MCMC + SV8 (Table 1 runs) left, Spaghetti Splatting + SV8 (floater-prune runs) right; render above, depth clay below. X-ready encode of video 1 v18 of the Twitter thread (out/tweet_thread_20261109/video1_twitter_v18.mp4). -->
+        <video src="videos/zoom/zoom_compare.mp4" poster="videos/zoom/zoom_compare.jpg" autoplay muted loop playsinline preload="auto"
+               aria-label="Zoom into the garden grate and the counter onion bag: 3DGS-MCMC + SV8 on the left, Spaghetti Splatting + SV8 on the right, rendered image above, internal representation below"></video>
+      </figure>
+      <p class="abstract" style="margin-top:14px">
+        Spaghetti Splatting recovers thin structures, such as the wires of a drain grate and the mesh of an onion net, as connected segments that follow them.
+        3DGS-MCMC + SV8 represents the same structures with scattered points.
+        Because the segments stay connected, the reconstruction remains consistent when we render it from novel views.
       </p>
     </section>
 
