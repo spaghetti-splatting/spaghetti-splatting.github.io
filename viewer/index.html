@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Spaghetti Splatting · WebGPU viewer</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<canvas id="view" tabindex="0"></canvas>
+<!-- 2D overlay of the haircut tools: the scissors line and the clipper outline. -->
+<canvas id="overlay"></canvas>
+
+<div id="top-left" class="panel">
+  <div class="brand"><span class="logo"></span>Spaghetti&nbsp;Splatting</div>
+  <select id="scene" title="Scene"></select>
+</div>
+
+<div id="top-right" class="panel row">
+  <div class="seg" role="radiogroup" title="Navigation mode (Tab)">
+    <button id="mode-orbit" class="on">Orbit</button><button id="mode-walk">Walk</button>
+  </div>
+  <button id="btn-home" class="icon" title="Reset view (R)">⌂</button>
+  <button id="btn-full" class="icon" title="Full screen (F)">⛶</button>
+  <button id="btn-help" class="icon" title="Controls (H)">?</button>
+  <button id="btn-tutorial" title="Tutorial: what each tool does">Tutorial</button>
+</div>
+
+<div id="hair-tools" class="panel hidden">
+  <div class="tools-title">Hair</div>
+  <button id="tool-grab" class="tool on" title="Drag a strand to pull a lock (G)"><span>✋</span>Grab</button>
+  <button id="tool-scissors" class="tool" title="Drag a line across the hair; the cut occurs at the release (V)"><span>✂</span>Scissors</button>
+  <button id="tool-clipper" class="tool" title="Drag over the head: the clipper cuts the hair at the guard height (C)"><span>▤</span>Clipper</button>
+  <label id="guard-box" class="slider vertical hidden" title="Guard of the clipper: the cut height above the scalp">guard
+    <select id="guard"></select></label>
+  <button id="tool-head" class="tool" title="Drag the head to turn it; the hair follows (T)"><span>⟳</span>Turn head</button>
+  <button id="tool-wind" class="tool" title="Wind from the left of the view (B)"><span>〰</span>Wind</button>
+  <button id="tool-shake" class="tool" title="Play a head shake of 4.5 s"><span>⇄</span>Shake</button>
+  <button id="tool-reset" class="tool" title="Put the hair and the head back (X)"><span>↺</span>Reset</button>
+  <label id="grab-size-box" class="slider vertical" title="Size of the grabbed lock">lock size <span id="grab-size-v">4 cm</span>
+    <input id="grab-size" type="range" min="1" max="10" step="0.5" value="4"></label>
+</div>
+
+<div id="bottom-left" class="panel stats">
+  <div id="fps"></div>
+  <div id="info"></div>
+</div>
+
+<div id="bottom-right" class="panel row">
+  <button id="view-prev" class="icon" title="Previous dataset view (,)">‹</button>
+  <span id="view-label">view</span>
+  <button id="view-next" class="icon" title="Next dataset view (.)">›</button>
+  <label class="slider" title="Field of view">fov
+    <input id="fov" type="range" min="20" max="100" step="1" value="50"></label>
+  <select id="quality" title="Resolution">
+    <option value="auto">Auto res</option>
+    <option value="1">Full res</option>
+    <option value="0.75">75 %</option>
+    <option value="0.5">50 %</option>
+  </select>
+</div>
+
+<div id="toast" class="panel hidden"></div>
+
+<div id="help" class="panel hidden">
+  <h2>Controls</h2>
+  <div class="cols">
+    <div>
+      <h3>Orbit</h3>
+      <p><b>Left drag</b> turn about the pivot</p>
+      <p><b>Right drag</b> / <b>Shift + drag</b> pan</p>
+      <p><b>Wheel</b> / <b>pinch</b> zoom to the cursor</p>
+      <p><b>Double click</b> focus on a point</p>
+    </div>
+    <div>
+      <h3>Walk</h3>
+      <p><b>W A S D</b> move · <b>Q E</b> down / up</p>
+      <p><b>Arrows</b> turn · <b>Shift</b> 3× · <b>Ctrl</b> slow</p>
+      <p><b>Drag</b> look · <b>Wheel</b> forward</p>
+      <p><b>[ ]</b> roll · <b>\</b> level horizon</p>
+    </div>
+    <div>
+      <h3>Hair</h3>
+      <p><b>Drag a strand</b> pull a lock (Grab)</p>
+      <p><b>Drag across the hair</b> cut along the line (Scissors)</p>
+      <p><b>Drag over the head</b> clip at the guard height (Clipper)</p>
+      <p><b>Drag the head</b> turn the head (Turn head)</p>
+      <p><b>Drag the background</b> navigate</p>
+      <p><b>G</b> grab · <b>V</b> scissors · <b>C</b> clipper · <b>T</b> turn head</p>
+      <p><b>Shake</b> head shake · <b>B</b> wind</p>
+      <p><b>X</b> reset the hair and the head; the cut hair comes back</p>
+    </div>
+    <div>
+      <h3>General</h3>
+      <p><b>Tab</b> orbit / walk · <b>R</b> reset view</p>
+      <p><b>, .</b> dataset views · <b>F</b> full screen</p>
+      <p><b>H</b> this help</p>
+    </div>
+  </div>
+  <p class="note">The image is the colour-only evaluation render of the trained model, computed in
+    WebGPU (a WGSL port of the CUDA rasterizer). Pulled hair keeps its trained segments: each
+    segment moves rigidly with the simulated strand (DFTL), and its kernel frame and colour sites turn
+    with it. A cut divides a segment at the cut point: each part keeps the trained parameters. The cut
+    pieces fall and leave the scene 3 s after the cut at the latest. Reset brings back the trained hair.
+    A head turn or a shake moves the head segments rigidly about the neck; the strand simulation moves the hair, with hair-hair friction.</p>
+</div>
+
+<!-- Tutorial (design/tutorial_text_v1.md, text word for word). The button "Tutorial", Esc and the close
+     button close it. tools/build_public.sh --no-lit removes the div.lit-only block. -->
+<div id="tutorial" class="panel hidden" role="dialog" aria-label="Tutorial">
+  <button id="tutorial-close" class="icon" title="Close (Esc)">×</button>
+  <h2>Tutorial</h2>
+  <div class="tut">
+    <h3><b>Look around</b></h3>
+    <ul>
+      <li><b>Orbit</b> (default): drag to turn the view about the pivot. Right drag or Shift + drag moves the view. The wheel or a pinch zooms to the cursor. A double click puts the pivot on that point.</li>
+      <li><b>Walk</b> (Tab): W A S D move, Q and E move down and up, a drag turns the view.</li>
+      <li><b>⌂</b> (R) puts the view back. <b>‹ ›</b> step through the camera views of the dataset. <b>fov</b> sets the field of view.</li>
+      <li>A drag that starts on the background always moves the view, also when a hair tool is on.</li>
+    </ul>
+    <h3><b>Grab</b> (G)</h3>
+    <ul>
+      <li>Drag a strand. The lock under the cursor follows the cursor.</li>
+      <li>Release the button. The lock goes back into place.</li>
+      <li><b>lock size</b> sets the size of the lock that you grab (1 to 10 cm).</li>
+    </ul>
+    <h3><b>Scissors</b> (V)</h3>
+    <ul>
+      <li>Drag a straight line across the hair.</li>
+      <li>At the release, the scissors cut each strand where it crosses the line. The cut pieces fall.</li>
+      <li>Hair behind the head is not cut.</li>
+    </ul>
+    <h3><b>Clipper</b> (C)</h3>
+    <ul>
+      <li>Select a <b>guard</b> (1.6 to 25.4 mm). The guard is the length of hair that stays on the head.</li>
+      <li>Drag over the head. The clipper cuts all hair that is longer than the guard, as electric hair clippers do.</li>
+    </ul>
+    <h3><b>Turn head</b> (T)</h3>
+    <ul>
+      <li>Drag the head to turn it. The hair follows.</li>
+      <li>Release the button. The head swings back, and the hair swings with it.</li>
+    </ul>
+    <h3><b>Wind</b> (B)</h3>
+    <ul>
+      <li>Push the button to start a wind from the left of the view. Push it again to stop the wind.</li>
+    </ul>
+    <h3><b>Shake</b></h3>
+    <ul>
+      <li>Push the button. The head shakes for 4.5 s.</li>
+    </ul>
+    <h3><b>Reset</b> (X)</h3>
+    <ul>
+      <li>Push the button to put the hair, the cut hair and the head back.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Status lines read by the loading screen (loader.js). -->
+<div id="status" aria-live="polite"><div id="progress">starting</div><div id="warning"></div></div>
+
+<script type="module" src="./app.js"></script>
+</body>
+</html>
