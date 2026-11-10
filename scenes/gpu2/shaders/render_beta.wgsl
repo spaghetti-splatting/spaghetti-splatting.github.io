@@ -1,37 +1,37 @@
-struct _o1p {
-  _o3b: vec4f,
-  _o4m: vec4f,
+struct _o1r {
+  _o3f: vec4f,
+  _o4r: vec4f,
   ab: vec4f,
-  _obk: vec4f,
-  _okm: vec4u,
-  _okl: vec4f,
-  _ohd: vec4f,
-  _ohe: vec4f,
-  _ohf: vec4f,
+  _oc2: vec4f,
+  _olb: vec4u,
+  _ola: vec4f,
+  _oi2: vec4f,
+  _oi3: vec4f,
+  _oi4: vec4f,
 };
 struct _om {
-  _oon: f32,
-  _ooo: f32,
-  _oj0: f32,
-  _oj1: f32,
-  _o3l: u32,
-  _o3f: u32,
-  _op2: u32,
-  _ohz: u32,
+  _opg: f32,
+  _oph: f32,
+  _ojp: f32,
+  _ojq: f32,
+  _o3p: u32,
+  _o3j: u32,
+  _opv: u32,
+  _oio: u32,
 };
-@group(0) @binding(0) var<storage, read> _ok5: array<u32>;
-@group(0) @binding(1) var<storage, read> _oio: array<u32>;
-@group(0) @binding(2) var<storage, read> _oiz: array<_o1p>;
+@group(0) @binding(0) var<storage, read> _oku: array<u32>;
+@group(0) @binding(1) var<storage, read> _ojd: array<u32>;
+@group(0) @binding(2) var<storage, read> _ojo: array<_o1r>;
 @group(0) @binding(3) var<storage, read> rgb: array<f32>;
-@group(0) @binding(4) var<storage, read> _oiy: array<vec4u>;
-@group(0) @binding(5) var<storage, read> _oox: array<f32>;
-@group(0) @binding(6) var<storage, read> _ooy: array<f32>;
-@group(0) @binding(7) var<storage, read_write> _oh8: array<f32>;
-@group(0) @binding(8) var<uniform> _o5o: _oo;
-@group(0) @binding(9) var<uniform> _o4r: _om;
+@group(0) @binding(4) var<storage, read> _ojn: array<vec4u>;
+@group(0) @binding(5) var<storage, read> _opq: array<f32>;
+@group(0) @binding(6) var<storage, read> _opr: array<f32>;
+@group(0) @binding(7) var<storage, read_write> _ohx: array<f32>;
+@group(0) @binding(8) var<uniform> _o5v: _oo;
+@group(0) @binding(9) var<uniform> _o4x: _om;
 const _of: u32 = 256u;
-const _o2g: f32 = 0.1;
-const _o1g: f32 = 0.0;
+const _o2i: f32 = 0.1;
+const _o1i: f32 = 0.0;
 const _o5: f32 = 1.0e-30;
 const _o8: f32 = 1.0e-4;
 const _od: f32 = 0.1;
@@ -40,471 +40,471 @@ const _oe: f32 = 1.41421356;
 const _o9: f32 = 0.707106781;
 const _o3: f32 = -3.1215594;
 const _o2: f32 = 1.8495809;
-const _o14: u32 = 6u;
-const _o15: u32 = 8u;
-const _o13 = array<f32, 24>(
+const _o16: u32 = 6u;
+const _o17: u32 = 8u;
+const _o15 = array<f32, 24>(
   -1.0, 0.0, 0.0, 0.0,
   0.8639625, -0.080043316, 0.011840287, -0.00032925335,
   -0.65780294, 0.16117837, -0.025375213, 0.0017560583,
   0.40191287, -0.1712049, 0.028378023, -0.0027375722,
   -0.16230038, 0.09921428, -0.017412446, 0.0016617817,
   0.030476268, -0.023956835, 0.004615334, -0.00040338145);
-const _o12 = array<f32, 5>(
+const _o14 = array<f32, 5>(
   0.9317711, -0.04327248, 0.0059742285, 8.387385e-06, -1.3679006e-05);
-const _o11 = array<f32, 5>(
+const _o13 = array<f32, 5>(
   1.0743953, 0.049604684, -0.005744186, -0.00030108364, 2.7100898e-05);
-var<workgroup> _o46: array<u32, 256>;
+var<workgroup> _o4b: array<u32, 256>;
+var<workgroup> _o4c: array<vec4f, 256>;
+var<workgroup> _o4d: array<vec4f, 256>;
+var<workgroup> _o46: array<vec2f, 256>;
+var<workgroup> _o49: array<vec2f, 256>;
 var<workgroup> _o47: array<vec4f, 256>;
-var<workgroup> _o48: array<vec4f, 256>;
-var<workgroup> _o41: array<vec2f, 256>;
-var<workgroup> _o44: array<vec2f, 256>;
-var<workgroup> _o42: array<vec4f, 256>;
-var<workgroup> _o49: array<array<f32, 8>, 256>;
-var<workgroup> _o45: array<f32, 256>;
-var<workgroup> _o4a: array<i32, 256>;
-var<workgroup> _o99: atomic<u32>;
-var<workgroup> _o98: u32;
-var<private> _on9: array<f32, 8>;
-var<private> _om9: array<f32, 5>;
-fn _oqv(_odx: u32) -> f32 {
-  return _o5o._oqq[_odx >> 2u][_odx & 3u];
+var<workgroup> _o4e: array<array<f32, 8>, 256>;
+var<workgroup> _o4a: array<f32, 256>;
+var<workgroup> _o4f: array<i32, 256>;
+var<workgroup> _o9q: atomic<u32>;
+var<workgroup> _o9p: u32;
+var<private> _oo1: array<f32, 8>;
+var<private> _omz: array<f32, 5>;
+fn _orp(_oei: u32) -> f32 {
+  return _o5v._ork[_oei >> 2u][_oei & 3u];
 }
-fn _on7(_omq: u32, _obg: f32) {
-  _o49[_omq][0] = _obg;
-  let _obo = _obg + 1.0;
-  let r = inverseSqrt(_obo);
+fn _onz(_oni: u32, _oby: f32) {
+  _o4e[_oni][0] = _oby;
+  let _oc6 = _oby + 1.0;
+  let r = inverseSqrt(_oc6);
   let z = fma(r, _o3, _o2);
-  let _ort = z + z;
-  var _oo6: array<f32, 5>;
-  _oo6[0] = 1.0;
-  _oo6[1] = z;
-  for (var _odn = 2u; _odn <= 4u; _odn = _odn + 1u) {
-    _oo6[_odn] = fma(_ort, _oo6[_odn - 1u], -_oo6[_odn - 2u]);
+  let _osp = z + z;
+  var _ooz: array<f32, 5>;
+  _ooz[0] = 1.0;
+  _ooz[1] = z;
+  for (var _oe8 = 2u; _oe8 <= 4u; _oe8 = _oe8 + 1u) {
+    _ooz[_oe8] = fma(_osp, _ooz[_oe8 - 1u], -_ooz[_oe8 - 2u]);
   }
-  var _o80: array<f32, 6>;
-  for (var _odx = 0u; _odx < _o14; _odx = _odx + 1u) {
-    var _o2z = _o13[_odx * 4u];
-    for (var _odn = 1u; _odn <= 3u; _odn = _odn + 1u) {
-      _o2z = fma(_o13[_odx * 4u + _odn], _oo6[_odn], _o2z);
+  var _o8h: array<f32, 6>;
+  for (var _oei = 0u; _oei < _o16; _oei = _oei + 1u) {
+    var _o31 = _o15[_oei * 4u];
+    for (var _oe8 = 1u; _oe8 <= 3u; _oe8 = _oe8 + 1u) {
+      _o31 = fma(_o15[_oei * 4u + _oe8], _ooz[_oe8], _o31);
     }
-    _o80[_odx] = _o2z;
+    _o8h[_oei] = _o31;
   }
-  var g = _o12[0];
-  var _obe = _o11[0];
-  for (var _odn = 1u; _odn <= 4u; _odn = _odn + 1u) {
-    g = fma(_o12[_odn], _oo6[_odn], g);
-    _obe = fma(_o11[_odn], _oo6[_odn], _obe);
+  var g = _o14[0];
+  var _obw = _o13[0];
+  for (var _oe8 = 1u; _oe8 <= 4u; _oe8 = _oe8 + 1u) {
+    g = fma(_o14[_oe8], _ooz[_oe8], g);
+    _obw = fma(_o13[_oe8], _ooz[_oe8], _obw);
   }
-  let _oab = r * g;
-  let _odd = (_obo * r) * _obe;
-  _o49[_omq][1] = _oab;
-  _o49[_omq][2] = _o80[0];
-  var _ois = _odd;
-  for (var _odx = 1u; _odx < _o14; _odx = _odx + 1u) {
-    _o49[_omq][_odx + 2u] = _o80[_odx] * _ois;
-    _ois = _ois * _odd;
+  let _oas = r * g;
+  let _ody = (_oc6 * r) * _obw;
+  _o4e[_oni][1] = _oas;
+  _o4e[_oni][2] = _o8h[0];
+  var _ojh = _ody;
+  for (var _oei = 1u; _oei < _o16; _oei = _oei + 1u) {
+    _o4e[_oni][_oei + 2u] = _o8h[_oei] * _ojh;
+    _ojh = _ojh * _ody;
   }
 }
-fn _of6(_odn: u32) {
-  for (var _odx = 0u; _odx < _o15; _odx = _odx + 1u) {
-    _on9[_odx] = _o49[_odn][_odx];
+fn _oft(_oe8: u32) {
+  for (var _oei = 0u; _oei < _o17; _oei = _oei + 1u) {
+    _oo1[_oei] = _o4e[_oe8][_oei];
   }
-  let _obg = _on9[0];
-  let _ojt = fma(_obg, -0.3, 0.3);
-  let _oju = fma(_obg, -5.0 / 21.0, 10.0 / 21.0);
-  let _ojv = fma(_obg, -7.0 / 36.0, 21.0 / 36.0);
-  _om9[0] = 1.0;
-  _om9[1] = _obg * (-1.0 / 3.0);
-  _om9[2] = _om9[1] * _ojt;
-  _om9[3] = _om9[2] * _oju;
-  _om9[4] = _om9[3] * _ojv;
+  let _oby = _oo1[0];
+  let _oki = fma(_oby, -0.3, 0.3);
+  let _okj = fma(_oby, -5.0 / 21.0, 10.0 / 21.0);
+  let _okk = fma(_oby, -7.0 / 36.0, 21.0 / 36.0);
+  _omz[0] = 1.0;
+  _omz[1] = _oby * (-1.0 / 3.0);
+  _omz[2] = _omz[1] * _oki;
+  _omz[3] = _omz[2] * _okj;
+  _omz[4] = _omz[3] * _okk;
 }
-struct _o17 {
-  _oqd: f32,
-  _ofe: f32,
-  _oj8: f32,
-  _o79: f32,
-  _oqi: f32,
-  _om8: bool,
+struct _o19 {
+  _or7: f32,
+  _og1: f32,
+  _ojx: f32,
+  _o7q: f32,
+  _orc: f32,
+  _omy: bool,
 };
-fn _o4h(_oqd: f32) -> _o17 {
-  let _obg = _on9[0];
-  var _o9s: _o17;
-  _o9s._oqd = _oqd;
-  let _oh2 = _oaw(fma(-_oqd, _oqd, 1.0), _o4);
-  _o9s._ofe = log2(_oh2);
-  _o9s._oj8 = exp2((_obg + 1.0) * _o9s._ofe);
-  var _o2z = _on9[1u + _o14];
-  for (var _odx = i32(_o14) - 1; _odx >= 0; _odx = _odx - 1) {
-    _o2z = fma(_o2z, _oqd, _on9[1 + _odx]);
+fn _o4m(_or7: f32) -> _o19 {
+  let _oby = _oo1[0];
+  var _oa9: _o19;
+  _oa9._or7 = _or7;
+  let _ohr = _obe(fma(-_or7, _or7, 1.0), _o4);
+  _oa9._og1 = log2(_ohr);
+  _oa9._ojx = exp2((_oby + 1.0) * _oa9._og1);
+  var _o31 = _oo1[1u + _o16];
+  for (var _oei = i32(_o16) - 1; _oei >= 0; _oei = _oei - 1) {
+    _o31 = fma(_o31, _or7, _oo1[1 + _oei]);
   }
-  _o9s._o79 = _o9s._oj8 * _o2z;
-  let _ops = _oqd * _oqd;
-  var _ont = _om9[4];
-  for (var _og7 = 3; _og7 >= 0; _og7 = _og7 - 1) {
-    _ont = fma(_ont, _ops, _om9[_og7]);
+  _oa9._o7q = _oa9._ojx * _o31;
+  let _oqm = _or7 * _or7;
+  var _oom = _omz[4];
+  for (var _ogw = 3; _ogw >= 0; _ogw = _ogw - 1) {
+    _oom = fma(_oom, _oqm, _omz[_ogw]);
   }
-  _o9s._om8 = _oqd <= _od;
-  _o9s._oqi = select(_on9[1] - _o9s._o79, _ont * _oqd, _o9s._om8);
-  return _o9s;
+  _oa9._omy = _or7 <= _od;
+  _oa9._orc = select(_oo1[1] - _oa9._o7q, _oom * _or7, _oa9._omy);
+  return _oa9;
 }
-fn _o3m(_oeg: f32) -> f32 {
-  let _obg = _on9[0];
-  if (_oeg < _o2g) {
-    let _o40 = fma(-0.3 * _oeg, _oeg, 1.0);
-    let _ois = exp2(_obg * log2(_o40));
-    return fma(5.0 / 9.0, _ois, 4.0 / 9.0);
-  } else if (_oeg <= _oe) {
-    let _oqd = _oeg * _o9;
-    return _o4h(_oqd)._oqi / _oqd;
+fn _o3q(_of3: f32) -> f32 {
+  let _oby = _oo1[0];
+  if (_of3 < _o2i) {
+    let _o45 = fma(-0.3 * _of3, _of3, 1.0);
+    let _ojh = exp2(_oby * log2(_o45));
+    return fma(5.0 / 9.0, _ojh, 4.0 / 9.0);
+  } else if (_of3 <= _oe) {
+    let _or7 = _of3 * _o9;
+    return _o4m(_or7)._orc / _or7;
   }
-  return _oe * _on9[1] / _oeg;
+  return _oe * _oo1[1] / _of3;
 }
-fn _one(_ojd: f32, _oek: f32, g: f32) -> f32 {
-  let _ohn = _o3m(_oek / g);
-  return _ojd * (g * g / _ohn);
+fn _oo6(_ok2: f32, _of7: f32, g: f32) -> f32 {
+  let _oic = _o3q(_of7 / g);
+  return _ok2 * (g * g / _oic);
 }
-fn _o4i(_of5: _o17, _och: _o17, _oip: bool, _ogf: bool) -> f32 {
-  let _o4q = _of5._om8 && _och._om8;
-  let _oad = select(_of5._oqi, _och._oqi, _oip);
-  let _oae = select(_och._oqi, _of5._oqi, _oip);
-  let _omr = _oad - _oae;
-  let _oom = _of5._o79 - _och._o79;
-  let _ool = select(-_oom, _oom, _oip);
-  let cross = _och._oqi + _of5._oqi;
-  return select(cross, select(_ool, _omr, _o4q), _oip || _ogf);
+fn _o4n(_ofs: _o19, _od1: _o19, _oje: bool, _oh4: bool) -> f32 {
+  let _o4w = _ofs._omy && _od1._omy;
+  let _oau = select(_ofs._orc, _od1._orc, _oje);
+  let _oav = select(_od1._orc, _ofs._orc, _oje);
+  let _onj = _oau - _oav;
+  let _opf = _ofs._o7q - _od1._o7q;
+  let _ope = select(-_opf, _opf, _oje);
+  let cross = _od1._orc + _ofs._orc;
+  return select(cross, select(_ope, _onj, _o4w), _oje || _oh4);
 }
-struct _o1a {
-  _oe4: bool,
-  _oor: f32,
-  _oog: f32,
+struct _o1c {
+  _oer: bool,
+  _opk: f32,
+  _op9: f32,
 };
-fn _oa1(_odn: u32, _oem: vec4f, _oen: vec4f, _oru: vec4f, _oa2: f32, _oa8: f32,
-                     _o9k: f32, _o9l: f32, _o4f: f32, _op2: bool) -> _o1a {
-  var fragment = _o1a(false, 0.0, 0.5);
-  let _oin = _omh(_oen.w);
-  let _o7u = _oru.z;
-  let _ok9 = abs(_oen.w);
-  let _oka = abs(_oru.w);
-  let _oa0 = _oem.z;
-  let _o9y = _oem.w;
-  let _o8p = _oen.x;
-  let _opf = _oen.y;
-  var _oos: f32;
-  var _oq3: f32;
-  if (_oin) {
-    let g = _ok9 + 0.5 * (_oka - _ok9);
+fn _oai(_oe8: u32, _of9: vec4f, _ofa: vec4f, _osq: vec4f, _oaj: f32, _oap: f32,
+                     _oa1: f32, _oa2: f32, _o4k: f32, _opv: bool) -> _o1c {
+  var fragment = _o1c(false, 0.0, 0.5);
+  let _ojc = _on8(_ofa.w);
+  let _o8b = _osq.z;
+  let _oky = abs(_ofa.w);
+  let _okz = abs(_osq.w);
+  let _oah = _of9.z;
+  let _oaf = _of9.w;
+  let _o96 = _ofa.x;
+  let _oq9 = _ofa.y;
+  var _opl: f32;
+  var _oqx: f32;
+  if (_ojc) {
+    let g = _oky + 0.5 * (_okz - _oky);
     let gg = g * g;
-    let _o8o = fma(gg, fma(gg, _o8p, _o4f * _opf), _o4f * _o4f);
-    let _ojq = _o9k - 0.5 * _oa2;
-    let _ojr = _o9l - 0.5 * _oa8;
-    let _o33 = _oem.x * _ojq + _oem.y * _ojr;
-    let _o34 = _oem.y * _ojq + _oen.z * _ojr;
-    let _oa7 = gg * (_ojq * _o33 + _ojr * _o34) + _o4f * (_ojq * _ojq + _ojr * _ojr);
-    let _oc3 = fma(gg, _oa0, _o4f * _o9y);
-    let _okt = gg * (_oa2 * _o33 + _oa8 * _o34) + _o4f * (_oa2 * _ojq + _oa8 * _ojr);
-    let _oku = abs(_okt);
-    var _ohm: bool;
-    if (2.0 * _oku < _oc3) {
-      _ohm = (_oa7 - _o7u * _o8o) * _oc3 > _okt * _okt;
+    let _o95 = fma(gg, fma(gg, _o96, _o4k * _oq9), _o4k * _o4k);
+    let _okf = _oa1 - 0.5 * _oaj;
+    let _okg = _oa2 - 0.5 * _oap;
+    let _o35 = _of9.x * _okf + _of9.y * _okg;
+    let _o36 = _of9.y * _okf + _ofa.z * _okg;
+    let _oao = gg * (_okf * _o35 + _okg * _o36) + _o4k * (_okf * _okf + _okg * _okg);
+    let _ocl = fma(gg, _oah, _o4k * _oaf);
+    let _oli = gg * (_oaj * _o35 + _oap * _o36) + _o4k * (_oaj * _okf + _oap * _okg);
+    let _olj = abs(_oli);
+    var _oib: bool;
+    if (2.0 * _olj < _ocl) {
+      _oib = (_oao - _o8b * _o95) * _ocl > _oli * _oli;
     } else {
-      _ohm = _oa7 - _oku + 0.25 * _oc3 > _o7u * _o8o;
+      _oib = _oao - _olj + 0.25 * _ocl > _o8b * _o95;
     }
-    if (_ohm) {
+    if (_oib) {
       return fragment;
     }
-    _of6(_odn);
-    _oq3 = _one(_oru.x, _oru.y, g);
-    let _od9 = inverseSqrt(_o8o);
-    let _od6 = _od9 * _od9;
-    let _oa6 = _oa7 * _od6;
-    let _oc0 = _oc3 * _od6;
-    let _okv = _okt * _od6;
-    let _ojf = _oaw(_oa6, 0.0);
-    let _o9e = fma(_okv, _okv, _oc0 * (0.5 - _ojf));
-    let _okx = sqrt(_oaw(_o9e, 0.0));
-    let _o4l = _okv + select(_okx, -_okx, _omh(_okv));
-    var _ojx = -1.0;
-    var _ojw = 1.0;
-    var _onu = _o9e >= 0.0;
-    if (_o4l == 0.0) {
-      _onu = _onu && _ojf < 0.5;
+    _oft(_oe8);
+    _oqx = _oo6(_osq.x, _osq.y, g);
+    let _odu = inverseSqrt(_o95);
+    let _odr = _odu * _odu;
+    let _oan = _oao * _odr;
+    let _oci = _ocl * _odr;
+    let _olk = _oli * _odr;
+    let _ok4 = _obe(_oan, 0.0);
+    let _o9v = fma(_olk, _olk, _oci * (0.5 - _ok4));
+    let _olm = sqrt(_obe(_o9v, 0.0));
+    let _o4q = _olk + select(_olm, -_olm, _on8(_olk));
+    var _okm = -1.0;
+    var _okl = 1.0;
+    var _oon = _o9v >= 0.0;
+    if (_o4q == 0.0) {
+      _oon = _oon && _ok4 < 0.5;
     } else {
-      let _oof = (_ojf - 0.5) / _o4l;
-      if (_oc0 > 0.0) {
-        let _ooe = _o4l / _oc0;
-        _ojx = _oax(_ooe, _oof);
-        _ojw = _oaw(_ooe, _oof);
-      } else if (_okv > 0.0) {
-        _ojx = _oof;
+      let _op8 = (_ok4 - 0.5) / _o4q;
+      if (_oci > 0.0) {
+        let _op7 = _o4q / _oci;
+        _okm = _obf(_op7, _op8);
+        _okl = _obe(_op7, _op8);
+      } else if (_olk > 0.0) {
+        _okm = _op8;
       } else {
-        _ojw = _oof;
+        _okl = _op8;
       }
     }
-    let _okz = _oaw(_o9e, 0.5 * _o8 * _oc0);
-    if (!(_okz > 0.0) && (_ojx > -0.5 || _ojw < 0.5)) {
-      _ojx = 0.5;
-      _ojw = -0.5;
+    let _olo = _obe(_o9v, 0.5 * _o8 * _oci);
+    if (!(_olo > 0.0) && (_okm > -0.5 || _okl < 0.5)) {
+      _okm = 0.5;
+      _okl = -0.5;
     }
-    let _ooi = _oaw(_ojx, -0.5);
-    let _ooh = _oax(_ojw, 0.5);
-    _onu = _onu && _ooh > _ooi;
-    let _oc6 = select(0.0, 0.5 * (_ooh - _ooi), _onu);
-    let _ofu = 0.5 * (_ooh + _ooi);
-    let _ogg = 0.774596669;
-    let _obg = _on9[0];
-    var _opb: array<f32, 3>;
-    var _oee: array<f32, 3>;
-    for (var _ocr = 0; _ocr < 3; _ocr = _ocr + 1) {
-      _opb[_ocr] = fma(_oc6, f32(_ocr - 1) * _ogg, _ofu);
-      let _ojc = fma(_opb[_ocr], fma(_opb[_ocr], _oc0, -2.0 * _okv), _ojf);
-      let _o40 = fma(-2.0, _ojc, 1.0);
-      _oee[_ocr] = select(0.0, exp2(_obg * log2(_o40)), _onu && _o40 > 0.0);
+    let _opb = _obe(_okm, -0.5);
+    let _opa = _obf(_okl, 0.5);
+    _oon = _oon && _opa > _opb;
+    let _ocp = select(0.0, 0.5 * (_opa - _opb), _oon);
+    let _ogi = 0.5 * (_opa + _opb);
+    let _oh5 = 0.774596669;
+    let _oby = _oo1[0];
+    var _oq5: array<f32, 3>;
+    var _of1: array<f32, 3>;
+    for (var _odc = 0; _odc < 3; _odc = _odc + 1) {
+      _oq5[_odc] = fma(_ocp, f32(_odc - 1) * _oh5, _ogi);
+      let _ok1 = fma(_oq5[_odc], fma(_oq5[_odc], _oci, -2.0 * _olk), _ok4);
+      let _o45 = fma(-2.0, _ok1, 1.0);
+      _of1[_odc] = select(0.0, exp2(_oby * log2(_o45)), _oon && _o45 > 0.0);
     }
-    let _omf = 5.0 / 9.0;
-    let _ofy = 8.0 / 9.0;
-    let _ora = fma(_omf, _oee[0] + _oee[2], _ofy * _oee[1]);
-    _oos = _oc6 * _ora * _od9;
-    if (_op2) {
-      let _og5 = fma(_omf, fma(_opb[0], _oee[0], _opb[2] * _oee[2]), _ofy * _opb[1] * _oee[1]);
-      let _ogx = select(0.0, _og5 / _ora, _ora >= _o5);
-      fragment._oog = _oax(_oaw(0.5 + _ogx, 0.0), 1.0);
+    let _on5 = 5.0 / 9.0;
+    let _ogm = 8.0 / 9.0;
+    let _os4 = fma(_on5, _of1[0] + _of1[2], _ogm * _of1[1]);
+    _opl = _ocp * _os4 * _odu;
+    if (_opv) {
+      let _ogu = fma(_on5, fma(_oq5[0], _of1[0], _oq5[2] * _of1[2]), _ogm * _oq5[1] * _of1[1]);
+      let _ohm = select(0.0, _ogu / _os4, _os4 >= _o5);
+      fragment._op9 = _obf(_obe(0.5 + _ohm, 0.0), 1.0);
     }
   } else {
-    let _o2m = _oem.x * _o9k + _oem.y * _o9l;
-    let _o4g = _o4f * (_oa2 * _o9k + _oa8 * _o9l);
-    let _ooj = _oax(_oaw((_o2m + _o4g) * _oen.z, 0.0), 1.0);
-    let g = _ok9 + _ooj * (_oka - _ok9);
+    let _o2o = _of9.x * _oa1 + _of9.y * _oa2;
+    let _o4l = _o4k * (_oaj * _oa1 + _oap * _oa2);
+    let _opc = _obf(_obe((_o2o + _o4l) * _ofa.z, 0.0), 1.0);
+    let g = _oky + _opc * (_okz - _oky);
     let gg = g * g;
-    let _oc3 = fma(gg, _oa0, _o4f * _o9y);
-    let _okg = fma(gg, _o2m, _o4g);
-    let _o8o = fma(gg, fma(gg, _o8p, _o4f * _opf), _o4f * _o4f);
-    let cross = _o9k * _oa8 - _o9l * _oa2;
-    let _o7n = cross * cross;
-    let _o7v = _o7u * _oc3;
-    if (_o7n > _o7v) {
+    let _ocl = fma(gg, _oah, _o4k * _oaf);
+    let _ol5 = fma(gg, _o2o, _o4l);
+    let _o95 = fma(gg, fma(gg, _o96, _o4k * _oq9), _o4k * _o4k);
+    let cross = _oa1 * _oap - _oa2 * _oaj;
+    let _o84 = cross * cross;
+    let _o8c = _o8b * _ocl;
+    if (_o84 > _o8c) {
       return fragment;
     }
-    let _okh = _oc3 - _okg;
-    let _oge = _oax(_okg, _okh);
-    if (_oge < 0.0 && _oge * _oge > _o7v * _o8o) {
+    let _ol6 = _ocl - _ol5;
+    let _oh3 = _obf(_ol5, _ol6);
+    if (_oh3 < 0.0 && _oh3 * _oh3 > _o8c * _o95) {
       return fragment;
     }
-    _of6(_odn);
-    _oq3 = _one(_oru.x, _oru.y, g);
-    let _oda = inverseSqrt(_oc3);
-    let _ol6 = _oda * inverseSqrt(_o8o);
-    let _od8 = _oda * _oda;
-    let _oa6 = _o7n * _od8;
-    let _opt = _okg * _ol6;
-    let _opu = _okh * _ol6;
-    let a = fma(-2.0, _oa6, 1.0);
-    let _oiq = a > 0.0;
-    let _o2y = select(1.0, a, _oiq);
-    let _of8 = log2(_o2y);
-    let _odc = inverseSqrt(0.5 * _o2y);
-    let _o4z = 0.5 * _o2y * _odc;
-    let _oqf = _oax(_oaw(-_opt * _odc, -1.0), 1.0);
-    let _oqe = _oax(_oaw(_opu * _odc, -1.0), 1.0);
-    let _of5 = _o4h(abs(_oqf));
-    let _och = _o4h(abs(_oqe));
-    let _oip = _oqf >= 0.0;
-    let _ogf = _oqe <= 0.0;
-    let _o8b = _o4i(_of5, _och, _oip, _ogf);
-    let _of4 = _oiq && _o8b > 0.0;
-    let _obg = _on9[0];
-    let _o2x = exp2(_obg * _of8);
-    if (_op2) {
-      let _oeg = _oc3 * _ol6;
-      let _ob0 = _okg * _od8;
-      let _o8a = select(0.0, _o8b, _of4);
-      let _ob1 = _of4 && _oeg * (_o4z * _o8a) >= _o5;
-      let _o8c = select(1.0, _o8a, _ob1);
-      let _o8h = _of5._oj8 - _och._oj8;
-      let _ogx = select(0.0, _o4z * _o8h / (2.0 * (_obg + 1.0) * _oeg * _o8c), _ob1);
-      fragment._oog = _oax(_oaw(_ob0 + _ogx, 0.0), 1.0);
+    _oft(_oe8);
+    _oqx = _oo6(_osq.x, _osq.y, g);
+    let _odv = inverseSqrt(_ocl);
+    let _olv = _odv * inverseSqrt(_o95);
+    let _odt = _odv * _odv;
+    let _oan = _o84 * _odt;
+    let _oqn = _ol5 * _olv;
+    let _oqo = _ol6 * _olv;
+    let a = fma(-2.0, _oan, 1.0);
+    let _ojf = a > 0.0;
+    let _o30 = select(1.0, a, _ojf);
+    let _ofv = log2(_o30);
+    let _odx = inverseSqrt(0.5 * _o30);
+    let _o56 = 0.5 * _o30 * _odx;
+    let _or9 = _obf(_obe(-_oqn * _odx, -1.0), 1.0);
+    let _or8 = _obf(_obe(_oqo * _odx, -1.0), 1.0);
+    let _ofs = _o4m(abs(_or9));
+    let _od1 = _o4m(abs(_or8));
+    let _oje = _or9 >= 0.0;
+    let _oh4 = _or8 <= 0.0;
+    let _o8s = _o4n(_ofs, _od1, _oje, _oh4);
+    let _ofr = _ojf && _o8s > 0.0;
+    let _oby = _oo1[0];
+    let _o2z = exp2(_oby * _ofv);
+    if (_opv) {
+      let _of3 = _ocl * _olv;
+      let _obi = _ol5 * _odt;
+      let _o8r = select(0.0, _o8s, _ofr);
+      let _obj = _ofr && _of3 * (_o56 * _o8r) >= _o5;
+      let _o8t = select(1.0, _o8r, _obj);
+      let _o8y = _ofs._ojx - _od1._ojx;
+      let _ohm = select(0.0, _o56 * _o8y / (2.0 * (_oby + 1.0) * _of3 * _o8t), _obj);
+      fragment._op9 = _obf(_obe(_obi + _ohm, 0.0), 1.0);
     }
-    let _oef = _o4z * _o2x * _o8b;
-    _oos = select(0.0, _oef * _oda, _of4);
+    let _of2 = _o56 * _o2z * _o8s;
+    _opl = select(0.0, _of2 * _odv, _ofr);
   }
-  fragment._oe4 = true;
-  fragment._oor = _oq3 * _oos;
+  fragment._oer = true;
+  fragment._opk = _oqx * _opl;
   return fragment;
 }
-fn _op0(_omq: u32, _oh4: vec3f, _okc: vec3f, _ops: f32) -> vec3f {
-  let _oaa = 12u * _omq;
-  let _oim = vec3f(_oox[_oaa], _oox[_oaa + 1u], _oox[_oaa + 2u]);
-  let _oab = vec3f(_oox[_oaa + 3u], _oox[_oaa + 4u], _oox[_oaa + 5u]);
-  let _oac = vec3f(_oox[_oaa + 6u], _oox[_oaa + 7u], _oox[_oaa + 8u]);
-  let _oks = _oox[_oaa + 9u];
-  let _ogx = _oh4 - _oim;
-  let _ogs = _ogx.x * _oab.x + _ogx.y * _oab.y + _ogx.z * _oab.z;
-  let _ogt = _ogx.x * _oac.x + _ogx.y * _oac.y + _ogx.z * _oac.z;
-  let _o82 = _okc.x * _oab.x + _okc.y * _oab.y + _okc.z * _oab.z;
-  let _o83 = _okc.x * _oac.x + _okc.y * _oac.y + _okc.z * _oac.z;
-  let _o37 = _o82 * _o82 + _o83 * _o83;
-  var _oqd = 0.5;
-  if (_o37 != 0.0 && _odk(_o37) && _odk(_ogs) && _odk(_ogt)) {
-    let _oei = -(_ogs * _o82 + _ogt * _o83) / _o37;
-    let _o57 = _ogs + _oei * _o82;
-    let _o5e = _ogt + _oei * _o83;
-    let _ojc = _oks * _oks - (_o57 * _o57 + _o5e * _o5e);
-    var _ohp = _o57;
-    var _ohq = _o5e;
-    if (_ojc >= 0.0) {
-      let _oc8 = sqrt(_ojc / _o37);
-      if (_oei - _oc8 > 0.0) {
-        _ohp = _o57 - _oc8 * _o82;
-        _ohq = _o5e - _oc8 * _o83;
-      } else if (_oei + _oc8 > 0.0) {
-        _ohp = _o57 + _oc8 * _o82;
-        _ohq = _o5e + _oc8 * _o83;
+fn _opt(_oni: u32, _oht: vec3f, _ol1: vec3f, _oqm: f32) -> vec3f {
+  let _oar = 12u * _oni;
+  let _ojb = vec3f(_opq[_oar], _opq[_oar + 1u], _opq[_oar + 2u]);
+  let _oas = vec3f(_opq[_oar + 3u], _opq[_oar + 4u], _opq[_oar + 5u]);
+  let _oat = vec3f(_opq[_oar + 6u], _opq[_oar + 7u], _opq[_oar + 8u]);
+  let _olh = _opq[_oar + 9u];
+  let _ohm = _oht - _ojb;
+  let _ohh = _ohm.x * _oas.x + _ohm.y * _oas.y + _ohm.z * _oas.z;
+  let _ohi = _ohm.x * _oat.x + _ohm.y * _oat.y + _ohm.z * _oat.z;
+  let _o8j = _ol1.x * _oas.x + _ol1.y * _oas.y + _ol1.z * _oas.z;
+  let _o8k = _ol1.x * _oat.x + _ol1.y * _oat.y + _ol1.z * _oat.z;
+  let _o3b = _o8j * _o8j + _o8k * _o8k;
+  var _or7 = 0.5;
+  if (_o3b != 0.0 && _oe5(_o3b) && _oe5(_ohh) && _oe5(_ohi)) {
+    let _of5 = -(_ohh * _o8j + _ohi * _o8k) / _o3b;
+    let _o5e = _ohh + _of5 * _o8j;
+    let _o5l = _ohi + _of5 * _o8k;
+    let _ok1 = _olh * _olh - (_o5e * _o5e + _o5l * _o5l);
+    var _oie = _o5e;
+    var _oif = _o5l;
+    if (_ok1 >= 0.0) {
+      let _ocr = sqrt(_ok1 / _o3b);
+      if (_of5 - _ocr > 0.0) {
+        _oie = _o5e - _ocr * _o8j;
+        _oif = _o5l - _ocr * _o8k;
+      } else if (_of5 + _ocr > 0.0) {
+        _oie = _o5e + _ocr * _o8j;
+        _oif = _o5l + _ocr * _o8k;
       }
     }
-    if (_odk(_ohp) && _odk(_ohq)) {
-      _oqd = atan2(_ohq, _ohp) * 0.15915494309189535 + 0.5;
+    if (_oe5(_oie) && _oe5(_oif)) {
+      _or7 = atan2(_oif, _oie) * 0.15915494309189535 + 0.5;
     }
   }
-  let _o3l = i32(_o4r._o3l);
-  let _o3f = i32(_o4r._o3f);
-  let x = _ops * f32(_o3l - 1);
-  let _ocs = min(i32(floor(x)), _o3l - 2);
-  let wx = x - f32(_ocs);
-  let y = _oqd * f32(_o3f) - 0.5;
-  let _obb = floor(y);
-  let _odo = ((i32(_obb) % _o3f) + _o3f) % _o3f;
-  let _odp = (_odo + 1) % _o3f;
-  let wy = y - _obb;
-  let _ooz = array<i32, 4>(_ocs * _o3f + _odo, (_ocs + 1) * _o3f + _odo,
-                            _ocs * _o3f + _odp, (_ocs + 1) * _o3f + _odp);
-  let _or9 = array<f32, 4>((1.0 - wx) * (1.0 - wy), wx * (1.0 - wy),
+  let _o3p = i32(_o4x._o3p);
+  let _o3j = i32(_o4x._o3j);
+  let x = _oqm * f32(_o3p - 1);
+  let _odd = min(i32(floor(x)), _o3p - 2);
+  let wx = x - f32(_odd);
+  let y = _or7 * f32(_o3j) - 0.5;
+  let _obt = floor(y);
+  let _oe9 = ((i32(_obt) % _o3j) + _o3j) % _o3j;
+  let _oea = (_oe9 + 1) % _o3j;
+  let wy = y - _obt;
+  let _ops = array<i32, 4>(_odd * _o3j + _oe9, (_odd + 1) * _o3j + _oe9,
+                            _odd * _o3j + _oea, (_odd + 1) * _o3j + _oea);
+  let _os3 = array<f32, 4>((1.0 - wx) * (1.0 - wy), wx * (1.0 - wy),
                              (1.0 - wx) * wy, wx * wy);
-  let _o40 = _omq * 3u * _o4r._o3l * _o4r._o3f;
-  var _o72 = vec3f(0.0);
-  for (var _o64 = 0u; _o64 < 3u; _o64 = _o64 + 1u) {
-    var _oqi = 0.0;
-    for (var _odx = 0u; _odx < 4u; _odx = _odx + 1u) {
-      _oqi = _oqi + _or9[_odx] * _ooy[_o40 + 3u * u32(_ooz[_odx]) + _o64];
+  let _o45 = _oni * 3u * _o4x._o3p * _o4x._o3j;
+  var _o7j = vec3f(0.0);
+  for (var _o6b = 0u; _o6b < 3u; _o6b = _o6b + 1u) {
+    var _orc = 0.0;
+    for (var _oei = 0u; _oei < 4u; _oei = _oei + 1u) {
+      _orc = _orc + _os3[_oei] * _opr[_o45 + 3u * u32(_ops[_oei]) + _o6b];
     }
-    _o72[_o64] = _oqi;
+    _o7j[_o6b] = _orc;
   }
-  return _o72;
+  return _o7j;
 }
 @compute @workgroup_size(16, 16)
-fn render_beta(@builtin(local_invocation_id) _of7: vec3u,
-               @builtin(local_invocation_index) _oey: u32,
-               @builtin(workgroup_id) _orc: vec3u) {
-  let _ord = _o5o._ord;
-  let _ocf = _o5o._ocf;
-  let _op2 = _o4r._op2 != 0u;
-  let _oia = vec2u(_orc.x * 16u + _of7.x, _orc.y * 16u + _of7.y);
-  let _od4 = _oia.x < _ord && _oia.y < _ocf;
-  let _oie = vec2f(f32(_oia.x), f32(_oia.y));
-  var _o97 = !_od4;
-  let _op4 = _orc.y * _o5o._op8 + _orc.x;
-  let _ok4 = _ok5[2u * _op4];
-  let _ok3 = _ok5[2u * _op4 + 1u];
-  let _ol1 = (_ok3 - _ok4 + _of - 1u) / _of;
-  var _opc = i32(_ok3 - _ok4);
-  var _oph = 1.0;
-  var _o72 = vec3f(0.0);
-  var _oke = vec3f(0.0);
-  var _okc = vec3f(0.0);
-  if (_op2) {
-    _oke = _o5o._o5r.xyz;
-    let _ogo = (2.0 * _oie.x + 1.0) / f32(_ord) - 1.0;
-    let _ogp = (2.0 * _oie.y + 1.0) / f32(_ocf) - 1.0;
-    let _ol7 = (_ogo - _o4r._oj0) * _o4r._oon;
-    let _ol8 = (_ogp - _o4r._oj1) * _o4r._ooo;
-    let _ol9 = 1.0;
-    _okc = vec3f(_oqv(0u) * _ol7 + _oqv(1u) * _ol8 + _oqv(2u) * _ol9,
-                _oqv(4u) * _ol7 + _oqv(5u) * _ol8 + _oqv(6u) * _ol9,
-                _oqv(8u) * _ol7 + _oqv(9u) * _ol8 + _oqv(10u) * _ol9);
+fn render_beta(@builtin(local_invocation_id) _ofu: vec3u,
+               @builtin(local_invocation_index) _ofl: u32,
+               @builtin(workgroup_id) _os6: vec3u) {
+  let _os7 = _o5v._os7;
+  let _ocy = _o5v._ocy;
+  let _opv = _o4x._opv != 0u;
+  let _oiz = vec2u(_os6.x * 16u + _ofu.x, _os6.y * 16u + _ofu.y);
+  let _odp = _oiz.x < _os7 && _oiz.y < _ocy;
+  let _oj3 = vec2f(f32(_oiz.x), f32(_oiz.y));
+  var _o9o = !_odp;
+  let _opx = _os6.y * _o5v._oq1 + _os6.x;
+  let _okt = _oku[2u * _opx];
+  let _oks = _oku[2u * _opx + 1u];
+  let _olq = (_oks - _okt + _of - 1u) / _of;
+  var _oq6 = i32(_oks - _okt);
+  var _oqb = 1.0;
+  var _o7j = vec3f(0.0);
+  var _ol3 = vec3f(0.0);
+  var _ol1 = vec3f(0.0);
+  if (_opv) {
+    _ol3 = _o5v._o5y.xyz;
+    let _ohd = (2.0 * _oj3.x + 1.0) / f32(_os7) - 1.0;
+    let _ohe = (2.0 * _oj3.y + 1.0) / f32(_ocy) - 1.0;
+    let _olw = (_ohd - _o4x._ojp) * _o4x._opg;
+    let _olx = (_ohe - _o4x._ojq) * _o4x._oph;
+    let _oly = 1.0;
+    _ol1 = vec3f(_orp(0u) * _olw + _orp(1u) * _olx + _orp(2u) * _oly,
+                _orp(4u) * _olw + _orp(5u) * _olx + _orp(6u) * _oly,
+                _orp(8u) * _olw + _orp(9u) * _olx + _orp(10u) * _oly);
   }
-  for (var _ocr = 0u; _ocr < _ol1; _ocr = _ocr + 1u) {
-    if (_oey == 0u) {
-      atomicStore(&_o99, 0u);
+  for (var _odc = 0u; _odc < _olq; _odc = _odc + 1u) {
+    if (_ofl == 0u) {
+      atomicStore(&_o9q, 0u);
     }
     workgroupBarrier();
-    if (_o97) {
-      atomicAdd(&_o99, 1u);
+    if (_o9o) {
+      atomicAdd(&_o9q, 1u);
     }
     workgroupBarrier();
-    if (_oey == 0u) {
-      _o98 = atomicLoad(&_o99);
+    if (_ofl == 0u) {
+      _o9p = atomicLoad(&_o9q);
     }
-    let _ogl = workgroupUniformLoad(&_o98);
-    if (_ogl == _of) {
+    let _oha = workgroupUniformLoad(&_o9p);
+    if (_oha == _of) {
       break;
     }
-    let _oj4 = _ocr * _of + _oey;
-    if (_ok4 + _oj4 < _ok3) {
-      let _o71 = _oio[_ok4 + _oj4];
-      _o46[_oey] = _o71;
-      let _okl = _oiz[_o71]._okl;
-      _on7(_oey, abs(_okl.x));
-      let _o4f = _okl.z;
-      _o45[_oey] = _o4f;
-      _o4a[_oey] = bitcast<i32>(_oiy[_o71].z);
-      let _ooq = _oiz[_o71]._o3b;
-      let ab = _oiz[_o71].ab;
-      let _o2k = ab.xy;
-      let _o3r = ab.zw;
-      let _oa2 = _o3r.x - _o2k.x;
-      let _oa8 = _o3r.y - _o2k.y;
-      let _o2n = _ooq.z * _oa2 - _ooq.y * _oa8;
-      let _o2o = _ooq.x * _oa8 - _ooq.y * _oa2;
-      let _oa0 = _oaw(_oa2 * _o2n + _oa8 * _o2o, 0.0);
-      let _o9y = _oa2 * _oa2 + _oa8 * _oa8;
-      let _o8p = _oaw(_ooq.x * _ooq.z - _ooq.y * _ooq.y, 0.0);
-      let _opf = _ooq.x + _ooq.z;
-      if (_omh(_ooq.w)) {
-        _o47[_oey] = vec4f(_ooq.z, -_ooq.y, _oa0, _o9y);
-        _o48[_oey] = vec4f(_o8p, _opf, _ooq.x, _ooq.w);
+    let _ojt = _odc * _of + _ofl;
+    if (_okt + _ojt < _oks) {
+      let _o7i = _ojd[_okt + _ojt];
+      _o4b[_ofl] = _o7i;
+      let _ola = _ojo[_o7i]._ola;
+      _onz(_ofl, abs(_ola.x));
+      let _o4k = _ola.z;
+      _o4a[_ofl] = _o4k;
+      _o4f[_ofl] = bitcast<i32>(_ojn[_o7i].z);
+      let _opj = _ojo[_o7i]._o3f;
+      let ab = _ojo[_o7i].ab;
+      let _o2m = ab.xy;
+      let _o3v = ab.zw;
+      let _oaj = _o3v.x - _o2m.x;
+      let _oap = _o3v.y - _o2m.y;
+      let _o2p = _opj.z * _oaj - _opj.y * _oap;
+      let _o2q = _opj.x * _oap - _opj.y * _oaj;
+      let _oah = _obe(_oaj * _o2p + _oap * _o2q, 0.0);
+      let _oaf = _oaj * _oaj + _oap * _oap;
+      let _o96 = _obe(_opj.x * _opj.z - _opj.y * _opj.y, 0.0);
+      let _oq9 = _opj.x + _opj.z;
+      if (_on8(_opj.w)) {
+        _o4c[_ofl] = vec4f(_opj.z, -_opj.y, _oah, _oaf);
+        _o4d[_ofl] = vec4f(_o96, _oq9, _opj.x, _opj.w);
       } else {
-        _o47[_oey] = vec4f(_o2n, _o2o, _oa0, _o9y);
-        _o48[_oey] = vec4f(_o8p, _opf, 1.0 / (_oa0 + _o4f * _o9y), _ooq.w);
+        _o4c[_ofl] = vec4f(_o2p, _o2q, _oah, _oaf);
+        _o4d[_ofl] = vec4f(_o96, _oq9, 1.0 / (_oah + _o4k * _oaf), _opj.w);
       }
-      _o41[_oey] = _o2k;
-      _o44[_oey] = vec2f(_oa2, _oa8);
-      _o42[_oey] = _oiz[_o71]._o4m;
+      _o46[_ofl] = _o2m;
+      _o49[_ofl] = vec2f(_oaj, _oap);
+      _o47[_ofl] = _ojo[_o7i]._o4r;
     }
     workgroupBarrier();
-    let _o43 = u32(min(i32(_of), _opc));
-    for (var _odn = 0u; !_o97 && _odn < _o43; _odn = _odn + 1u) {
-      let _o2k = _o41[_odn];
-      let _o9n = _o44[_odn];
-      let fragment = _oa1(_odn, _o47[_odn], _o48[_odn], _o42[_odn], _o9n.x, _o9n.y,
-                                       _oie.x - _o2k.x, _oie.y - _o2k.y, _o45[_odn], _op2);
-      if (!fragment._oe4) {
+    let _o48 = u32(min(i32(_of), _oq6));
+    for (var _oe8 = 0u; !_o9o && _oe8 < _o48; _oe8 = _oe8 + 1u) {
+      let _o2m = _o46[_oe8];
+      let _oa4 = _o49[_oe8];
+      let fragment = _oai(_oe8, _o4c[_oe8], _o4d[_oe8], _o47[_oe8], _oa4.x, _oa4.y,
+                                       _oj3.x - _o2m.x, _oj3.y - _o2m.y, _o4a[_oe8], _opv);
+      if (!fragment._oer) {
         continue;
       }
-      let _o37 = _oax(1.0 - exp(-fragment._oor), 0.9999);
-      let _oow = _oph * (1.0 - _o37);
-      if (_o37 < _o1g) {
+      let _o3b = _obf(1.0 - exp(-fragment._opk), 0.9999);
+      let _opp = _oqb * (1.0 - _o3b);
+      if (_o3b < _o1i) {
         continue;
       }
-      let _o5u = 3u * _o46[_odn];
-      var _o4z = vec3f(rgb[_o5u], rgb[_o5u + 1u], rgb[_o5u + 2u]);
-      if (_op2) {
-        let _omq = _o4a[_odn];
-        if (_omq >= 0) {
-          _o4z = _o4z + _op0(u32(_omq), _oke, _okc, fragment._oog);
+      let _o61 = 3u * _o4b[_oe8];
+      var _o56 = vec3f(rgb[_o61], rgb[_o61 + 1u], rgb[_o61 + 2u]);
+      if (_opv) {
+        let _oni = _o4f[_oe8];
+        if (_oni >= 0) {
+          _o56 = _o56 + _opt(u32(_oni), _ol3, _ol1, fragment._op9);
         }
       }
-      _o72 = _o72 + _o4z * _o37 * _oph;
-      _oph = _oow;
-      if (_oow < 0.0001) {
-        _o97 = true;
+      _o7j = _o7j + _o56 * _o3b * _oqb;
+      _oqb = _opp;
+      if (_opp < 0.0001) {
+        _o9o = true;
       }
     }
-    _opc = _opc - i32(_of);
+    _oq6 = _oq6 - i32(_of);
   }
-  if (_od4) {
-    let _oij = _ord * _ocf;
-    let _oib = _ord * _oia.y + _oia.x;
-    _oh8[_oib] = _o72.x + _oph * _o5o._o3x.x;
-    _oh8[_oij + _oib] = _o72.y + _oph * _o5o._o3x.y;
-    _oh8[2u * _oij + _oib] = _o72.z + _oph * _o5o._o3x.z;
+  if (_odp) {
+    let _oj8 = _os7 * _ocy;
+    let _oj0 = _os7 * _oiz.y + _oiz.x;
+    _ohx[_oj0] = _o7j.x + _oqb * _o5v._o41.x;
+    _ohx[_oj8 + _oj0] = _o7j.y + _oqb * _o5v._o41.y;
+    _ohx[2u * _oj8 + _oj0] = _o7j.z + _oqb * _o5v._o41.z;
   }
 }

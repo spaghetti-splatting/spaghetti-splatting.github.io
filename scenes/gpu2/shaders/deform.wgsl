@@ -1,86 +1,86 @@
-struct _oz {
-  _oqo: u32,
-  _ohz: u32,
-  _oi0: u32,
-  _oi1: u32,
+struct _o11 {
+  _ori: u32,
+  _oio: u32,
+  _oip: u32,
+  _oiq: u32,
 };
-@group(0) @binding(0) var<uniform> _o9c: _oz;
-@group(0) @binding(1) var<storage, read> _ol4: array<u32>;
-@group(0) @binding(2) var<storage, read> _orq: array<vec4f>;
-@group(0) @binding(3) var<storage, read> _oko: array<vec4f>;
-@group(0) @binding(4) var<storage, read> _oq6: array<f32>;
-@group(0) @binding(5) var<storage, read_write> _oq5: array<f32>;
-@group(0) @binding(6) var<storage, read> _omm: array<f32>;
-@group(0) @binding(7) var<storage, read_write> _oml: array<f32>;
-@group(0) @binding(8) var<storage, read_write> _o9x: array<f32>;
-fn _ojn(a: vec4f, b: vec4f) -> vec4f {
-  let _o3i = a.yzw;
-  let _o4v = b.yzw;
-  let _oqd = a.x * _o4v + b.x * _o3i + cross(_o3i, _o4v);
-  return vec4f(a.x * b.x - dot(_o3i, _o4v), _oqd);
+@group(0) @binding(0) var<uniform> _o9t: _o11;
+@group(0) @binding(1) var<storage, read> _olt: array<u32>;
+@group(0) @binding(2) var<storage, read> _osl: array<vec4f>;
+@group(0) @binding(3) var<storage, read> _old: array<vec4f>;
+@group(0) @binding(4) var<storage, read> _or0: array<f32>;
+@group(0) @binding(5) var<storage, read_write> _oqz: array<f32>;
+@group(0) @binding(6) var<storage, read> _ond: array<f32>;
+@group(0) @binding(7) var<storage, read_write> _onc: array<f32>;
+@group(0) @binding(8) var<storage, read_write> _oae: array<f32>;
+fn _okc(a: vec4f, b: vec4f) -> vec4f {
+  let _o3m = a.yzw;
+  let _o52 = b.yzw;
+  let _or7 = a.x * _o52 + b.x * _o3m + cross(_o3m, _o52);
+  return vec4f(a.x * b.x - dot(_o3m, _o52), _or7);
 }
-fn _ojo(_ojc: vec4f, _ola: vec3f) -> vec3f {
-  let _oo6 = 2.0 * cross(_ojc.yzw, _ola);
-  return _ola + _ojc.x * _oo6 + cross(_ojc.yzw, _oo6);
+fn _okd(_ok1: vec4f, _olz: vec3f) -> vec3f {
+  let _ooz = 2.0 * cross(_ok1.yzw, _olz);
+  return _olz + _ok1.x * _ooz + cross(_ok1.yzw, _ooz);
 }
 @compute @workgroup_size(256)
-fn deform(@builtin(global_invocation_id) _obm: vec3u, @builtin(num_workgroups) _ogn: vec3u) {
-  let _ocr = _obm.x + _obm.y * _ogn.x * 256u;
-  if (_ocr >= _o9c._oqo) {
+fn deform(@builtin(global_invocation_id) _oc4: vec3u, @builtin(num_workgroups) _ohc: vec3u) {
+  let _odc = _oc4.x + _oc4.y * _ohc.x * 256u;
+  if (_odc >= _o9t._ori) {
     return;
   }
-  let _ol2 = _ol4[_ocr];
-  if (_ol2 == 0xffffffffu) {
+  let _olr = _olt[_odc];
+  if (_olr == 0xffffffffu) {
     return;
   }
-  let a = _orq[_ocr - 1u].xyz;
-  let b = _orq[_ocr].xyz;
-  let ra = _oko[_ocr - 1u].xyz;
-  let rb = _oko[_ocr].xyz;
-  let _o4z = b - a;
-  let _o50 = rb - ra;
-  let _o9n = 6u * _ol2;
-  _o9x[_o9n] = a.x;
-  _o9x[_o9n + 1u] = a.y;
-  _o9x[_o9n + 2u] = a.z;
-  _o9x[_o9n + 3u] = b.x;
-  _o9x[_o9n + 4u] = b.y;
-  _o9x[_o9n + 5u] = b.z;
-  let _ops = 8u * _ol2;
-  let _on6 = 24u * _ol2;
-  if (all(_o4z == _o50)) {
-    for (var _odx = 0u; _odx < 4u; _odx = _odx + 1u) {
-      _oq5[_ops + _odx] = _oq6[_ops + _odx];
+  let a = _osl[_odc - 1u].xyz;
+  let b = _osl[_odc].xyz;
+  let ra = _old[_odc - 1u].xyz;
+  let rb = _old[_odc].xyz;
+  let _o56 = b - a;
+  let _o57 = rb - ra;
+  let _oa4 = 6u * _olr;
+  _oae[_oa4] = a.x;
+  _oae[_oa4 + 1u] = a.y;
+  _oae[_oa4 + 2u] = a.z;
+  _oae[_oa4 + 3u] = b.x;
+  _oae[_oa4 + 4u] = b.y;
+  _oae[_oa4 + 5u] = b.z;
+  let _oqm = 8u * _olr;
+  let _ony = 24u * _olr;
+  if (all(_o56 == _o57)) {
+    for (var _oei = 0u; _oei < 4u; _oei = _oei + 1u) {
+      _oqz[_oqm + _oei] = _or0[_oqm + _oei];
     }
-    for (var _odx = 0u; _odx < 24u; _odx = _odx + 1u) {
-      _oml[_on6 + _odx] = _omm[_on6 + _odx];
+    for (var _oei = 0u; _oei < 24u; _oei = _oei + 1u) {
+      _onc[_ony + _oei] = _ond[_ony + _oei];
     }
     return;
   }
-  let _og8 = normalize(_o50);
-  let _og9 = normalize(_o4z);
-  let _o80 = dot(_og8, _og9);
-  var _ojc: vec4f;
-  if (_o80 < -0.999999) {
-    var _o3n = cross(_og8, vec3f(1.0, 0.0, 0.0));
-    if (dot(_o3n, _o3n) < 1.0e-6) {
-      _o3n = cross(_og8, vec3f(0.0, 1.0, 0.0));
+  let _ogx = normalize(_o57);
+  let _ogy = normalize(_o56);
+  let _o8h = dot(_ogx, _ogy);
+  var _ok1: vec4f;
+  if (_o8h < -0.999999) {
+    var _o3r = cross(_ogx, vec3f(1.0, 0.0, 0.0));
+    if (dot(_o3r, _o3r) < 1.0e-6) {
+      _o3r = cross(_ogx, vec3f(0.0, 1.0, 0.0));
     }
-    _ojc = vec4f(0.0, normalize(_o3n));
+    _ok1 = vec4f(0.0, normalize(_o3r));
   } else {
-    _ojc = normalize(vec4f(1.0 + _o80, cross(_og8, _og9)));
+    _ok1 = normalize(vec4f(1.0 + _o8h, cross(_ogx, _ogy)));
   }
-  let _ojh = vec4f(_oq6[_ops], _oq6[_ops + 1u], _oq6[_ops + 2u], _oq6[_ops + 3u]);
-  let _ojg = normalize(_ojn(_ojc, _ojh));
-  _oq5[_ops] = _ojg.x;
-  _oq5[_ops + 1u] = _ojg.y;
-  _oq5[_ops + 2u] = _ojg.z;
-  _oq5[_ops + 3u] = _ojg.w;
-  for (var _odx = 0u; _odx < 8u; _odx = _odx + 1u) {
-    let _ogr = _on6 + 3u * _odx;
-    let _ola = _ojo(_ojc, vec3f(_omm[_ogr], _omm[_ogr + 1u], _omm[_ogr + 2u]));
-    _oml[_ogr] = _ola.x;
-    _oml[_ogr + 1u] = _ola.y;
-    _oml[_ogr + 2u] = _ola.z;
+  let _ok6 = vec4f(_or0[_oqm], _or0[_oqm + 1u], _or0[_oqm + 2u], _or0[_oqm + 3u]);
+  let _ok5 = normalize(_okc(_ok1, _ok6));
+  _oqz[_oqm] = _ok5.x;
+  _oqz[_oqm + 1u] = _ok5.y;
+  _oqz[_oqm + 2u] = _ok5.z;
+  _oqz[_oqm + 3u] = _ok5.w;
+  for (var _oei = 0u; _oei < 8u; _oei = _oei + 1u) {
+    let _ohg = _ony + 3u * _oei;
+    let _olz = _okd(_ok1, vec3f(_ond[_ohg], _ond[_ohg + 1u], _ond[_ohg + 2u]));
+    _onc[_ohg] = _olz.x;
+    _onc[_ohg + 1u] = _olz.y;
+    _onc[_ohg + 2u] = _olz.z;
   }
 }
