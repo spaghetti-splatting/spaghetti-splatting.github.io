@@ -1,134 +1,134 @@
 struct _o1m {
-  _omv: u32,
-  _oev: u32,
-  _o3e: u32,
+  _omw: u32,
   _oew: u32,
+  _o3e: u32,
+  _oex: u32,
 };
 struct _o22 {
-  _omm: u32,
-  _oa3: u32,
-  _ocd: u32,
-  _ohx: u32,
+  _omn: u32,
+  _oa4: u32,
+  _oce: u32,
+  _ohy: u32,
 };
 struct _ox {
-  _ol3: u32,
-  _ohy: u32,
+  _ol4: u32,
   _ohz: u32,
   _oi0: u32,
+  _oi1: u32,
 };
-@group(0) @binding(0) var<storage, read> _olt: array<u32>;
-@group(0) @binding(1) var<storage, read_write> _olu: array<u32>;
-@group(0) @binding(2) var<storage, read_write> _olw: array<u32>;
-@group(0) @binding(3) var<storage, read> _ols: array<u32>;
-@group(0) @binding(4) var<uniform> _olv: _o22;
-@group(0) @binding(5) var<storage, read> _olx: array<u32>;
-@group(0) @binding(0) var<storage, read_write> _oig: array<u32>;
-@group(0) @binding(1) var<storage, read_write> _oif: array<u32>;
-@group(0) @binding(2) var<uniform> _oih: _o1m;
-@group(0) @binding(0) var<storage, read> _o74: array<u32>;
-@group(0) @binding(1) var<storage, read> _o75: array<u32>;
-@group(0) @binding(2) var<storage, read_write> _o77: array<u32>;
-@group(0) @binding(3) var<storage, read_write> _o73: array<u32>;
-@group(0) @binding(4) var<uniform> _o76: _ox;
-var<workgroup> _olr: array<u32, 512>;
-fn _obs(_obu: u32) -> vec3u {
-  if (_obu <= 65535u) {
-    return vec3u(_obu, 1u, 1u);
+@group(0) @binding(0) var<storage, read> _olu: array<u32>;
+@group(0) @binding(1) var<storage, read_write> _olv: array<u32>;
+@group(0) @binding(2) var<storage, read_write> _olx: array<u32>;
+@group(0) @binding(3) var<storage, read> _olt: array<u32>;
+@group(0) @binding(4) var<uniform> _olw: _o22;
+@group(0) @binding(5) var<storage, read> _oly: array<u32>;
+@group(0) @binding(0) var<storage, read_write> _oih: array<u32>;
+@group(0) @binding(1) var<storage, read_write> _oig: array<u32>;
+@group(0) @binding(2) var<uniform> _oii: _o1m;
+@group(0) @binding(0) var<storage, read> _o75: array<u32>;
+@group(0) @binding(1) var<storage, read> _o76: array<u32>;
+@group(0) @binding(2) var<storage, read_write> _o78: array<u32>;
+@group(0) @binding(3) var<storage, read_write> _o74: array<u32>;
+@group(0) @binding(4) var<uniform> _o77: _ox;
+var<workgroup> _ols: array<u32, 512>;
+fn _obt(_obv: u32) -> vec3u {
+  if (_obv <= 65535u) {
+    return vec3u(_obv, 1u, 1u);
   }
-  return vec3u(32768u, (_obu + 32767u) / 32768u, 1u);
+  return vec3u(32768u, (_obv + 32767u) / 32768u, 1u);
 }
 @compute @workgroup_size(1)
 fn scan_plan() {
-  var _og6 = _oig[_oih._omv];
-  for (var _oeu = 0u; _oeu < _oih._oew; _oeu = _oeu + 1u) {
-    _oig[_oih._oev + _oeu] = _og6;
-    let _o4p = (_og6 + _o2h - 1u) / _o2h;
-    let _obr = _obs(_o4p);
-    let _o40 = _oih._o3e + 3u * _oeu;
-    _oif[_o40] = _obr.x;
-    _oif[_o40 + 1u] = _obr.y;
-    _oif[_o40 + 2u] = _obr.z;
-    _og6 = _o4p;
+  var _og7 = _oih[_oii._omw];
+  for (var _oev = 0u; _oev < _oii._oex; _oev = _oev + 1u) {
+    _oih[_oii._oew + _oev] = _og7;
+    let _o4p = (_og7 + _o2h - 1u) / _o2h;
+    let _obs = _obt(_o4p);
+    let _o40 = _oii._o3e + 3u * _oev;
+    _oig[_o40] = _obs.x;
+    _oig[_o40 + 1u] = _obs.y;
+    _oig[_o40 + 2u] = _obs.z;
+    _og7 = _o4p;
   }
 }
-fn _org(_oex: u32, _oqh: u32) -> u32 {
-  _olr[_oex] = _oqh;
+fn _orh(_oey: u32, _oqi: u32) -> u32 {
+  _ols[_oey] = _oqi;
   workgroupBarrier();
-  var _omt = 0u;
-  for (var _ogw = 1u; _ogw < _o2h; _ogw = _ogw << 1u) {
-    let _oh4 = _o2h - _omt;
-    var _ons = _olr[_omt + _oex];
-    if (_oex >= _ogw) {
-      _ons = _ons + _olr[_omt + _oex - _ogw];
+  var _omu = 0u;
+  for (var _ogx = 1u; _ogx < _o2h; _ogx = _ogx << 1u) {
+    let _oh5 = _o2h - _omu;
+    var _ont = _ols[_omu + _oey];
+    if (_oey >= _ogx) {
+      _ont = _ont + _ols[_omu + _oey - _ogx];
     }
-    _olr[_oh4 + _oex] = _ons;
-    _omt = _oh4;
+    _ols[_oh5 + _oey] = _ont;
+    _omu = _oh5;
     workgroupBarrier();
   }
-  return _olr[_omt + _oex];
+  return _ols[_omu + _oey];
 }
 @compute @workgroup_size(256)
-fn scan_up(@builtin(local_invocation_index) _oex: u32,
-           @builtin(workgroup_id) _orb: vec3u,
-           @builtin(num_workgroups) _ogm: vec3u) {
-  let _o4o = _of2(_orb, _ogm);
-  let _og6 = _ols[_olv._omm];
-  let _o4p = (_og6 + _o2h - 1u) / _o2h;
+fn scan_up(@builtin(local_invocation_index) _oey: u32,
+           @builtin(workgroup_id) _orc: vec3u,
+           @builtin(num_workgroups) _ogn: vec3u) {
+  let _o4o = _of3(_orc, _ogn);
+  let _og7 = _olt[_olw._omn];
+  let _o4p = (_og7 + _o2h - 1u) / _o2h;
   if (_o4o >= _o4p) {
     return;
   }
-  let _ocq = _o4o * _o2h + _oex;
-  var _oqh = 0u;
-  if (_ocq < _og6) {
-    _oqh = _olt[_ocq];
+  let _ocr = _o4o * _o2h + _oey;
+  var _oqi = 0u;
+  if (_ocr < _og7) {
+    _oqi = _olu[_ocr];
   }
-  let _od0 = _org(_oex, _oqh);
-  if (_ocq < _og6) {
-    _olu[_ocq] = _od0;
+  let _od1 = _orh(_oey, _oqi);
+  if (_ocr < _og7) {
+    _olv[_ocr] = _od1;
   }
-  if (_oex == _o2h - 1u) {
-    _olw[_o4o] = _od0;
+  if (_oey == _o2h - 1u) {
+    _olx[_o4o] = _od1;
   }
 }
 @compute @workgroup_size(256)
-fn scan_down(@builtin(local_invocation_index) _oex: u32,
-             @builtin(workgroup_id) _orb: vec3u,
-             @builtin(num_workgroups) _ogm: vec3u) {
-  let _o4o = _of2(_orb, _ogm);
-  let _og6 = _ols[_olv._omm];
-  let _ocq = _o4o * _o2h + _oex;
-  if (_ocq >= _og6) {
+fn scan_down(@builtin(local_invocation_index) _oey: u32,
+             @builtin(workgroup_id) _orc: vec3u,
+             @builtin(num_workgroups) _ogn: vec3u) {
+  let _o4o = _of3(_orc, _ogn);
+  let _og7 = _olt[_olw._omn];
+  let _ocr = _o4o * _o2h + _oey;
+  if (_ocr >= _og7) {
     return;
   }
-  var _oqh = _olu[_ocq];
-  if (_olv._ocd != 0u && _o4o > 0u) {
-    _oqh = _oqh + _olx[_o4o - 1u];
+  var _oqi = _olv[_ocr];
+  if (_olw._oce != 0u && _o4o > 0u) {
+    _oqi = _oqi + _oly[_o4o - 1u];
   }
-  if (_olv._oa3 != 0u) {
-    _oqh = _oqh - _olt[_ocq];
+  if (_olw._oa4 != 0u) {
+    _oqi = _oqi - _olu[_ocr];
   }
-  _olu[_ocq] = _oqh;
+  _olv[_ocr] = _oqi;
 }
 @compute @workgroup_size(256)
-fn compact_scatter(@builtin(local_invocation_index) _oex: u32,
-                   @builtin(workgroup_id) _orb: vec3u,
-                   @builtin(num_workgroups) _ogm: vec3u) {
-  let _ocq = _of2(_orb, _ogm) * _o2h + _oex;
-  let _og6 = _o76._ol3;
-  if (_ocq >= _og6) {
+fn compact_scatter(@builtin(local_invocation_index) _oey: u32,
+                   @builtin(workgroup_id) _orc: vec3u,
+                   @builtin(num_workgroups) _ogn: vec3u) {
+  let _ocr = _of3(_orc, _ogn) * _o2h + _oey;
+  let _og7 = _o77._ol4;
+  if (_ocr >= _og7) {
     return;
   }
-  let _oas = _o74[_ocq];
-  if (_oas != 0u) {
-    _o77[_o75[_ocq]] = _ocq;
+  let _oat = _o75[_ocr];
+  if (_oat != 0u) {
+    _o78[_o76[_ocr]] = _ocr;
   }
-  if (_ocq == _og6 - 1u) {
-    let _opd = _o75[_ocq] + _oas;
-    if (_opd == 0u) {
-      _o77[0] = 0u;
-      _o73[_o1u] = 1u;
+  if (_ocr == _og7 - 1u) {
+    let _ope = _o76[_ocr] + _oat;
+    if (_ope == 0u) {
+      _o78[0] = 0u;
+      _o74[_o1u] = 1u;
     } else {
-      _o73[_o1u] = _opd;
+      _o74[_o1u] = _ope;
     }
   }
 }

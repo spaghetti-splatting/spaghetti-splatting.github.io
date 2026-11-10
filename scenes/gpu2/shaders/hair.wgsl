@@ -1,253 +1,253 @@
 struct _o24 {
-  _onj: u32,
-  _oqn: u32,
-  _obp: u32,
-  _ore: u32,
-  _obz: f32,
-  _o8e: f32,
-  _o9c: f32,
+  _onk: u32,
+  _oqo: u32,
+  _obq: u32,
+  _orf: u32,
+  _oc0: f32,
+  _o8f: f32,
+  _o9d: f32,
   _o4d: f32,
-  _onq: f32,
   _onr: f32,
-  _onp: f32,
-  _ong: f32,
-  _o7d: f32,
-  _ofr: f32,
-  _op9: f32,
-  _obv: f32,
-  _o8g: vec4f,
-  _ord: vec4f,
-  _om4: vec4f,
-  _om5: vec4u,
-  _obq: vec4f,
+  _ons: f32,
+  _onq: f32,
+  _onh: f32,
+  _o7e: f32,
+  _ofs: f32,
+  _opa: f32,
+  _obw: f32,
+  _o8h: vec4f,
+  _ore: vec4f,
+  _om5: vec4f,
+  _om6: vec4u,
+  _obr: vec4f,
 };
-@group(0) @binding(0) var<uniform> _omw: _o24;
-@group(0) @binding(1) var<storage, read> _oni: array<u32>;
-@group(0) @binding(2) var<storage, read> _okn: array<vec4f>;
+@group(0) @binding(0) var<uniform> _omx: _o24;
+@group(0) @binding(1) var<storage, read> _onj: array<u32>;
+@group(0) @binding(2) var<storage, read> _oko: array<vec4f>;
 @group(0) @binding(3) var<storage, read_write> _o3h: array<vec4f>;
-@group(0) @binding(4) var<storage, read_write> _obo: array<vec4f>;
-@group(0) @binding(5) var<storage, read_write> _orp: array<vec4f>;
-@group(0) @binding(6) var<storage, read_write> _oqv: array<vec4f>;
-@group(0) @binding(7) var<storage, read> _om2: array<f32>;
-@group(0) @binding(8) var<storage, read_write> _onf: array<atomic<u32>>;
+@group(0) @binding(4) var<storage, read_write> _obp: array<vec4f>;
+@group(0) @binding(5) var<storage, read_write> _orq: array<vec4f>;
+@group(0) @binding(6) var<storage, read_write> _oqw: array<vec4f>;
+@group(0) @binding(7) var<storage, read> _om3: array<f32>;
+@group(0) @binding(8) var<storage, read_write> _ong: array<atomic<u32>>;
 struct _o23 {
-  _o7z: f32,
+  _o80: f32,
   g: vec3f,
 };
-fn _om3(_ohm: vec3f) -> _o23 {
-  var _oh6: _o23;
-  let _ogn = _omw._om5.x;
-  let _ogo = _omw._om5.y;
-  let _ogp = _omw._om5.z;
-  let _oa9 = (_ohm - _omw._om4.xyz) * _omw._om4.w;
-  if (_oa9.x < 0.0 || _oa9.y < 0.0 || _oa9.z < 0.0 || _oa9.x > f32(_ogn) - 1.001 || _oa9.y > f32(_ogo) - 1.001
-      || _oa9.z > f32(_ogp) - 1.001) {
-    _oh6._o7z = 1.0e6;
-    _oh6.g = vec3f(0.0);
-    return _oh6;
+fn _om4(_ohn: vec3f) -> _o23 {
+  var _oh7: _o23;
+  let _ogo = _omx._om6.x;
+  let _ogp = _omx._om6.y;
+  let _ogq = _omx._om6.z;
+  let _oaa = (_ohn - _omx._om5.xyz) * _omx._om5.w;
+  if (_oaa.x < 0.0 || _oaa.y < 0.0 || _oaa.z < 0.0 || _oaa.x > f32(_ogo) - 1.001 || _oaa.y > f32(_ogp) - 1.001
+      || _oaa.z > f32(_ogq) - 1.001) {
+    _oh7._o80 = 1.0e6;
+    _oh7.g = vec3f(0.0);
+    return _oh7;
   }
-  let _ocq = u32(_oa9.x);
-  let _odm = u32(_oa9.y);
-  let _odw = u32(_oa9.z);
-  let _ob9 = _oa9.x - f32(_ocq);
-  let _oba = _oa9.y - f32(_odm);
-  let _obb = _oa9.z - f32(_odw);
-  let _ogq = (_ocq * _ogo + _odm) * _ogp + _odw;
-  let _omn = _ogp;
-  let _omd = _ogo * _ogp;
-  let _o52 = _om2[_ogq];
-  let _o53 = _om2[_ogq + 1u];
-  let _o55 = _om2[_ogq + _omn];
-  let _o56 = _om2[_ogq + _omn + 1u];
-  let _o59 = _om2[_ogq + _omd];
-  let _o5a = _om2[_ogq + _omd + 1u];
-  let _o5c = _om2[_ogq + _omd + _omn];
-  let _o5d = _om2[_ogq + _omd + _omn + 1u];
-  let _o51 = _o52 + (_o53 - _o52) * _obb;
-  let _o54 = _o55 + (_o56 - _o55) * _obb;
-  let _o58 = _o59 + (_o5a - _o59) * _obb;
-  let _o5b = _o5c + (_o5d - _o5c) * _obb;
-  let _o50 = _o51 + (_o54 - _o51) * _oba;
-  let _o57 = _o58 + (_o5b - _o58) * _oba;
-  let _obw = _o57 - _o50;
-  let _obx = (1.0 - _ob9) * (_o54 - _o51) + _ob9 * (_o5b - _o58);
-  let _o9n = (_o53 - _o52) * (1.0 - _oba) + (_o56 - _o55) * _oba;
-  let _o9o = (_o5a - _o59) * (1.0 - _oba) + (_o5d - _o5c) * _oba;
-  let _oby = _o9n * (1.0 - _ob9) + _o9o * _ob9;
-  let g = vec3f(_obw, _obx, _oby);
-  let _og6 = length(g);
-  _oh6.g = select(vec3f(0.0), g / _og6, _og6 > 0.0);
-  _oh6._o7z = _o50 + (_o57 - _o50) * _ob9;
-  return _oh6;
+  let _ocr = u32(_oaa.x);
+  let _odn = u32(_oaa.y);
+  let _odx = u32(_oaa.z);
+  let _oba = _oaa.x - f32(_ocr);
+  let _obb = _oaa.y - f32(_odn);
+  let _obc = _oaa.z - f32(_odx);
+  let _ogr = (_ocr * _ogp + _odn) * _ogq + _odx;
+  let _omo = _ogq;
+  let _ome = _ogp * _ogq;
+  let _o52 = _om3[_ogr];
+  let _o53 = _om3[_ogr + 1u];
+  let _o55 = _om3[_ogr + _omo];
+  let _o56 = _om3[_ogr + _omo + 1u];
+  let _o59 = _om3[_ogr + _ome];
+  let _o5a = _om3[_ogr + _ome + 1u];
+  let _o5c = _om3[_ogr + _ome + _omo];
+  let _o5d = _om3[_ogr + _ome + _omo + 1u];
+  let _o51 = _o52 + (_o53 - _o52) * _obc;
+  let _o54 = _o55 + (_o56 - _o55) * _obc;
+  let _o58 = _o59 + (_o5a - _o59) * _obc;
+  let _o5b = _o5c + (_o5d - _o5c) * _obc;
+  let _o50 = _o51 + (_o54 - _o51) * _obb;
+  let _o57 = _o58 + (_o5b - _o58) * _obb;
+  let _obx = _o57 - _o50;
+  let _oby = (1.0 - _oba) * (_o54 - _o51) + _oba * (_o5b - _o58);
+  let _o9o = (_o53 - _o52) * (1.0 - _obb) + (_o56 - _o55) * _obb;
+  let _o9p = (_o5a - _o59) * (1.0 - _obb) + (_o5d - _o5c) * _obb;
+  let _obz = _o9o * (1.0 - _oba) + _o9p * _oba;
+  let g = vec3f(_obx, _oby, _obz);
+  let _og7 = length(g);
+  _oh7.g = select(vec3f(0.0), g / _og7, _og7 > 0.0);
+  _oh7._o80 = _o50 + (_o57 - _o50) * _oba;
+  return _oh7;
 }
-fn _o8z(_ocq: u32) -> vec3f {
-  return _orp[_ocq].xyz - _okn[_ocq].xyz;
+fn _o90(_ocr: u32) -> vec3f {
+  return _orq[_ocr].xyz - _oko[_ocr].xyz;
 }
-fn _oay(_oer: vec3f, _ojb: vec3f, _oko: vec3f, _oes: f32) -> vec3f {
-  var _o9m = _ojb - _oer;
-  var _og6 = length(_o9m);
-  if (_og6 < 1.0e-12) {
-    _o9m = _oko;
-    _og6 = length(_o9m);
+fn _oaz(_oes: vec3f, _ojc: vec3f, _okp: vec3f, _oet: f32) -> vec3f {
+  var _o9n = _ojc - _oes;
+  var _og7 = length(_o9n);
+  if (_og7 < 1.0e-12) {
+    _o9n = _okp;
+    _og7 = length(_o9n);
   }
-  return _oer + _o9m * (_oes / _og6);
+  return _oes + _o9n * (_oet / _og7);
 }
-fn _o3g(_omp: u32, _oqh: f32) {
-  atomicMax(&_onf[_omp], bitcast<u32>(max(_oqh, 0.0)));
+fn _o3g(_omq: u32, _oqi: f32) {
+  atomicMax(&_ong[_omq], bitcast<u32>(max(_oqi, 0.0)));
 }
 @compute @workgroup_size(64)
-fn substep(@builtin(global_invocation_id) _obl: vec3u, @builtin(num_workgroups) _ogm: vec3u) {
-  let _ol9 = _obl.x + _obl.y * _ogm.x * 64u;
-  if (_ol9 >= _omw._onj) {
+fn substep(@builtin(global_invocation_id) _obm: vec3u, @builtin(num_workgroups) _ogn: vec3u) {
+  let _ola = _obm.x + _obm.y * _ogn.x * 64u;
+  if (_ola >= _omx._onk) {
     return;
   }
-  let _o40 = _oni[_ol9];
-  let _og6 = _oni[_ol9 + 1u] - _o40;
-  if (_og6 < 2u) {
+  let _o40 = _onj[_ola];
+  let _og7 = _onj[_ola + 1u] - _o40;
+  if (_og7 < 2u) {
     return;
   }
-  let _obz = _omw._obz;
-  let _oe2 = _omw._o4d;
-  let _o4k = _omw._ong;
-  let _o8c = 2.0 * sqrt(_o4k);
-  let _ocu = 1.0 / _obz;
-  let _o64 = _omw._o7d / _obz;
-  _orp[_o40] = vec4f(_okn[_o40].xyz, 0.0);
-  _oqv[_o40] = vec4f(0.0);
-  var _ord = vec3f(0.0);
-  if (_omw._ore != 0u) {
-    let _ob8 = f32(_ol9);
-    let _obv = 0.6 + 0.4 * sin(2.3 * _omw._op9 + 0.0007 * _ob8) + 0.25 * sin(5.1 * _omw._op9 + 0.0013 * _ob8);
-    _ord = _omw._ord.xyz * _obv;
+  let _oc0 = _omx._oc0;
+  let _oe3 = _omx._o4d;
+  let _o4k = _omx._onh;
+  let _o8d = 2.0 * sqrt(_o4k);
+  let _ocv = 1.0 / _oc0;
+  let _o64 = _omx._o7e / _oc0;
+  _orq[_o40] = vec4f(_oko[_o40].xyz, 0.0);
+  _oqw[_o40] = vec4f(0.0);
+  var _ore = vec3f(0.0);
+  if (_omx._orf != 0u) {
+    let _ob9 = f32(_ola);
+    let _obw = 0.6 + 0.4 * sin(2.3 * _omx._opa + 0.0007 * _ob9) + 0.25 * sin(5.1 * _omx._opa + 0.0013 * _ob9);
+    _ore = _omx._ore.xyz * _obw;
   }
+  var _oq2 = vec3f(0.0);
   var _oq1 = vec3f(0.0);
-  var _oq0 = vec3f(0.0);
-  var _ops = vec3f(0.0);
-  var _oq7 = _o8z(_o40 + 1u);
-  var _oq8 = vec3f(0.0);
-  if (_og6 > 2u) {
-    _oq8 = _o8z(_o40 + 2u);
+  var _opt = vec3f(0.0);
+  var _oq8 = _o90(_o40 + 1u);
+  var _oq9 = vec3f(0.0);
+  if (_og7 > 2u) {
+    _oq9 = _o90(_o40 + 2u);
   }
-  var _oeq = _okn[_o40].xyz;
-  var _oit = _oeq;
-  var _oiu = _oeq;
+  var _oer = _oko[_o40].xyz;
+  var _oiu = _oer;
+  var _oiv = _oer;
+  var _ofm = 0.0;
   var _ofl = 0.0;
-  var _ofk = 0.0;
-  let _oep = _og6 - 1u;
-  for (var _odw = 1u; _odw < _og6; _odw = _odw + 1u) {
-    _oq1 = _oq0;
-    _oq0 = _ops;
-    _ops = _oq7;
-    _oq7 = _oq8;
-    if (_odw + 2u < _og6) {
-      _oq8 = _o8z(_o40 + _odw + 2u);
+  let _oeq = _og7 - 1u;
+  for (var _odx = 1u; _odx < _og7; _odx = _odx + 1u) {
+    _oq2 = _oq1;
+    _oq1 = _opt;
+    _opt = _oq8;
+    _oq8 = _oq9;
+    if (_odx + 2u < _og7) {
+      _oq9 = _o90(_o40 + _odx + 2u);
     } else {
-      _oq8 = vec3f(0.0);
+      _oq9 = vec3f(0.0);
     }
-    let _ocq = _o40 + _odw;
-    let x = _orp[_ocq].xyz;
-    let _oqc = _oqv[_ocq].xyz;
-    let _oju = _okn[_ocq];
-    let _o3k = _o3h[_ocq];
-    let _o93 = select(vec3f(0.0), _oq1 - 2.0 * _oq0 + _ops, _odw >= 2u);
-    let _o92 = select(vec3f(0.0), _oq0 - 2.0 * _ops + _oq7, _odw <= _og6 - 2u);
-    let _o94 = select(vec3f(0.0), _ops - 2.0 * _oq7 + _oq8, _odw + 1u <= _og6 - 2u);
-    let _o4c = -_o93 + 2.0 * _o92 - _o94;
-    let _onh = _omw._onr + (_omw._onq - _omw._onr) * exp(-_oju.w / _omw._onp);
-    var a = -_onh * _ops + _oe2 * _o4c + _omw._o9c * (_ord - _oqc);
+    let _ocr = _o40 + _odx;
+    let x = _orq[_ocr].xyz;
+    let _oqd = _oqw[_ocr].xyz;
+    let _ojv = _oko[_ocr];
+    let _o3k = _o3h[_ocr];
+    let _o94 = select(vec3f(0.0), _oq2 - 2.0 * _oq1 + _opt, _odx >= 2u);
+    let _o93 = select(vec3f(0.0), _oq1 - 2.0 * _opt + _oq8, _odx <= _og7 - 2u);
+    let _o95 = select(vec3f(0.0), _opt - 2.0 * _oq8 + _oq9, _odx + 1u <= _og7 - 2u);
+    let _o4c = -_o94 + 2.0 * _o93 - _o95;
+    let _oni = _omx._ons + (_omx._onr - _omx._ons) * exp(-_ojv.w / _omx._onq);
+    var a = -_oni * _opt + _oe3 * _o4c + _omx._o9d * (_ore - _oqd);
     let w = _o3k.z;
-    if (_omw._obp != 0u && w > 0.0) {
-      let _obm = _obo[_ocq].xyz + _o3k.w * _omw._o8g.xyz;
-      a = a + w * (_o4k * (_obm - x) - _o8c * _oqc);
+    if (_omx._obq != 0u && w > 0.0) {
+      let _obn = _obp[_ocr].xyz + _o3k.w * _omx._o8h.xyz;
+      a = a + w * (_o4k * (_obn - x) - _o8d * _oqd);
     }
-    let _oql = (_oqc + _obz * a) * _omw._o8e;
-    let _ohn = x + _obz * _oql;
-    let _okp = _o3k.x;
-    let _o95 = _o3k.y;
-    let _oko = _oju.xyz - _okn[_ocq - 1u].xyz;
-    var _ojb = _oay(_oeq, _ohn, _oko, _okp);
-    for (var _odl = 0u; _odl < 2u; _odl = _odl + 1u) {
-      let _omr = _om3(_ojb);
-      if (!(_omr._o7z < _o95)) {
+    let _oqm = (_oqd + _oc0 * a) * _omx._o8f;
+    let _oho = x + _oc0 * _oqm;
+    let _okq = _o3k.x;
+    let _o96 = _o3k.y;
+    let _okp = _ojv.xyz - _oko[_ocr - 1u].xyz;
+    var _ojc = _oaz(_oer, _oho, _okp, _okq);
+    for (var _odm = 0u; _odm < 2u; _odm = _odm + 1u) {
+      let _oms = _om4(_ojc);
+      if (!(_oms._o80 < _o96)) {
         break;
       }
-      _ojb = _ojb + (_o95 - _omr._o7z) * _omr.g;
-      _ojb = _oay(_oeq, _ojb, _oko, _okp);
+      _ojc = _ojc + (_o96 - _oms._o80) * _oms.g;
+      _ojc = _oaz(_oer, _ojc, _okp, _okq);
     }
-    let _o7z = _ojb - _ohn;
-    if (_odw >= 2u) {
-      let _odm = _ocq - 1u;
-      let _oqt = (_oit - _oiu) * _ocu - _o64 * _o7z;
-      _oqv[_odm] = vec4f(_oqt, 0.0);
-      _orp[_odm] = vec4f(_oit, 0.0);
-      _ofl = max(_ofl, dot(_oqt, _oqt));
-      let _opz = _oit - _okn[_odm].xyz;
-      _ofk = max(_ofk, dot(_opz, _opz));
+    let _o80 = _ojc - _oho;
+    if (_odx >= 2u) {
+      let _odn = _ocr - 1u;
+      let _oqu = (_oiu - _oiv) * _ocv - _o64 * _o80;
+      _oqw[_odn] = vec4f(_oqu, 0.0);
+      _orq[_odn] = vec4f(_oiu, 0.0);
+      _ofm = max(_ofm, dot(_oqu, _oqu));
+      let _oq0 = _oiu - _oko[_odn].xyz;
+      _ofl = max(_ofl, dot(_oq0, _oq0));
     }
-    _oit = _ojb;
-    _oiu = x;
-    _oeq = _ojb;
-    if (_odw == _oep) {
-      let _oqw = (_ojb - x) * _ocu;
-      _oqv[_ocq] = vec4f(_oqw, 0.0);
-      _orp[_ocq] = vec4f(_ojb, 0.0);
-      _ofl = max(_ofl, dot(_oqw, _oqw));
-      let _oqb = _ojb - _oju.xyz;
-      _ofk = max(_ofk, dot(_oqb, _oqb));
+    _oiu = _ojc;
+    _oiv = x;
+    _oer = _ojc;
+    if (_odx == _oeq) {
+      let _oqx = (_ojc - x) * _ocv;
+      _oqw[_ocr] = vec4f(_oqx, 0.0);
+      _orq[_ocr] = vec4f(_ojc, 0.0);
+      _ofm = max(_ofm, dot(_oqx, _oqx));
+      let _oqc = _ojc - _ojv.xyz;
+      _ofl = max(_ofl, dot(_oqc, _oqc));
     }
   }
-  _o3g(0u, _ofl);
-  _o3g(1u, _ofk);
+  _o3g(0u, _ofm);
+  _o3g(1u, _ofl);
 }
 @compute @workgroup_size(64)
-fn grab_begin(@builtin(global_invocation_id) _obl: vec3u, @builtin(num_workgroups) _ogm: vec3u) {
-  let _ol9 = _obl.x + _obl.y * _ogm.x * 64u;
-  if (_ol9 >= _omw._onj) {
+fn grab_begin(@builtin(global_invocation_id) _obm: vec3u, @builtin(num_workgroups) _ogn: vec3u) {
+  let _ola = _obm.x + _obm.y * _ogn.x * 64u;
+  if (_ola >= _omx._onk) {
     return;
   }
-  let _o40 = _oni[_ol9];
-  let _og6 = _oni[_ol9 + 1u] - _o40;
-  let _ojy = _omw._obq.w;
-  let _o61 = _omw._obq.xyz;
-  var _o4e = _ojy;
-  var _oe2 = 0u;
-  for (var _odw = 1u; _odw < _og6; _odw = _odw + 1u) {
-    let _o8d = length(_orp[_o40 + _odw].xyz - _o61);
-    if (_o8d < _o4e) {
-      _o4e = _o8d;
-      _oe2 = _odw;
+  let _o40 = _onj[_ola];
+  let _og7 = _onj[_ola + 1u] - _o40;
+  let _ojz = _omx._obr.w;
+  let _o61 = _omx._obr.xyz;
+  var _o4e = _ojz;
+  var _oe3 = 0u;
+  for (var _odx = 1u; _odx < _og7; _odx = _odx + 1u) {
+    let _o8e = length(_orq[_o40 + _odx].xyz - _o61);
+    if (_o8e < _o4e) {
+      _o4e = _o8e;
+      _oe3 = _odx;
     }
   }
-  let _omf = 0.5 * _ojy * _ojy;
-  let _or0 = exp(-_o4e * _o4e / _omf);
-  let _o3c = max(_okn[_o40 + _oe2].w, 1.0e-9);
-  for (var _odw = 0u; _odw < _og6; _odw = _odw + 1u) {
-    let _ocq = _o40 + _odw;
-    var _o3k = _o3h[_ocq];
-    if (_oe2 > 0u && _odw >= 1u && _odw <= _oe2) {
-      _o3k.z = _or0;
-      _o3k.w = pow(min(_okn[_ocq].w / _o3c, 1.0), 1.5);
-      _obo[_ocq] = _orp[_ocq];
+  let _omg = 0.5 * _ojz * _ojz;
+  let _or1 = exp(-_o4e * _o4e / _omg);
+  let _o3c = max(_oko[_o40 + _oe3].w, 1.0e-9);
+  for (var _odx = 0u; _odx < _og7; _odx = _odx + 1u) {
+    let _ocr = _o40 + _odx;
+    var _o3k = _o3h[_ocr];
+    if (_oe3 > 0u && _odx >= 1u && _odx <= _oe3) {
+      _o3k.z = _or1;
+      _o3k.w = pow(min(_oko[_ocr].w / _o3c, 1.0), 1.5);
+      _obp[_ocr] = _orq[_ocr];
     } else {
       _o3k.z = 0.0;
       _o3k.w = 0.0;
     }
-    _o3h[_ocq] = _o3k;
+    _o3h[_ocr] = _o3k;
   }
-  if (_oe2 > 0u) {
-    atomicAdd(&_onf[2], 1u);
+  if (_oe3 > 0u) {
+    atomicAdd(&_ong[2], 1u);
   }
 }
 @compute @workgroup_size(256)
-fn reset_state(@builtin(global_invocation_id) _obl: vec3u, @builtin(num_workgroups) _ogm: vec3u) {
-  let _ocq = _obl.x + _obl.y * _ogm.x * 256u;
-  if (_ocq >= _omw._oqn) {
+fn reset_state(@builtin(global_invocation_id) _obm: vec3u, @builtin(num_workgroups) _ogn: vec3u) {
+  let _ocr = _obm.x + _obm.y * _ogn.x * 256u;
+  if (_ocr >= _omx._oqo) {
     return;
   }
-  _orp[_ocq] = vec4f(_okn[_ocq].xyz, 0.0);
-  _oqv[_ocq] = vec4f(0.0);
-  var _o3k = _o3h[_ocq];
+  _orq[_ocr] = vec4f(_oko[_ocr].xyz, 0.0);
+  _oqw[_ocr] = vec4f(0.0);
+  var _o3k = _o3h[_ocr];
   _o3k.z = 0.0;
   _o3k.w = 0.0;
-  _o3h[_ocq] = _o3k;
+  _o3h[_ocr] = _o3k;
 }

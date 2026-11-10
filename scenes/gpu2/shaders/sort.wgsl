@@ -1,113 +1,113 @@
 struct _o25 {
-  _omb: u32,
-  _oq9: u32,
-  _og5: u32,
-  _ohx: u32,
+  _omc: u32,
+  _oqa: u32,
+  _og6: u32,
+  _ohy: u32,
 };
-@group(0) @binding(0) var<storage, read> _o7j: array<u32>;
-@group(0) @binding(1) var<storage, read> _o7h: array<u32>;
-@group(0) @binding(2) var<storage, read_write> _o7i: array<u32>;
-@group(0) @binding(3) var<uniform> _o7k: _o25;
-@group(0) @binding(0) var<storage, read> _ocx: array<u32>;
-@group(0) @binding(1) var<storage, read> _ocy: array<u32>;
-@group(0) @binding(2) var<storage, read> _ocz: array<u32>;
-@group(0) @binding(3) var<storage, read_write> _oh8: array<u32>;
-@group(0) @binding(4) var<storage, read_write> _oh9: array<u32>;
-@group(0) @binding(5) var<storage, read_write> _oha: array<u32>;
-@group(0) @binding(6) var<storage, read> _o8x: array<u32>;
-@group(0) @binding(7) var<storage, read> _oly: array<u32>;
-@group(0) @binding(8) var<uniform> _olz: _o25;
-var<workgroup> _o8w: array<atomic<u32>, 16>;
-var<workgroup> _ok6: array<vec4u, 1024>;
+@group(0) @binding(0) var<storage, read> _o7k: array<u32>;
+@group(0) @binding(1) var<storage, read> _o7i: array<u32>;
+@group(0) @binding(2) var<storage, read_write> _o7j: array<u32>;
+@group(0) @binding(3) var<uniform> _o7l: _o25;
+@group(0) @binding(0) var<storage, read> _ocy: array<u32>;
+@group(0) @binding(1) var<storage, read> _ocz: array<u32>;
+@group(0) @binding(2) var<storage, read> _od0: array<u32>;
+@group(0) @binding(3) var<storage, read_write> _oh9: array<u32>;
+@group(0) @binding(4) var<storage, read_write> _oha: array<u32>;
+@group(0) @binding(5) var<storage, read_write> _ohb: array<u32>;
+@group(0) @binding(6) var<storage, read> _o8y: array<u32>;
+@group(0) @binding(7) var<storage, read> _olz: array<u32>;
+@group(0) @binding(8) var<uniform> _om0: _o25;
+var<workgroup> _o8x: array<atomic<u32>, 16>;
+var<workgroup> _ok7: array<vec4u, 1024>;
 @compute @workgroup_size(256)
-fn sort_count(@builtin(local_invocation_index) _oex: u32,
-              @builtin(workgroup_id) _orb: vec3u,
-              @builtin(num_workgroups) _ogm: vec3u) {
-  let _o4o = _of2(_orb, _ogm);
-  let _o4p = _o7h[_o20];
+fn sort_count(@builtin(local_invocation_index) _oey: u32,
+              @builtin(workgroup_id) _orc: vec3u,
+              @builtin(num_workgroups) _ogn: vec3u) {
+  let _o4o = _of3(_orc, _ogn);
+  let _o4p = _o7i[_o20];
   if (_o4o >= _o4p) {
     return;
   }
-  let _og6 = _o7h[_o1v];
-  if (_oex < 16u) {
-    atomicStore(&_o8w[_oex], 0u);
+  let _og7 = _o7i[_o1v];
+  if (_oey < 16u) {
+    atomicStore(&_o8x[_oey], 0u);
   }
   workgroupBarrier();
-  let _ocq = _o4o * _o2h + _oex;
-  if (_ocq < _og6) {
-    let _o8v = (_o7j[_ocq] >> _o7k._omb) & 15u;
-    atomicAdd(&_o8w[_o8v], 1u);
+  let _ocr = _o4o * _o2h + _oey;
+  if (_ocr < _og7) {
+    let _o8w = (_o7k[_ocr] >> _o7l._omc) & 15u;
+    atomicAdd(&_o8x[_o8w], 1u);
   }
   workgroupBarrier();
-  if (_oex < 16u) {
-    _o7i[_oex * _o4p + _o4o] = atomicLoad(&_o8w[_oex]);
+  if (_oey < 16u) {
+    _o7j[_oey * _o4p + _o4o] = atomicLoad(&_o8x[_oey]);
   }
 }
 @compute @workgroup_size(256)
-fn sort_scatter(@builtin(local_invocation_index) _oex: u32,
-                @builtin(workgroup_id) _orb: vec3u,
-                @builtin(num_workgroups) _ogm: vec3u) {
-  let _o4o = _of2(_orb, _ogm);
-  let _o4p = _oly[_o20];
+fn sort_scatter(@builtin(local_invocation_index) _oey: u32,
+                @builtin(workgroup_id) _orc: vec3u,
+                @builtin(num_workgroups) _ogn: vec3u) {
+  let _o4o = _of3(_orc, _ogn);
+  let _o4p = _olz[_o20];
   if (_o4o >= _o4p) {
     return;
   }
-  let _og6 = _oly[_o1v];
-  let _ocq = _o4o * _o2h + _oex;
-  let _oqg = _ocq < _og6;
-  var _ocg = 0u;
-  var _of4 = 0u;
-  var _oqh = 0u;
-  var _o8v = 0u;
-  var _ofb = vec4u(0u);
-  var _oci = vec4u(0u);
-  if (_oqg) {
-    _ocg = _ocx[_ocq];
-    _oqh = _ocz[_ocq];
-    if (_olz._og5 != 0u || _olz._oq9 == 0u) {
-      _of4 = _ocy[_ocq];
+  let _og7 = _olz[_o1v];
+  let _ocr = _o4o * _o2h + _oey;
+  let _oqh = _ocr < _og7;
+  var _och = 0u;
+  var _of5 = 0u;
+  var _oqi = 0u;
+  var _o8w = 0u;
+  var _ofc = vec4u(0u);
+  var _ocj = vec4u(0u);
+  if (_oqh) {
+    _och = _ocy[_ocr];
+    _oqi = _od0[_ocr];
+    if (_om0._og6 != 0u || _om0._oqa == 0u) {
+      _of5 = _ocz[_ocr];
     }
-    let _oea = select(_of4, _ocg, _olz._oq9 != 0u);
-    _o8v = (_oea >> _olz._omb) & 15u;
-    let _orf = _o8v >> 1u;
-    let _oen = 1u << ((_o8v & 1u) * 16u);
-    if (_orf < 4u) {
-      _ofb[_orf] = _oen;
+    let _oeb = select(_of5, _och, _om0._oqa != 0u);
+    _o8w = (_oeb >> _om0._omc) & 15u;
+    let _org = _o8w >> 1u;
+    let _oeo = 1u << ((_o8w & 1u) * 16u);
+    if (_org < 4u) {
+      _ofc[_org] = _oeo;
     } else {
-      _oci[_orf - 4u] = _oen;
+      _ocj[_org - 4u] = _oeo;
     }
   }
-  _ok6[2u * _oex] = _ofb;
-  _ok6[2u * _oex + 1u] = _oci;
+  _ok7[2u * _oey] = _ofc;
+  _ok7[2u * _oey + 1u] = _ocj;
   workgroupBarrier();
-  var _omt = 0u;
-  for (var _ogw = 1u; _ogw < _o2h; _ogw = _ogw << 1u) {
-    let _oh4 = 512u - _omt;
-    var _ofc = _ok6[_omt + 2u * _oex];
-    var _ocj = _ok6[_omt + 2u * _oex + 1u];
-    if (_oex >= _ogw) {
-      _ofc = _ofc + _ok6[_omt + 2u * (_oex - _ogw)];
-      _ocj = _ocj + _ok6[_omt + 2u * (_oex - _ogw) + 1u];
+  var _omu = 0u;
+  for (var _ogx = 1u; _ogx < _o2h; _ogx = _ogx << 1u) {
+    let _oh5 = 512u - _omu;
+    var _ofd = _ok7[_omu + 2u * _oey];
+    var _ock = _ok7[_omu + 2u * _oey + 1u];
+    if (_oey >= _ogx) {
+      _ofd = _ofd + _ok7[_omu + 2u * (_oey - _ogx)];
+      _ock = _ock + _ok7[_omu + 2u * (_oey - _ogx) + 1u];
     }
-    _ok6[_oh4 + 2u * _oex] = _ofc;
-    _ok6[_oh4 + 2u * _oex + 1u] = _ocj;
-    _omt = _oh4;
+    _ok7[_oh5 + 2u * _oey] = _ofd;
+    _ok7[_oh5 + 2u * _oey + 1u] = _ock;
+    _omu = _oh5;
     workgroupBarrier();
   }
-  if (_oqg) {
-    let _orf = _o8v >> 1u;
-    var _ohw = 0u;
-    if (_orf < 4u) {
-      _ohw = _ok6[_omt + 2u * _oex][_orf];
+  if (_oqh) {
+    let _org = _o8w >> 1u;
+    var _ohx = 0u;
+    if (_org < 4u) {
+      _ohx = _ok7[_omu + 2u * _oey][_org];
     } else {
-      _ohw = _ok6[_omt + 2u * _oex + 1u][_orf - 4u];
+      _ohx = _ok7[_omu + 2u * _oey + 1u][_org - 4u];
     }
-    let _ok5 = ((_ohw >> ((_o8v & 1u) * 16u)) & 0xFFFFu) - 1u;
-    let _o8m = _o8x[_o8v * _o4p + _o4o] + _ok5;
-    _oh8[_o8m] = _ocg;
-    if (_olz._og5 != 0u) {
-      _oh9[_o8m] = _of4;
+    let _ok6 = ((_ohx >> ((_o8w & 1u) * 16u)) & 0xFFFFu) - 1u;
+    let _o8n = _o8y[_o8w * _o4p + _o4o] + _ok6;
+    _oh9[_o8n] = _och;
+    if (_om0._og6 != 0u) {
+      _oha[_o8n] = _of5;
     }
-    _oha[_o8m] = _oqh;
+    _ohb[_o8n] = _oqi;
   }
 }
