@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Spaghetti Splatting · WebGPU viewer</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<canvas id="view" tabindex="0"></canvas>
+
+<div id="top-left" class="panel">
+  <div class="brand"><span class="logo"></span>Spaghetti&nbsp;Splatting</div>
+  <select id="scene" title="Scene"></select>
+</div>
+
+<div id="top-right" class="panel row">
+  <div class="seg" role="radiogroup" title="Navigation mode (Tab)">
+    <button id="mode-orbit" class="on">Orbit</button><button id="mode-walk">Walk</button>
+  </div>
+  <button id="btn-clay" title="Clay view (C)">Clay</button>
+  <button id="btn-home" class="icon" title="Reset view (R)">⌂</button>
+  <button id="btn-full" class="icon" title="Full screen (F)">⛶</button>
+  <button id="btn-help" class="icon" title="Controls (H)">?</button>
+</div>
+
+<div id="hair-tools" class="panel hidden">
+  <div class="tools-title">Hair</div>
+  <button id="tool-grab" class="tool on" title="Drag a strand to pull a lock (G)"><span>✋</span>Grab</button>
+  <button id="tool-wind" class="tool" title="Wind from the left of the view (B)"><span>〰</span>Wind</button>
+  <button id="tool-reset" class="tool" title="Put the hair back (X)"><span>↺</span>Reset</button>
+  <label class="slider vertical" title="Size of the grabbed lock">lock size <span id="grab-size-v">4 cm</span>
+    <input id="grab-size" type="range" min="1" max="10" step="0.5" value="4"></label>
+</div>
+
+<div id="bottom-left" class="panel stats">
+  <div id="fps"></div>
+  <div id="info"></div>
+</div>
+
+<div id="bottom-right" class="panel row">
+  <button id="view-prev" class="icon" title="Previous dataset view (,)">‹</button>
+  <span id="view-label">view</span>
+  <button id="view-next" class="icon" title="Next dataset view (.)">›</button>
+  <label class="slider" title="Field of view">fov
+    <input id="fov" type="range" min="20" max="100" step="1" value="50"></label>
+  <select id="quality" title="Resolution">
+    <option value="auto">Auto res</option>
+    <option value="1">Full res</option>
+    <option value="0.75">75 %</option>
+    <option value="0.5">50 %</option>
+  </select>
+</div>
+
+<div id="toast" class="panel hidden"></div>
+
+<div id="help" class="panel hidden">
+  <h2>Controls</h2>
+  <div class="cols">
+    <div>
+      <h3>Orbit</h3>
+      <p><b>Left drag</b> turn about the pivot</p>
+      <p><b>Right drag</b> / <b>Shift + drag</b> pan</p>
+      <p><b>Wheel</b> / <b>pinch</b> zoom to the cursor</p>
+      <p><b>Double click</b> focus on a point</p>
+    </div>
+    <div>
+      <h3>Walk</h3>
+      <p><b>W A S D</b> move · <b>Q E</b> down / up</p>
+      <p><b>Arrows</b> turn · <b>Shift</b> 3× · <b>Ctrl</b> slow</p>
+      <p><b>Drag</b> look · <b>Wheel</b> forward</p>
+      <p><b>[ ]</b> roll · <b>\</b> level horizon</p>
+    </div>
+    <div>
+      <h3>Hair</h3>
+      <p><b>Drag a strand</b> pull a lock (Grab on)</p>
+      <p><b>Drag the background</b> navigate</p>
+      <p><b>B</b> wind · <b>X</b> reset · <b>G</b> grab on/off</p>
+    </div>
+    <div>
+      <h3>General</h3>
+      <p><b>Tab</b> orbit / walk · <b>R</b> reset view</p>
+      <p><b>, .</b> dataset views · <b>F</b> full screen</p>
+      <p><b>C</b> clay view · <b>H</b> this help</p>
+    </div>
+  </div>
+  <p class="note">The image is the colour-only evaluation render of the trained model, computed in
+    WebGPU (a WGSL port of the CUDA rasterizer). Pulled hair keeps its trained segments: each
+    segment moves rigidly with the simulated strand (DFTL), and its kernel frame and colour sites turn
+    with it.</p>
+</div>
+
+<!-- Status lines read by the loading screen (loader.js). -->
+<div id="status" aria-live="polite"><div id="progress">starting</div><div id="warning"></div></div>
+
+<script type="module" src="./app.js"></script>
+</body>
+</html>
