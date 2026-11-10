@@ -65,12 +65,34 @@ button.icon { width: 30px; height: 30px; padding: 0; font-size: 15px; display: i
 #help .note { margin-top: 14px; font-size: 12px; line-height: 1.5; }
 #status { position: fixed; left: -9999px; top: 0; }
 #warning:not(:empty) { position: fixed; left: 12px; top: 96px; left: 12px; color: #ff9c5a; }
-@media (max-width: 720px) {
+/* Phones (George 2026-11-10): compact panels inside the safe area, no stats and no walk keys, the start hint
+   at the bottom. A landscape phone has a small height, so it also gets these rules. */
+@media (max-width: 720px), (max-height: 500px) {
+  .panel { padding: 5px 6px; border-radius: 10px; }
+  .row { gap: 5px; }
+  select, button { padding: 4px 8px; }
+  .seg button { padding: 4px 9px; }
+  #top-left { top: max(8px, env(safe-area-inset-top)); left: max(8px, env(safe-area-inset-left)); min-width: 0; }
+  #top-right { top: max(8px, env(safe-area-inset-top)); right: max(8px, env(safe-area-inset-right)); }
+  #bottom-right { bottom: max(8px, env(safe-area-inset-bottom)); right: max(8px, env(safe-area-inset-right)); }
   #bottom-right label.slider, #bottom-right select { display: none; }
-  #bottom-left { display: none; }
-  #top-left { min-width: 0; max-width: 56vw; }
-  #top-left select { max-width: 52vw; }
+  #bottom-left, #walk-keys { display: none !important; }
+  #view-label { min-width: 64px; }
+  #toast { top: auto; bottom: calc(max(8px, env(safe-area-inset-bottom)) + 52px); width: max-content; max-width: 92vw;
+    text-align: center; }
   #hair-tools { top: auto; bottom: 64px; transform: none; width: auto; flex-direction: row; flex-wrap: wrap; max-width: 70vw; }
   #hair-tools .slider, .tools-title { display: none; }
   .slider input { width: 70px; }
+}
+/* Narrow portrait phone: first row = scene list and tools, second row = modes and Primitives. */
+@media (max-width: 560px) {
+  #top-left { padding: 4px; }
+  #top-left .brand { display: none; }
+  #top-left select { max-width: calc(100vw - 150px); }
+  #top-right { display: contents; }
+  #top-right > .row { position: fixed; z-index: 5; right: max(8px, env(safe-area-inset-right)); padding: 4px;
+    background: var(--glass); border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(12px) saturate(1.2); -webkit-backdrop-filter: blur(12px) saturate(1.2); }
+  #tools { top: max(8px, env(safe-area-inset-top)); }
+  #modes { top: calc(max(8px, env(safe-area-inset-top)) + 46px); }
 }

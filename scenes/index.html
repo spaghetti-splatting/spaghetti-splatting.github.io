@@ -14,14 +14,20 @@
   <select id="scene" title="Scene"></select>
 </div>
 
+<!-- George 2026-11-10: two groups, so a narrow phone screen puts them in two rows (app.css). -->
 <div id="top-right" class="panel row">
-  <div class="seg" role="radiogroup" title="Navigation mode (Tab)">
-    <button id="mode-orbit" class="on">Orbit</button><button id="mode-walk">Walk</button>
+  <div id="modes" class="row">
+    <div class="seg" role="radiogroup" title="Navigation mode (Tab)">
+      <button id="mode-orbit" class="on">Orbit</button><button id="mode-walk">Walk</button>
+    </div>
+    <button id="btn-clay" title="Primitives view (C)">Primitives</button>
   </div>
-  <button id="btn-clay" title="Primitives view (C)">Primitives</button>
-  <button id="btn-home" class="icon" title="Reset view (R)">⌂</button>
-  <button id="btn-full" class="icon" title="Full screen (F)">⛶</button>
-  <button id="btn-help" class="icon" title="Controls (H)">?</button>
+  <div id="tools" class="row">
+    <button id="btn-home" class="icon" title="Reset view (R)">⌂</button>
+    <button id="btn-full" class="icon" title="Full screen (F)"><svg viewBox="0 0 16 16" width="15" height="15" fill="none"
+      stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4"/></svg></button>
+    <button id="btn-help" class="icon" title="Controls (H)">?</button>
+  </div>
 </div>
 
 <!-- George 2026-11-09: the walk keys stay on screen in walk mode. -->
@@ -64,7 +70,7 @@
       <h3>Orbit</h3>
       <p><b>Left drag</b> turn about the pivot</p>
       <p><b>Right drag</b> / <b>Shift + drag</b> pan</p>
-      <p><b>Wheel</b> / <b>pinch</b> zoom to the cursor</p>
+      <p><b>Wheel</b> / <b>pinch</b> zoom toward the pivot</p>
       <p><b>Double click</b> focus on a point</p>
     </div>
     <div>
