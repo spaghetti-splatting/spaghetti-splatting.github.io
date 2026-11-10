@@ -85,7 +85,7 @@
     <section class="section" id="thin-structures">
       <figure class="teaser">
         <!-- Zoom comparison (George 2026-11-09): 3DGS-MCMC + SV8 (Table 1 runs) left, Spaghetti Splatting + SV8 (floater-prune runs) right; render above, depth clay below. X-ready encode of video 1 v18 of the Twitter thread (out/tweet_thread_20261109/video1_twitter_v18.mp4). -->
-        <video src="videos/zoom/zoom_compare.mp4" poster="videos/zoom/zoom_compare.jpg" autoplay muted loop playsinline preload="auto"
+        <video src="videos/zoom/zoom_compare.mp4?v=20261109f" poster="videos/zoom/zoom_compare.jpg?v=20261109f" autoplay muted loop playsinline preload="auto"
                aria-label="Zoom into the garden grate and the counter onion bag: 3DGS-MCMC + SV8 on the left, Spaghetti Splatting + SV8 on the right, rendered image above, internal representation below"></video>
       </figure>
       <p class="abstract" style="margin-top:14px">
@@ -145,7 +145,7 @@
         We then scale the projected kernel along the segment with inverse depth, so the projected kernel shrinks with depth along the segment.
         This linearization also supports Beta kernels.
       </p>
-      <video src="videos/method/7_ewa_inverse_depth.mp4" poster="videos/method/7_ewa_inverse_depth.jpg" autoplay muted loop playsinline preload="metadata"
+      <video src="videos/method/7_ewa_inverse_depth.mp4?v=20261109f" poster="videos/method/7_ewa_inverse_depth.jpg?v=20261109f" autoplay muted loop playsinline preload="metadata"
              style="display:block;width:100%;height:auto;border-radius:4px;background:#fff"></video>
       <!-- Exact subdivision (George 2026-11-09): tweet-thread video 3 v19 (seamless loop, LaTeX text, larger), our CUDA renderer, Gaussian kernel;
            out/tweet_thread_20261109/video3_exact_subdivision_v19.mp4 of Kernel_Curves. -->
@@ -157,7 +157,7 @@
         Alpha blending of the two halves then gives (1&nbsp;&minus;&nbsp;&alpha;<sub>1</sub>)(1&nbsp;&minus;&nbsp;&alpha;<sub>2</sub>)&nbsp;=&nbsp;e<sup>&minus;&tau;<sub>1</sub>&minus;&tau;<sub>2</sub></sup>&nbsp;=&nbsp;1&nbsp;&minus;&nbsp;&alpha;, the same transmittance as the parent.
         Splitting a long segment during optimization thus keeps its density field and its opacity along every ray, so the rendered image does not change.
       </p>
-      <video src="videos/method/8_exact_subdivision.mp4" poster="videos/method/8_exact_subdivision.jpg" autoplay muted loop playsinline preload="metadata"
+      <video src="videos/method/8_exact_subdivision.mp4?v=20261109f" poster="videos/method/8_exact_subdivision.jpg?v=20261109f" autoplay muted loop playsinline preload="metadata"
              style="display:block;width:100%;height:auto;border-radius:4px;background:#fff"></video>
       <!-- Covariance alignment (George 2026-11-09): cov_align_v14.mp4 of /data/george/kernel_curves/cov_align_adopt_v1
            (session "Gaussian haircut view 380 covariance alignment", from Yizheng's cov_align handoff), rendered again with K = 20 primitives per side at 60 fps (George 2026-11-09: more points, higher FPS). -->
@@ -166,7 +166,7 @@
         The local x axis of each kernel is the direction of its segment.
         When a polyline deforms, for example in a physics simulation, each kernel thus stays aligned with its segment.
       </p>
-      <video src="videos/method/9_covariance_alignment.mp4" poster="videos/method/9_covariance_alignment.jpg" autoplay muted loop playsinline preload="metadata"
+      <video src="videos/method/9_covariance_alignment.mp4?v=20261109f" poster="videos/method/9_covariance_alignment.jpg?v=20261109f" autoplay muted loop playsinline preload="metadata"
              style="display:block;width:100%;height:auto;border-radius:4px;background:#fff"></video>
       <!-- The 4 x 4 grid of polylines drawn at the same time (Yizheng's volume renderer; page session
            update of 2026-11-08 21:23, Pages commit db54f55), restored after cb47261 removed it. -->
