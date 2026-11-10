@@ -90,9 +90,11 @@ body {
 }
 
 /* The code release date, centred under the Code button (George 2026-11-09). The padding and the row gap of
-   .links leave room for it, also when the buttons wrap on phones. */
+   .links leave room for it, also when the buttons wrap on phones. The column gap keeps it apart from the
+   supplement date under the Supplement button (George 2026-11-10). */
 .links {
   row-gap: 34px;
+  column-gap: 22px;
   padding-bottom: 24px;
 }
 
