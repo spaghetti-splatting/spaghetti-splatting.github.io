@@ -24,6 +24,8 @@ html, body { margin: 0; height: 100%; overflow: hidden; background: #000; color:
 .logo { width: 14px; height: 14px; border-radius: 50%;
   background: conic-gradient(from 30deg, #f2b45a, #d9482f, #f2b45a 60%, #ffe6a8, #f2b45a); }
 #top-right { top: 12px; right: 12px; }
+#walk-keys { top: 64px; right: 12px; font-size: 13px; }
+#walk-keys b { color: var(--accent, #f2b45a); }
 #bottom-left { left: 12px; bottom: 12px; font: 11px/1.4 ui-monospace, Menlo, monospace; color: var(--dim);
   max-width: min(46vw, 520px); }
 #bottom-right { right: 12px; bottom: 12px; }
