@@ -97,5 +97,20 @@
 <div id="status" aria-live="polite"><div id="progress">starting</div><div id="warning"></div></div>
 
 <script type="module" src="./app.js"></script>
+<script>
+// George 2026-11-09: the Primitives button pulses a few times after each scene load.
+(() => {
+  const progress = document.getElementById('progress');
+  const button = document.getElementById('btn-clay');
+  if (!progress || !button) return;
+  let wasLoaded = false;
+  new MutationObserver(() => {
+    const loaded = progress.textContent.startsWith('loaded');
+    if (loaded && !wasLoaded) { button.classList.remove('pulse'); void button.offsetWidth; button.classList.add('pulse'); }
+    wasLoaded = loaded;
+  }).observe(progress, {childList: true, characterData: true, subtree: true});
+  button.addEventListener('animationend', () => button.classList.remove('pulse'));
+})();
+</script>
 </body>
 </html>
