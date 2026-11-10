@@ -172,7 +172,7 @@
       // A single-stream player has no corner labels.
       const labels = this.single ? [] : [
         element('span', 'player-label player-label-left', 'Render'),
-        element('span', 'player-label player-label-right', 'Clay primitives'),
+        element('span', 'player-label player-label-right', 'Primitives'),
       ];
       this.stage.append(video, this.canvas, ...labels, this.loading, this.playButton);
       figure.appendChild(this.stage);
