@@ -89,6 +89,29 @@ body {
   gap: 10px;
 }
 
+/* The code release date, centred under the Code button (George 2026-11-09). The padding and the row gap of
+   .links leave room for it, also when the buttons wrap on phones. */
+.links {
+  row-gap: 34px;
+  padding-bottom: 24px;
+}
+
+.code-slot {
+  position: relative;
+  display: inline-block;
+}
+
+.code-eta {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 7px;
+  white-space: nowrap;
+  color: #5b636b;
+  font-size: 0.85rem;
+}
+
 .link-button {
   display: inline-block;
   padding: 7px 20px;

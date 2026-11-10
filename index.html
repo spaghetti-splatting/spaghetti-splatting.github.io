@@ -50,7 +50,8 @@
         <!-- TODO: Add https://arxiv.org/abs/<identifier> after the arXiv announcement. Then remove the is-disabled class, aria-disabled, and tabindex. -->
         <a class="link-button is-disabled" href="#" aria-disabled="true" tabindex="-1">arXiv</a>
         <a class="link-button is-disabled" href="#" aria-disabled="true" tabindex="-1">Supplement</a>
-        <a class="link-button" href="https://github.com/theialab/spaghetti-splatting">Code</a>
+        <!-- George 2026-11-09: the code release date, centred under the Code button. -->
+        <span class="code-slot"><a class="link-button" href="https://github.com/theialab/spaghetti-splatting">Code</a><span class="code-eta">Code ETA: Nov 23, 2026</span></span>
         <!-- WebGPU scene viewer with the clay view (George 2026-11-09): one drop-down button with the Mip-NeRF 360 room
              (small model: cap 300k; full model) and the pasta capture (scene "sauce"). -->
         <details class="link-dropdown">
@@ -63,8 +64,6 @@
         </details>
         <a class="link-button" href="#bibtex">BibTeX</a>
       </nav>
-      <!-- George 2026-11-09: the code release date. -->
-      <p class="code-eta" style="margin:10px 0 0;text-align:center;color:#5b636b;font-size:0.95rem">Code ETA: November 23, 2026</p>
     </header>
 
     <!-- Overview video v6 (2026-11-09): the story (3DGS -> Dirac (x) kernel -> curve (x) kernel -> every noodle ->
