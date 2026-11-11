@@ -1,123 +1,123 @@
-struct _o1n {
-  _o8a: vec2f,
-  _oko: f32,
-  _ogo: f32,
-  _o7y: u32,
-  _oio: u32,
-  _oip: u32,
-  _oiq: u32,
+struct _o1u {
+  _o8o: vec2f,
+  _ols: f32,
+  _ohn: f32,
+  _o8c: u32,
+  _ojn: u32,
+  _ojo: u32,
+  _ojp: u32,
 };
-@group(0) @binding(0) var<uniform> _oj4: _o1n;
-@group(0) @binding(1) var<uniform> _o5v: _oo;
-@group(0) @binding(2) var<storage, read_write> _olg: array<atomic<u32>, 8>;
-@group(0) @binding(3) var<storage, read> _osl: array<vec4f>;
-@group(0) @binding(4) var<storage, read> _oae: array<f32>;
-@group(0) @binding(5) var<storage, read> _o3d: array<f32>;
-fn _oj9(_oei: u32) -> f32 {
-  return _o5v._oju[_oei >> 2u][_oei & 3u];
+@group(0) @binding(0) var<uniform> _ok4: _o1u;
+@group(0) @binding(1) var<uniform> _o69: _oo;
+@group(0) @binding(2) var<storage, read_write> _oml: array<atomic<u32>, 8>;
+@group(0) @binding(3) var<storage, read> _otv: array<vec4f>;
+@group(0) @binding(4) var<storage, read> _oau: array<f32>;
+@group(0) @binding(5) var<storage, read> _o3l: array<f32>;
+fn _ok9(_ofd: u32) -> f32 {
+  return _o69._oku[_ofd >> 2u][_ofd & 3u];
 }
-fn _orp(_oei: u32) -> f32 {
-  return _o5v._ork[_oei >> 2u][_oei & 3u];
+fn _osz(_ofd: u32) -> f32 {
+  return _o69._osu[_ofd >> 2u][_ofd & 3u];
 }
-fn _ojv(_oic: vec3f) -> vec3f {
-  let _od9 = _oic.x * _oj9(0u) + _oic.y * _oj9(4u) + _oic.z * _oj9(8u) + _oj9(12u);
-  let _oda = _oic.x * _oj9(1u) + _oic.y * _oj9(5u) + _oic.z * _oj9(9u) + _oj9(13u);
-  let _od8 = _oic.x * _oj9(3u) + _oic.y * _oj9(7u) + _oic.z * _oj9(11u) + _oj9(15u);
-  let _o91 = _oic.x * _orp(2u) + _oic.y * _orp(6u) + _oic.z * _orp(10u) + _orp(14u);
-  let w = max(_od8, 1.0e-9);
-  let _ojz = ((_od9 / w + 1.0) * f32(_o5v._os7) - 1.0) * 0.5;
-  let _ok0 = ((_oda / w + 1.0) * f32(_o5v._ocy) - 1.0) * 0.5;
-  return vec3f(_ojz, _ok0, select(-1.0, _o91, _od8 > 1.0e-6 && _o91 > _o5w()));
+fn _okv(_ojb: vec3f) -> vec3f {
+  let _oe4 = _ojb.x * _ok9(0u) + _ojb.y * _ok9(4u) + _ojb.z * _ok9(8u) + _ok9(12u);
+  let _oe5 = _ojb.x * _ok9(1u) + _ojb.y * _ok9(5u) + _ojb.z * _ok9(9u) + _ok9(13u);
+  let _oe3 = _ojb.x * _ok9(3u) + _ojb.y * _ok9(7u) + _ojb.z * _ok9(11u) + _ok9(15u);
+  let _o9f = _ojb.x * _osz(2u) + _ojb.y * _osz(6u) + _ojb.z * _osz(10u) + _osz(14u);
+  let w = max(_oe3, 1.0e-9);
+  let _okz = ((_oe4 / w + 1.0) * f32(_o69._oth) - 1.0) * 0.5;
+  let _ol0 = ((_oe5 / w + 1.0) * f32(_o69._odt) - 1.0) * 0.5;
+  return vec3f(_okz, _ol0, select(-1.0, _o9f, _oe3 > 1.0e-6 && _o9f > _o6a()));
 }
-fn _o5w() -> f32 {
+fn _o6a() -> f32 {
   return 0.01;
 }
-struct _o1g {
-  _ohp: bool,
-  _o91: f32,
-  _oja: vec3f,
+struct _o1l {
+  _oio: bool,
+  _o9f: f32,
+  _oka: vec3f,
 };
-fn _orh(_odc: u32) -> _o1g {
-  var _od5: _o1g;
-  let _oic = _osl[_odc].xyz;
-  let _olz = _ojv(_oic);
-  _od5._ohp = _olz.z > 0.0 && distance(_olz.xy, _oj4._o8a) <= _oj4._oko;
-  _od5._o91 = _olz.z;
-  _od5._oja = _oic;
-  return _od5;
+fn _osr(_oe7: u32) -> _o1l {
+  var _oe0: _o1l;
+  let _ojb = _otv[_oe7].xyz;
+  let _on4 = _okv(_ojb);
+  _oe0._oio = _on4.z > 0.0 && distance(_on4.xy, _ok4._o8o) <= _ok4._ols;
+  _oe0._o9f = _on4.z;
+  _oe0._oka = _ojb;
+  return _oe0;
 }
-fn _ols(r: u32) -> _o1g {
-  var _od5: _o1g;
-  _od5._ohp = false;
-  if (_o3d[r] < _oj4._ogo) {
-    return _od5;
+fn _omx(r: u32) -> _o1l {
+  var _oe0: _o1l;
+  _oe0._oio = false;
+  if (_o3l[r] < _ok4._ohn) {
+    return _oe0;
   }
-  let _oa4 = 6u * r;
-  let a = vec3f(_oae[_oa4], _oae[_oa4 + 1u], _oae[_oa4 + 2u]);
-  let b = vec3f(_oae[_oa4 + 3u], _oae[_oa4 + 4u], _oae[_oa4 + 5u]);
-  let _om7 = _ojv(a);
-  let _omc = _ojv(b);
-  if (_om7.z <= 0.0 || _omc.z <= 0.0) {
-    return _od5;
+  let _oaj = 6u * r;
+  let a = vec3f(_oau[_oaj], _oau[_oaj + 1u], _oau[_oaj + 2u]);
+  let b = vec3f(_oau[_oaj + 3u], _oau[_oaj + 4u], _oau[_oaj + 5u]);
+  let _onc = _okv(a);
+  let _onh = _okv(b);
+  if (_onc.z <= 0.0 || _onh.z <= 0.0) {
+    return _oe0;
   }
-  let ab = _omc.xy - _om7.xy;
-  let _ofh = dot(ab, ab);
-  var _ooz = 0.0;
-  if (_ofh > 1.0e-9) {
-    _ooz = clamp(dot(_oj4._o8a - _om7.xy, ab) / _ofh, 0.0, 1.0);
+  let ab = _onh.xy - _onc.xy;
+  let _ogf = dot(ab, ab);
+  var _oq8 = 0.0;
+  if (_ogf > 1.0e-9) {
+    _oq8 = clamp(dot(_ok4._o8o - _onc.xy, ab) / _ogf, 0.0, 1.0);
   }
-  let _ok1 = _om7.xy + _ooz * ab;
-  _od5._ohp = distance(_ok1, _oj4._o8a) <= _oj4._oko;
-  _od5._oja = a + _ooz * (b - a);
-  _od5._o91 = _om7.z + _ooz * (_omc.z - _om7.z);
-  return _od5;
+  let _ol1 = _onc.xy + _oq8 * ab;
+  _oe0._oio = distance(_ol1, _ok4._o8o) <= _ok4._ols;
+  _oe0._oka = a + _oq8 * (b - a);
+  _oe0._o9f = _onc.z + _oq8 * (_onh.z - _onc.z);
+  return _oe0;
 }
-fn _odo(_oc4: vec3u, _ohc: vec3u) -> u32 {
-  return _oc4.x + _oc4.y * _ohc.x * 256u;
-}
-@compute @workgroup_size(256)
-fn pick_v_depth(@builtin(global_invocation_id) _oc4: vec3u, @builtin(num_workgroups) _ohc: vec3u) {
-  let _odc = _odo(_oc4, _ohc);
-  if (_odc >= _oj4._o7y) { return; }
-  let _oci = _orh(_odc);
-  if (_oci._ohp) { atomicMin(&_olg[0], bitcast<u32>(_oci._o91)); }
+fn _oej(_ocy: vec3u, _oib: vec3u) -> u32 {
+  return _ocy.x + _ocy.y * _oib.x * 256u;
 }
 @compute @workgroup_size(256)
-fn pick_v_index(@builtin(global_invocation_id) _oc4: vec3u, @builtin(num_workgroups) _ohc: vec3u) {
-  let _odc = _odo(_oc4, _ohc);
-  if (_odc >= _oj4._o7y) { return; }
-  let _oci = _orh(_odc);
-  if (_oci._ohp && bitcast<u32>(_oci._o91) == atomicLoad(&_olg[0])) { atomicMin(&_olg[1], _odc); }
+fn pick_v_depth(@builtin(global_invocation_id) _ocy: vec3u, @builtin(num_workgroups) _oib: vec3u) {
+  let _oe7 = _oej(_ocy, _oib);
+  if (_oe7 >= _ok4._o8c) { return; }
+  let _odd = _osr(_oe7);
+  if (_odd._oio) { atomicMin(&_oml[0], bitcast<u32>(_odd._o9f)); }
 }
 @compute @workgroup_size(256)
-fn pick_v_point(@builtin(global_invocation_id) _oc4: vec3u, @builtin(num_workgroups) _ohc: vec3u) {
-  let _odc = _odo(_oc4, _ohc);
-  if (_odc >= _oj4._o7y || _odc != atomicLoad(&_olg[1])) { return; }
-  let _oci = _orh(_odc);
-  atomicStore(&_olg[2], bitcast<u32>(_oci._oja.x));
-  atomicStore(&_olg[3], bitcast<u32>(_oci._oja.y));
-  atomicStore(&_olg[4], bitcast<u32>(_oci._oja.z));
+fn pick_v_index(@builtin(global_invocation_id) _ocy: vec3u, @builtin(num_workgroups) _oib: vec3u) {
+  let _oe7 = _oej(_ocy, _oib);
+  if (_oe7 >= _ok4._o8c) { return; }
+  let _odd = _osr(_oe7);
+  if (_odd._oio && bitcast<u32>(_odd._o9f) == atomicLoad(&_oml[0])) { atomicMin(&_oml[1], _oe7); }
 }
 @compute @workgroup_size(256)
-fn pick_r_depth(@builtin(global_invocation_id) _oc4: vec3u, @builtin(num_workgroups) _ohc: vec3u) {
-  let _odc = _odo(_oc4, _ohc);
-  if (_odc >= _oj4._o7y) { return; }
-  let _oci = _ols(_odc);
-  if (_oci._ohp) { atomicMin(&_olg[0], bitcast<u32>(_oci._o91)); }
+fn pick_v_point(@builtin(global_invocation_id) _ocy: vec3u, @builtin(num_workgroups) _oib: vec3u) {
+  let _oe7 = _oej(_ocy, _oib);
+  if (_oe7 >= _ok4._o8c || _oe7 != atomicLoad(&_oml[1])) { return; }
+  let _odd = _osr(_oe7);
+  atomicStore(&_oml[2], bitcast<u32>(_odd._oka.x));
+  atomicStore(&_oml[3], bitcast<u32>(_odd._oka.y));
+  atomicStore(&_oml[4], bitcast<u32>(_odd._oka.z));
 }
 @compute @workgroup_size(256)
-fn pick_r_index(@builtin(global_invocation_id) _oc4: vec3u, @builtin(num_workgroups) _ohc: vec3u) {
-  let _odc = _odo(_oc4, _ohc);
-  if (_odc >= _oj4._o7y) { return; }
-  let _oci = _ols(_odc);
-  if (_oci._ohp && bitcast<u32>(_oci._o91) == atomicLoad(&_olg[0])) { atomicMin(&_olg[1], _odc); }
+fn pick_r_depth(@builtin(global_invocation_id) _ocy: vec3u, @builtin(num_workgroups) _oib: vec3u) {
+  let _oe7 = _oej(_ocy, _oib);
+  if (_oe7 >= _ok4._o8c) { return; }
+  let _odd = _omx(_oe7);
+  if (_odd._oio) { atomicMin(&_oml[0], bitcast<u32>(_odd._o9f)); }
 }
 @compute @workgroup_size(256)
-fn pick_r_point(@builtin(global_invocation_id) _oc4: vec3u, @builtin(num_workgroups) _ohc: vec3u) {
-  let _odc = _odo(_oc4, _ohc);
-  if (_odc >= _oj4._o7y || _odc != atomicLoad(&_olg[1])) { return; }
-  let _oci = _ols(_odc);
-  atomicStore(&_olg[2], bitcast<u32>(_oci._oja.x));
-  atomicStore(&_olg[3], bitcast<u32>(_oci._oja.y));
-  atomicStore(&_olg[4], bitcast<u32>(_oci._oja.z));
+fn pick_r_index(@builtin(global_invocation_id) _ocy: vec3u, @builtin(num_workgroups) _oib: vec3u) {
+  let _oe7 = _oej(_ocy, _oib);
+  if (_oe7 >= _ok4._o8c) { return; }
+  let _odd = _omx(_oe7);
+  if (_odd._oio && bitcast<u32>(_odd._o9f) == atomicLoad(&_oml[0])) { atomicMin(&_oml[1], _oe7); }
+}
+@compute @workgroup_size(256)
+fn pick_r_point(@builtin(global_invocation_id) _ocy: vec3u, @builtin(num_workgroups) _oib: vec3u) {
+  let _oe7 = _oej(_ocy, _oib);
+  if (_oe7 >= _ok4._o8c || _oe7 != atomicLoad(&_oml[1])) { return; }
+  let _odd = _omx(_oe7);
+  atomicStore(&_oml[2], bitcast<u32>(_odd._oka.x));
+  atomicStore(&_oml[3], bitcast<u32>(_odd._oka.y));
+  atomicStore(&_oml[4], bitcast<u32>(_odd._oka.z));
 }

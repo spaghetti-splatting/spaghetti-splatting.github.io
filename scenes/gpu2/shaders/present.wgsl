@@ -1,35 +1,35 @@
-struct _o1p {
-  _onx: vec2u,
-  _o9w: vec2u,
+struct _o1w {
+  _op3: vec2u,
+  _oaa: vec2u,
 };
-@group(0) @binding(0) var<storage, read> _odh: array<f32>;
-@group(0) @binding(1) var<uniform> _oji: _o1p;
+@group(0) @binding(0) var<storage, read> _oec: array<f32>;
+@group(0) @binding(1) var<uniform> _oki: _o1w;
 @vertex
-fn present_vertex(@builtin(vertex_index) _odn: u32) -> @builtin(position) vec4f {
-  let x = f32((_odn << 1u) & 2u) * 2.0 - 1.0;
-  let y = f32(_odn & 2u) * 2.0 - 1.0;
+fn present_vertex(@builtin(vertex_index) _oei: u32) -> @builtin(position) vec4f {
+  let x = f32((_oei << 1u) & 2u) * 2.0 - 1.0;
+  let y = f32(_oei & 2u) * 2.0 - 1.0;
   return vec4f(x, y, 0.0, 1.0);
 }
-fn _ops(x: u32, y: u32) -> vec3f {
-  let _oj8 = _oji._onx.x * _oji._onx.y;
-  let _oiz = y * _oji._onx.x + x;
-  return vec3f(_odh[_oiz], _odh[_oj8 + _oiz], _odh[2u * _oj8 + _oiz]);
+fn _or1(x: u32, y: u32) -> vec3f {
+  let _ok8 = _oki._op3.x * _oki._op3.y;
+  let _ojz = y * _oki._op3.x + x;
+  return vec3f(_oec[_ojz], _oec[_ok8 + _ojz], _oec[2u * _ok8 + _ojz]);
 }
 @fragment
 fn present_fragment(@builtin(position) position: vec4f) -> @location(0) vec4f {
   var rgb: vec3f;
-  if (all(_oji._onx == _oji._o9w)) {
-    rgb = _ops(min(u32(position.x), _oji._onx.x - 1u), min(u32(position.y), _oji._onx.y - 1u));
+  if (all(_oki._op3 == _oki._oaa)) {
+    rgb = _or1(min(u32(position.x), _oki._op3.x - 1u), min(u32(position.y), _oki._op3.y - 1u));
   } else {
-    let _olz = vec2f(_oji._onx) / vec2f(_oji._o9w);
-    let _oic = max(position.xy * _olz - 0.5, vec2f(0.0));
-    let _odc = vec2u(_oic);
-    let _oar = _oic - vec2f(_odc);
-    let _ode = min(_odc + 1u, _oji._onx - 1u);
-    let _odd = min(_odc, _oji._onx - 1u);
-    let a = mix(_ops(_odd.x, _odd.y), _ops(_ode.x, _odd.y), _oar.x);
-    let b = mix(_ops(_odd.x, _ode.y), _ops(_ode.x, _ode.y), _oar.x);
-    rgb = mix(a, b, _oar.y);
+    let _on4 = vec2f(_oki._op3) / vec2f(_oki._oaa);
+    let _ojb = max(position.xy * _on4 - 0.5, vec2f(0.0));
+    let _oe7 = vec2u(_ojb);
+    let _ob7 = _ojb - vec2f(_oe7);
+    let _oe9 = min(_oe7 + 1u, _oki._op3 - 1u);
+    let _oe8 = min(_oe7, _oki._op3 - 1u);
+    let a = mix(_or1(_oe8.x, _oe8.y), _or1(_oe9.x, _oe8.y), _ob7.x);
+    let b = mix(_or1(_oe8.x, _oe9.y), _or1(_oe9.x, _oe9.y), _ob7.x);
+    rgb = mix(a, b, _ob7.y);
   }
   return vec4f(clamp(rgb, vec3f(0.0), vec3f(1.0)), 1.0);
 }

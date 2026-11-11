@@ -8,6 +8,7 @@
 </head>
 <body>
 <canvas id="view" tabindex="0"></canvas>
+<div id="split-line" class="hidden" aria-hidden="true"></div>
 <svg id="pivot-mark" aria-hidden="true"><circle class="ring-under" r="1"/><circle class="ring" r="1"/><circle class="dot" r="5"/></svg>
 
 <div id="top-left" class="panel">
@@ -21,7 +22,10 @@
     <div class="seg" role="radiogroup" title="Navigation mode (Tab)">
       <button id="mode-orbit" class="on">Orbit</button><button id="mode-walk">Walk</button>
     </div>
-    <button id="btn-clay" title="Primitives view (C)">Primitives</button>
+    <!-- George 2026-11-10: three views; Split = render on the left half, primitives on the right half. -->
+    <div class="seg" role="radiogroup" title="View (C)">
+      <button id="btn-splat">Render</button><button id="btn-split">Split</button><button id="btn-clay" title="Primitives view (C)">Primitives</button>
+    </div>
   </div>
   <div id="tools" class="row">
     <button id="btn-home" class="icon" title="Reset view (R)">⌂</button>
@@ -39,9 +43,11 @@
 <div id="hair-tools" class="panel hidden">
   <div class="tools-title">Hair</div>
   <button id="tool-grab" class="tool on" title="Drag a strand to pull a lock (G)"><span>✋</span>Grab</button>
+  <button id="tool-turn" class="tool fur-only" title="Drag the bee to turn it; it turns back when you let go"><span>⟳</span>Turn</button>
   <button id="tool-wind" class="tool" title="Wind from the left of the view (B)"><span>〰</span>Wind</button>
+  <button id="tool-shake" class="tool fur-only" title="Shake the bee"><span>⇄</span>Shake</button>
   <button id="tool-reset" class="tool" title="Put the hair back (X)"><span>↺</span>Reset</button>
-  <label class="slider vertical" title="Size of the grabbed lock">lock size <span id="grab-size-v">4 cm</span>
+  <label id="grab-size-label" class="slider vertical" title="Size of the grabbed lock">lock size <span id="grab-size-v">4 cm</span>
     <input id="grab-size" type="range" min="1" max="10" step="0.5" value="4"></label>
 </div>
 
@@ -97,7 +103,7 @@
       <p><b>Tab</b> orbit / walk · <b>R</b> reset view</p>
       <p><b>\</b> / up-arrow button: reset up (scene up to screen up)</p>
       <p><b>, .</b> dataset views · <b>F</b> full screen</p>
-      <p><b>C</b> primitives view · <b>H</b> this help</p>
+      <p><b>C</b> render / split / primitives · <b>H</b> this help</p>
     </div>
   </div>
   <p class="note">The image is the colour-only evaluation render of the trained model, computed in

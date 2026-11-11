@@ -1,418 +1,418 @@
 struct _ot {
   position: vec4f,
-  _o3r: vec4f,
-  _ojh: vec4f,
+  _o42: vec4f,
+  _okh: vec4f,
 };
 struct _ou {
-  _oll: vec4f,
-  _o9s: vec4f,
-  _obk: vec4f,
-  _o5y: vec4f,
-  _opi: vec2f,
+  _omq: vec4f,
+  _oa6: vec4f,
+  _oc0: vec4f,
+  _o6c: vec4f,
+  _oqr: vec2f,
   size: vec2f,
-  _oec: vec2f,
-  _oss: f32,
-  _obl: u32,
-  _o41: vec4f,
-  _oko: f32,
-  _omb: f32,
-  _osc: f32,
-  _o42: f32,
-  _ofn: array<_ot, 3>,
+  _of7: vec2f,
+  _ou3: f32,
+  _oc3: u32,
+  _o4c: vec4f,
+  _ols: f32,
+  _ong: f32,
+  _otm: f32,
+  _o4d: f32,
+  _ogl: array<_ot, 3>,
 };
 struct _ow {
-  _os7: u32,
-  _ocy: u32,
-  _obl: u32,
-  _oin: u32,
+  _oth: u32,
+  _odt: u32,
+  _oc3: u32,
+  _ojm: u32,
 };
 struct _ov {
-  _onx: vec2u,
-  _o9w: vec2u,
-  _obq: f32,
-  _o37: f32,
-  _oip: f32,
-  _oiq: f32,
-  _o41: vec4f,
+  _op3: vec2u,
+  _oaa: vec2u,
+  _oc8: f32,
+  _o3e: f32,
+  _ojo: f32,
+  _ojp: f32,
+  _o4c: vec4f,
 };
-@group(0) @binding(0) var<uniform> _o6h: _ou;
-@group(0) @binding(1) var<storage, read> _o70: array<u32>;
-@group(0) @binding(2) var<storage, read> _o6p: array<f32>;
-@group(0) @binding(3) var<storage, read> _o6y: array<f32>;
-@group(0) @binding(9) var<storage, read> _o6w: array<f32>;
-@group(0) @binding(12) var<storage, read> _o6n: array<u32>;
-@group(0) @binding(13) var<storage, read> _o6o: array<u32>;
+@group(0) @binding(0) var<uniform> _o6v: _ou;
+@group(0) @binding(1) var<storage, read> _o7e: array<u32>;
+@group(0) @binding(2) var<storage, read> _o73: array<f32>;
+@group(0) @binding(3) var<storage, read> _o7c: array<f32>;
+@group(0) @binding(9) var<storage, read> _o7a: array<f32>;
+@group(0) @binding(12) var<storage, read> _o71: array<u32>;
+@group(0) @binding(13) var<storage, read> _o72: array<u32>;
 struct _oq {
-  _oll: vec4f,
-  _o9s: vec4f,
-  _obk: vec4f,
-  _o5y: vec4f,
-  _opi: vec2f,
+  _omq: vec4f,
+  _oa6: vec4f,
+  _oc0: vec4f,
+  _o6c: vec4f,
+  _oqr: vec2f,
   size: vec2f,
-  _oss: f32,
-  _ol7: f32,
-  _oip: f32,
-  _oiq: f32,
-  _ong: vec4f,
+  _ou3: f32,
+  _omc: f32,
+  _ojo: f32,
+  _ojp: f32,
+  _ool: vec4f,
 };
-@group(0) @binding(10) var<uniform> _o6l: _oq;
-@group(0) @binding(11) var _o6m: texture_depth_2d;
-@group(0) @binding(4) var _o6x: texture_2d<f32>;
-@group(0) @binding(5) var<storage, read_write> _o73: array<f32>;
-@group(0) @binding(6) var<uniform> _o74: _ow;
-@group(0) @binding(7) var<storage, read> _o6s: array<f32>;
-@group(0) @binding(8) var<uniform> _o6v: _ov;
-@group(0) @binding(14) var _o6i: texture_3d<f32>;
-@group(0) @binding(15) var _o6k: sampler;
+@group(0) @binding(10) var<uniform> _o6z: _oq;
+@group(0) @binding(11) var _o70: texture_depth_2d;
+@group(0) @binding(4) var _o7b: texture_2d<f32>;
+@group(0) @binding(5) var<storage, read_write> _o7h: array<f32>;
+@group(0) @binding(6) var<uniform> _o7i: _ow;
+@group(0) @binding(7) var<storage, read> _o76: array<f32>;
+@group(0) @binding(8) var<uniform> _o79: _ov;
+@group(0) @binding(14) var _o6w: texture_3d<f32>;
+@group(0) @binding(15) var _o6y: sampler;
 const _on: f32 = 3.0e38;
 struct _ox {
-  @builtin(position) _o78: vec4f,
-  @location(0) @interpolate(linear, sample) _oj1: vec2f,
-  @location(1) @interpolate(flat) _ogi: vec3f,
-  @location(2) @interpolate(flat) _ocq: vec3f,
-  @location(3) @interpolate(flat) _o38: vec3f,
-  @location(4) @interpolate(flat) _oqd: u32,
+  @builtin(position) _o7m: vec4f,
+  @location(0) @interpolate(linear, sample) _ok1: vec2f,
+  @location(1) @interpolate(flat) _ohh: vec3f,
+  @location(2) @interpolate(flat) _odl: vec3f,
+  @location(3) @interpolate(flat) _o3g: vec3f,
+  @location(4) @interpolate(flat) _orn: u32,
 };
 struct _or {
-  @location(0) _o7j: vec4f,
-  @builtin(frag_depth) _o91: f32,
+  @location(0) _o7x: vec4f,
+  @builtin(frag_depth) _o9f: f32,
 };
-fn _o76(_oic: vec3f) -> vec3f {
-  return vec3f(dot(_o6h._oll.xyz, _oic), dot(_o6h._o9s.xyz, _oic), dot(_o6h._obk.xyz, _oic));
+fn _o7k(_ojb: vec3f) -> vec3f {
+  return vec3f(dot(_o6v._omq.xyz, _ojb), dot(_o6v._oa6.xyz, _ojb), dot(_o6v._oc0.xyz, _ojb));
 }
-fn _o6u(_or7: vec3f) -> vec2f {
-  let _oh0 = vec2f(_or7.x / (_or7.z * _o6h._opi.x), _or7.y / (_or7.z * _o6h._opi.y));
-  return (_oh0 + 1.0) * 0.5 * _o6h.size;
+fn _o78(_osh: vec3f) -> vec2f {
+  let _ohz = vec2f(_osh.x / (_osh.z * _o6v._oqr.x), _osh.y / (_osh.z * _o6v._oqr.y));
+  return (_ohz + 1.0) * 0.5 * _o6v.size;
 }
-fn _o72(_o56: vec3f) -> vec3f {
-  let _ofy = _o56 / 12.92;
-  let _od2 = pow((_o56 + 0.055) / 1.055, vec3f(2.4));
-  return select(_od2, _ofy, _o56 <= vec3f(0.04045));
+fn _o7g(_o5j: vec3f) -> vec3f {
+  let _ogw = _o5j / 12.92;
+  let _odx = pow((_o5j + 0.055) / 1.055, vec3f(2.4));
+  return select(_odx, _ogw, _o5j <= vec3f(0.04045));
 }
-fn _o6t(_o56: vec3f) -> vec3f {
-  let _ofy = _o56 * 12.92;
-  let _od2 = 1.055 * pow(_o56, vec3f(1.0 / 2.4)) - 0.055;
-  return select(_od2, _ofy, _o56 <= vec3f(0.0031308));
+fn _o77(_o5j: vec3f) -> vec3f {
+  let _ogw = _o5j * 12.92;
+  let _odx = 1.055 * pow(_o5j, vec3f(1.0 / 2.4)) - 0.055;
+  return select(_odx, _ogw, _o5j <= vec3f(0.0031308));
 }
-fn _o6z(w: u32) -> vec3f {
-  let _omd = exp2(f32(w >> 27u) - 24.0);
-  return vec3f(f32(w & 511u), f32((w >> 9u) & 511u), f32((w >> 18u) & 511u)) * _omd;
+fn _o7d(w: u32) -> vec3f {
+  let _oni = exp2(f32(w >> 27u) - 24.0);
+  return vec3f(f32(w & 511u), f32((w >> 9u) & 511u), f32((w >> 18u) & 511u)) * _oni;
 }
-fn _o6j(linear: vec3f) -> vec3f {
-  let _ogp = -12.47393;
-  let _og7 = 4.026069;
-  let x = clamp((log2(max(linear, vec3f(exp2(_ogp)))) - _ogp) / (_og7 - _ogp), vec3f(0.0), vec3f(1.0));
-  let _ogw = 65.0;
-  return textureSampleLevel(_o6i, _o6k, (x * (_ogw - 1.0) + 0.5) / _ogw, 0.0).rgb;
+fn _o6x(linear: vec3f) -> vec3f {
+  let _oho = -12.47393;
+  let _oh6 = 4.026069;
+  let x = clamp((log2(max(linear, vec3f(exp2(_oho)))) - _oho) / (_oh6 - _oho), vec3f(0.0), vec3f(1.0));
+  let _ohv = 65.0;
+  return textureSampleLevel(_o6w, _o6y, (x * (_ohv - 1.0) + 0.5) / _ohv, 0.0).rgb;
 }
-fn _o6q(x: u32) -> u32 {
-  let _oo2 = x * 747796405u + 2891336453u;
-  let _osa = ((_oo2 >> ((_oo2 >> 28u) + 4u)) ^ _oo2) * 277803737u;
-  return (_osa >> 22u) ^ _osa;
+fn _o74(x: u32) -> u32 {
+  let _op8 = x * 747796405u + 2891336453u;
+  let _otk = ((_op8 >> ((_op8 >> 28u) + 4u)) ^ _op8) * 277803737u;
+  return (_otk >> 22u) ^ _otk;
 }
 @vertex
 fn clay_vertex(@builtin(vertex_index) vertex: u32,
-               @builtin(instance_index) _oqd: u32) -> _ox {
-  var _ohw: _ox;
-  let _oa4 = 6u * _o70[_oqd];
-  let a = vec3f(_o6p[_oa4], _o6p[_oa4 + 1u], _o6p[_oa4 + 2u]);
-  let b = vec3f(_o6p[_oa4 + 3u], _o6p[_oa4 + 4u], _o6p[_oa4 + 5u]);
-  let _ogi = _o76(0.5 * (a + b) - _o6h._o5y.xyz);
-  let _ocq = _o76(0.5 * (b - a));
-  _ohw._ogi = _ogi;
-  _ohw._ocq = _ocq;
-  _ohw._oqd = _oqd;
-  let _o56 = clamp(vec3f(_o6y[3u * _oqd], _o6y[3u * _oqd + 1u], _o6y[3u * _oqd + 2u]),
+               @builtin(instance_index) _orn: u32) -> _ox {
+  var _oiv: _ox;
+  let _oaj = 6u * _o7e[_orn];
+  let a = vec3f(_o73[_oaj], _o73[_oaj + 1u], _o73[_oaj + 2u]);
+  let b = vec3f(_o73[_oaj + 3u], _o73[_oaj + 4u], _o73[_oaj + 5u]);
+  let _ohh = _o7k(0.5 * (a + b) - _o6v._o6c.xyz);
+  let _odl = _o7k(0.5 * (b - a));
+  _oiv._ohh = _ohh;
+  _oiv._odl = _odl;
+  _oiv._orn = _orn;
+  let _o5j = clamp(vec3f(_o7c[3u * _orn], _o7c[3u * _orn + 1u], _o7c[3u * _orn + 2u]),
                 vec3f(0.0), vec3f(1.0));
-  let g = vec3f((_o56.x + _o56.y + _o56.z) / 3.0);
-  _ohw._o38 = _o72(clamp(g + (_o56 - g) * _o6h._omb, vec3f(0.0), vec3f(1.0)));
-  _ohw._oj1 = vec2f(0.0);
-  _ohw._o78 = vec4f(2.0, 2.0, 2.0, 1.0);
-  var _oid = _ogi - _ocq;
-  var _oie = _ogi + _ocq;
-  let _oh2 = _o6h._oss;
-  if (max(_oid.z, _oie.z) < _oh2) {
-    return _ohw;
+  let g = vec3f((_o5j.x + _o5j.y + _o5j.z) / 3.0);
+  _oiv._o3g = _o7g(clamp(g + (_o5j - g) * _o6v._ong, vec3f(0.0), vec3f(1.0)));
+  _oiv._ok1 = vec2f(0.0);
+  _oiv._o7m = vec4f(2.0, 2.0, 2.0, 1.0);
+  var _ojc = _ohh - _odl;
+  var _ojd = _ohh + _odl;
+  let _oi1 = _o6v._ou3;
+  if (max(_ojc.z, _ojd.z) < _oi1) {
+    return _oiv;
   }
-  if (_oid.z < _oh2) {
-    _oid = _oid + (_oie - _oid) * ((_oh2 - _oid.z) / (_oie.z - _oid.z));
+  if (_ojc.z < _oi1) {
+    _ojc = _ojc + (_ojd - _ojc) * ((_oi1 - _ojc.z) / (_ojd.z - _ojc.z));
   }
-  if (_oie.z < _oh2) {
-    _oie = _oie + (_oid - _oie) * ((_oh2 - _oie.z) / (_oid.z - _oie.z));
+  if (_ojd.z < _oi1) {
+    _ojd = _ojd + (_ojc - _ojd) * ((_oi1 - _ojd.z) / (_ojc.z - _ojd.z));
   }
-  let _ok2 = _o6u(_oid);
-  let _ok3 = _o6u(_oie);
-  let _obg = 0.5 * _o6h.size.x / _o6h._opi.x;
-  let _oko = _o6w[_oqd];
-  let _ocj = max(1.5 * _oko * _obg / _oid.z, 0.5) + 0.25;
-  let _ock = max(1.5 * _oko * _obg / _oie.z, 0.5) + 0.25;
-  let _o8h = _ok3 - _ok2;
-  let _ofg = length(_o8h);
-  let _oqm = select(vec2f(1.0, 0.0), _o8h / _ofg, _ofg > 1.0e-6);
-  let _ogw = vec2f(-_oqm.y, _oqm.x);
-  let _oaa = vertex == 1u || vertex == 4u || vertex == 5u;
-  let _on5 = select(-1.0, 1.0, vertex == 2u || vertex == 3u || vertex == 5u);
-  var _oj1 = _ok2 - _oqm * _ocj + _ogw * (_on5 * _ocj);
-  if (_oaa) {
-    _oj1 = _ok3 + _oqm * _ock + _ogw * (_on5 * _ock);
+  let _ol2 = _o78(_ojc);
+  let _ol3 = _o78(_ojd);
+  let _obw = 0.5 * _o6v.size.x / _o6v._oqr.x;
+  let _ols = _o7a[_orn];
+  let _ode = max(1.5 * _ols * _obw / _ojc.z, 0.5) + 0.25;
+  let _odf = max(1.5 * _ols * _obw / _ojd.z, 0.5) + 0.25;
+  let _o8v = _ol3 - _ol2;
+  let _oge = length(_o8v);
+  let _orw = select(vec2f(1.0, 0.0), _o8v / _oge, _oge > 1.0e-6);
+  let _ohv = vec2f(-_orw.y, _orw.x);
+  let _oaq = vertex == 1u || vertex == 4u || vertex == 5u;
+  let _ooa = select(-1.0, 1.0, vertex == 2u || vertex == 3u || vertex == 5u);
+  var _ok1 = _ol2 - _orw * _ode + _ohv * (_ooa * _ode);
+  if (_oaq) {
+    _ok1 = _ol3 + _orw * _odf + _ohv * (_ooa * _odf);
   }
-  _ohw._oj1 = _oj1;
-  let _omr = _oj1 + _o6h._oec;
-  _ohw._o78 = vec4f(2.0 * _omr.x / _o6h.size.x - 1.0, 1.0 - 2.0 * _omr.y / _o6h.size.y, 0.5, 1.0);
-  return _ohw;
+  _oiv._ok1 = _ok1;
+  let _onw = _ok1 + _o6v._of7;
+  _oiv._o7m = vec4f(2.0 * _onw.x / _o6v.size.x - 1.0, 1.0 - 2.0 * _onw.y / _o6v.size.y, 0.5, 1.0);
+  return _oiv;
 }
-fn _o71(_ohg: vec3f, _o9g: vec3f, center: vec3f, r: f32) -> f32 {
-  let _ohl = _ohg - center;
-  let b = dot(_o9g, _ohl);
-  let _oci = b * b - (dot(_ohl, _ohl) - r * r);
-  if (_oci < 0.0) {
+fn _o7f(_oif: vec3f, _o9u: vec3f, center: vec3f, r: f32) -> f32 {
+  let _oik = _oif - center;
+  let b = dot(_o9u, _oik);
+  let _odd = b * b - (dot(_oik, _oik) - r * r);
+  if (_odd < 0.0) {
     return _on;
   }
-  return -b - sqrt(_oci);
+  return -b - sqrt(_odd);
 }
-fn _o77(_oic: vec3f, _ohb: vec3f) -> f32 {
-  let _oso = dot(_o6l._obk.xyz, _oic - _o6l._o5y.xyz);
-  if (_oso <= _o6l._oss) {
+fn _o7l(_ojb: vec3f, _oia: vec3f) -> f32 {
+  let _oty = dot(_o6z._oc0.xyz, _ojb - _o6z._o6c.xyz);
+  if (_oty <= _o6z._ou3) {
     return 1.0;
   }
-  let _ops = _o6l._o5y.w * _oso;
-  let _o8h = _oic + _ohb * (1.5 * _ops) - _o6l._o5y.xyz;
-  let _or7 = vec3f(dot(_o6l._oll.xyz, _o8h), dot(_o6l._o9s.xyz, _o8h), dot(_o6l._obk.xyz, _o8h));
-  let _oh0 = vec2f(_or7.x / (_or7.z * _o6l._opi.x), _or7.y / (_or7.z * _o6l._opi.y));
-  if (any(abs(_oh0) >= vec2f(1.0))) {
+  let _or1 = _o6z._o6c.w * _oty;
+  let _o8v = _ojb + _oia * (1.5 * _or1) - _o6z._o6c.xyz;
+  let _osh = vec3f(dot(_o6z._omq.xyz, _o8v), dot(_o6z._oa6.xyz, _o8v), dot(_o6z._oc0.xyz, _o8v));
+  let _ohz = vec2f(_osh.x / (_osh.z * _o6z._oqr.x), _osh.y / (_osh.z * _o6z._oqr.y));
+  if (any(abs(_ohz) >= vec2f(1.0))) {
     return 1.0;
   }
-  let _ok1 = min(vec2i((_oh0 + 1.0) * 0.5 * _o6l.size), vec2i(_o6l.size) - 1);
-  let _oob = textureLoad(_o6m, _ok1, 0);
-  if (_oob <= 0.0) {
+  let _ol1 = min(vec2i((_ohz + 1.0) * 0.5 * _o6z.size), vec2i(_o6z.size) - 1);
+  let _opi = textureLoad(_o70, _ol1, 0);
+  if (_opi <= 0.0) {
     return 1.0;
   }
-  let _o4u = _o6l._oss / _oob;
-  if (_or7.z <= _o4u + 1.5 * _ops) {
+  let _o55 = _o6z._ou3 / _opi;
+  if (_osh.z <= _o55 + 1.5 * _or1) {
     return 1.0;
   }
-  if (_o6l._ol7 > 0.0 && _or7.z - _o4u > _o6l._ol7) {
+  if (_o6z._omc > 0.0 && _osh.z - _o55 > _o6z._omc) {
     return 1.0;
   }
   return 0.0;
 }
 struct _os {
-  _ooz: f32,
-  _o9g: vec3f,
-  _oh6: vec3f,
+  _oq8: f32,
+  _o9u: vec3f,
+  _oi5: vec3f,
 };
-fn _o6r(_odi: _ox, sample: u32) -> _os {
-  let _oh0 = 2.0 * _odi._oj1 / _o6h.size - 1.0;
-  let _o9g = normalize(vec3f(_oh0.x * _o6h._opi.x, _oh0.y * _o6h._opi.y, 1.0));
-  let _op0 = dot(_odi._ogi, _o9g);
-  let _ohg = _o9g * _op0 - _odi._ogi;
-  let _od6 = length(_odi._ocq);
-  let _o3r = select(vec3f(0.0, 0.0, 1.0), _odi._ocq / _od6, _od6 > 0.0);
-  let _o4g = dot(_o9g, _o3r);
-  let _o90 = 1.0 - _o4g * _o4g;
-  var _oqm = -sign(_o4g) * _od6;
-  if (_o90 > 1.0e-8) {
-    _oqm = dot(_o3r, _ohg) / _o90;
+fn _o75(_oed: _ox, sample: u32) -> _os {
+  let _ohz = 2.0 * _oed._ok1 / _o6v.size - 1.0;
+  let _o9u = normalize(vec3f(_ohz.x * _o6v._oqr.x, _ohz.y * _o6v._oqr.y, 1.0));
+  let _oq9 = dot(_oed._ohh, _o9u);
+  let _oif = _o9u * _oq9 - _oed._ohh;
+  let _oe1 = length(_oed._odl);
+  let _o42 = select(vec3f(0.0, 0.0, 1.0), _oed._odl / _oe1, _oe1 > 0.0);
+  let _o4r = dot(_o9u, _o42);
+  let _o9e = 1.0 - _o4r * _o4r;
+  var _orw = -sign(_o4r) * _oe1;
+  if (_o9e > 1.0e-8) {
+    _orw = dot(_o42, _oif) / _o9e;
   }
-  _oqm = clamp(_oqm, -_od6, _od6);
-  let _olz = _oqm * _o4g;
-  let _ohm = _ohg + _o9g * _olz - _o3r * _oqm;
-  let _o9j = length(_ohm);
-  let _o93 = (_op0 + _olz) * _o9g.z;
-  if (_o93 <= _o6h._oss) {
+  _orw = clamp(_orw, -_oe1, _oe1);
+  let _on4 = _orw * _o4r;
+  let _oil = _oif + _o9u * _on4 - _o42 * _orw;
+  let _o9x = length(_oil);
+  let _o9h = (_oq9 + _on4) * _o9u.z;
+  if (_o9h <= _o6v._ou3) {
     discard;
   }
-  let _oj2 = 2.0 * _o6h._opi.x * _o93 / _o6h.size.x;
-  let _oko = _o6w[_odi._oqd];
-  let _o9c = 2.0 * _oko / _oj2;
-  var _ooz = _olz;
-  var _oh6: vec3f;
-  if (_o9c >= 1.0) {
-    let r = _oko;
-    _ooz = _on;
-    let _o9t = _o9g - _o3r * _o4g;
-    let _ohs = _ohg - _o3r * dot(_ohg, _o3r);
-    let _ok7 = dot(_o9t, _o9t);
-    let _ok8 = dot(_ohs, _o9t);
-    let _ok9 = _ok8 * _ok8 - _ok7 * (dot(_ohs, _ohs) - r * r);
-    if (_ok7 > 1.0e-12 && _ok9 >= 0.0) {
-      let _opm = (-_ok8 - sqrt(_ok9)) / _ok7;
-      if (abs(dot(_ohg + _o9g * _opm, _o3r)) <= _od6) {
-        _ooz = _opm;
-        _oh6 = (_ohs + _o9t * _opm) / r;
+  let _ok2 = 2.0 * _o6v._oqr.x * _o9h / _o6v.size.x;
+  let _ols = _o7a[_oed._orn];
+  let _o9q = 2.0 * _ols / _ok2;
+  var _oq8 = _on4;
+  var _oi5: vec3f;
+  if (_o9q >= 1.0) {
+    let r = _ols;
+    _oq8 = _on;
+    let _oa7 = _o9u - _o42 * _o4r;
+    let _oir = _oif - _o42 * dot(_oif, _o42);
+    let _ol8 = dot(_oa7, _oa7);
+    let _ol9 = dot(_oir, _oa7);
+    let _olb = _ol9 * _ol9 - _ol8 * (dot(_oir, _oir) - r * r);
+    if (_ol8 > 1.0e-12 && _olb >= 0.0) {
+      let _oqv = (-_ol9 - sqrt(_olb)) / _ol8;
+      if (abs(dot(_oif + _o9u * _oqv, _o42)) <= _oe1) {
+        _oq8 = _oqv;
+        _oi5 = (_oir + _oa7 * _oqv) / r;
       }
     }
-    let _opd = _o71(_ohg, _o9g, -_o3r * _od6, r);
-    if (_opd < _ooz) {
-      _ooz = _opd;
-      _oh6 = (_ohg + _o9g * _opd + _o3r * _od6) / r;
+    let _oqm = _o7f(_oif, _o9u, -_o42 * _oe1, r);
+    if (_oqm < _oq8) {
+      _oq8 = _oqm;
+      _oi5 = (_oif + _o9u * _oqm + _o42 * _oe1) / r;
     }
-    let _opn = _o71(_ohg, _o9g, _o3r * _od6, r);
-    if (_opn < _ooz) {
-      _ooz = _opn;
-      _oh6 = (_ohg + _o9g * _opn - _o3r * _od6) / r;
+    let _oqw = _o7f(_oif, _o9u, _o42 * _oe1, r);
+    if (_oqw < _oq8) {
+      _oq8 = _oqw;
+      _oi5 = (_oif + _o9u * _oqw - _o42 * _oe1) / r;
     }
-    if (_ooz >= _on) {
+    if (_oq8 >= _on) {
       discard;
     }
-  } else if (abs(_oqm) < _od6) {
-    let w = 0.5 * _oj2;
-    if (_o9j > w) {
+  } else if (abs(_orw) < _oe1) {
+    let w = 0.5 * _ok2;
+    if (_o9x > w) {
       discard;
     }
-    let _oey = _o6q(_odi._oqd ^ _o6q(u32(_odi._o78.x) ^ _o6q(u32(_odi._o78.y)
-                        ^ _o6q(sample + 4u * _o6h._obl))));
-    if (f32(_oey >> 8u) * (1.0 / 16777216.0) >= _o9c) {
+    let _oft = _o74(_oed._orn ^ _o74(u32(_oed._o7m.x) ^ _o74(u32(_oed._o7m.y)
+                        ^ _o74(sample + 4u * _o6v._oc3))));
+    if (f32(_oft >> 8u) * (1.0 / 16777216.0) >= _o9q) {
       discard;
     }
-    let _oaz = (_o9g - _o3r * _o4g) * inverseSqrt(_o90);
-    let x = _o9j / w;
-    _oh6 = normalize(_ohm / w - _oaz * sqrt(max(1.0 - x * x, 0.0)));
+    let _obf = (_o9u - _o42 * _o4r) * inverseSqrt(_o9e);
+    let x = _o9x / w;
+    _oi5 = normalize(_oil / w - _obf * sqrt(max(1.0 - x * x, 0.0)));
   } else {
-    let r = _oko;
-    if (_o9j > r) {
+    let r = _ols;
+    if (_o9x > r) {
       discard;
     }
-    let x = _o9j / r;
-    _oh6 = normalize(_ohm / r - _o9g * sqrt(max(1.0 - x * x, 0.0)));
-    _ooz = _olz - sqrt(max(r * r - _o9j * _o9j, 0.0));
+    let x = _o9x / r;
+    _oi5 = normalize(_oil / r - _o9u * sqrt(max(1.0 - x * x, 0.0)));
+    _oq8 = _on4 - sqrt(max(r * r - _o9x * _o9x, 0.0));
   }
-  let z = (_op0 + _ooz) * _o9g.z;
-  if (z <= _o6h._oss) {
+  let z = (_oq9 + _oq8) * _o9u.z;
+  if (z <= _o6v._ou3) {
     discard;
   }
-  return _os(_op0 + _ooz, _o9g, _oh6);
+  return _os(_oq9 + _oq8, _o9u, _oi5);
 }
 @fragment
-fn clay_fragment(_odi: _ox, @builtin(sample_index) sample: u32) -> _or {
-  var _ohw: _or;
-  let _od5 = _o6r(_odi, sample);
-  let _o9g = _od5._o9g;
-  let _oh6 = _od5._oh6;
-  let z = _od5._ooz * _o9g.z;
-  let _ojy = _o9g * _od5._ooz;
-  let _oic = _o6h._o5y.xyz + _o6h._oll.xyz * _ojy.x + _o6h._o9s.xyz * _ojy.y + _o6h._obk.xyz * _ojy.z;
-  let _ohb = normalize(_o6h._oll.xyz * _oh6.x + _o6h._o9s.xyz * _oh6.y + _o6h._obk.xyz * _oh6.z);
-  let _on6 = u32(_o6h._o42);
-  if (_on6 > 0u) {
-    let _od8 = _o6h._oll.xyz * _odi._ocq.x + _o6h._o9s.xyz * _odi._ocq.y + _o6h._obk.xyz * _odi._ocq.z;
-    let _od7 = dot(_od8, _od8);
-    var _o3n = vec3f(1.0, 0.0, 0.0);
-    if (_od7 > 1.0e-24) {
-      _o3n = _od8 * inverseSqrt(_od7);
+fn clay_fragment(_oed: _ox, @builtin(sample_index) sample: u32) -> _or {
+  var _oiv: _or;
+  let _oe0 = _o75(_oed, sample);
+  let _o9u = _oe0._o9u;
+  let _oi5 = _oe0._oi5;
+  let z = _oe0._oq8 * _o9u.z;
+  let _oky = _o9u * _oe0._oq8;
+  let _ojb = _o6v._o6c.xyz + _o6v._omq.xyz * _oky.x + _o6v._oa6.xyz * _oky.y + _o6v._oc0.xyz * _oky.z;
+  let _oia = normalize(_o6v._omq.xyz * _oi5.x + _o6v._oa6.xyz * _oi5.y + _o6v._oc0.xyz * _oi5.z);
+  let _oob = u32(_o6v._o4d);
+  if (_oob > 0u) {
+    let _oe3 = _o6v._omq.xyz * _oed._odl.x + _o6v._oa6.xyz * _oed._odl.y + _o6v._oc0.xyz * _oed._odl.z;
+    let _oe2 = dot(_oe3, _oe3);
+    var _o3y = vec3f(1.0, 0.0, 0.0);
+    if (_oe2 > 1.0e-24) {
+      _o3y = _oe3 * inverseSqrt(_oe2);
     }
-    let _ocz = select(vec3f(1.0, 0.0, 0.0), vec3f(0.0, 0.0, 1.0), abs(_o3n.z) < 0.9);
-    let _o50 = normalize(cross(_o3n, _ocz));
-    let _o52 = cross(_o3n, _o50);
-    let _oba = fract(atan2(dot(_ohb, _o52), dot(_ohb, _o50)) * (1.0 / 6.2831853)) * f32(_on6);
-    let _oej = min(u32(_oba), _on6 - 1u);
-    let _oek = (_oej + 1u) % _on6;
-    let _oq5 = _oba - f32(_oej);
-    let first = _o6o[2u * _odi._oqd];
-    let _og2 = max(_o6o[2u * _odi._oqd + 1u], 1u);
-    let _oco = dot(_odi._ocq, _odi._ocq);
-    var _o39 = 0.5;
-    if (_oco > 1.0e-24) {
-      _o39 = clamp(0.5 + 0.5 * dot(_ojy - _odi._ogi, _odi._ocq) / _oco, 0.0, 1.0);
+    let _odu = select(vec3f(1.0, 0.0, 0.0), vec3f(0.0, 0.0, 1.0), abs(_o3y.z) < 0.9);
+    let _o5d = normalize(cross(_o3y, _odu));
+    let _o5f = cross(_o3y, _o5d);
+    let _obq = fract(atan2(dot(_oia, _o5f), dot(_oia, _o5d)) * (1.0 / 6.2831853)) * f32(_oob);
+    let _ofe = min(u32(_obq), _oob - 1u);
+    let _off = (_ofe + 1u) % _oob;
+    let _orf = _obq - f32(_ofe);
+    let first = _o72[2u * _oed._orn];
+    let _oh1 = max(_o72[2u * _oed._orn + 1u], 1u);
+    let _odj = dot(_oed._odl, _oed._odl);
+    var _o3h = 0.5;
+    if (_odj > 1.0e-24) {
+      _o3h = clamp(0.5 + 0.5 * dot(_oky - _oed._ohh, _oed._odl) / _odj, 0.0, 1.0);
     }
-    let _obr = _o39 * f32(_og2) - 0.5;
-    let _oe9 = u32(clamp(floor(_obr), 0.0, f32(_og2 - 1u)));
-    let _oea = min(_oe9 + 1u, _og2 - 1u);
-    let _oq4 = clamp(_obr - f32(_oe9), 0.0, 1.0);
-    let _ok2 = (first + _oe9) * _on6;
-    let _ok3 = (first + _oea) * _on6;
-    var _o57: vec3f;
-    var _o5e: vec3f;
-    if (_o6h._o41.w > 0.5) {
-      _o57 = mix(_o6z(_o6n[_ok2 + _oej]), _o6z(_o6n[_ok2 + _oek]), _oq5);
-      _o5e = mix(_o6z(_o6n[_ok3 + _oej]), _o6z(_o6n[_ok3 + _oek]), _oq5);
+    let _oc9 = _o3h * f32(_oh1) - 0.5;
+    let _of4 = u32(clamp(floor(_oc9), 0.0, f32(_oh1 - 1u)));
+    let _of5 = min(_of4 + 1u, _oh1 - 1u);
+    let _ore = clamp(_oc9 - f32(_of4), 0.0, 1.0);
+    let _ol2 = (first + _of4) * _oob;
+    let _ol3 = (first + _of5) * _oob;
+    var _o5k: vec3f;
+    var _o5r: vec3f;
+    if (_o6v._o4c.w > 0.5) {
+      _o5k = mix(_o7d(_o71[_ol2 + _ofe]), _o7d(_o71[_ol2 + _off]), _orf);
+      _o5r = mix(_o7d(_o71[_ol3 + _ofe]), _o7d(_o71[_ol3 + _off]), _orf);
     } else {
-      _o57 = mix(unpack4x8unorm(_o6n[_ok2 + _oej]).rgb, unpack4x8unorm(_o6n[_ok2 + _oek]).rgb, _oq5);
-      _o5e = mix(unpack4x8unorm(_o6n[_ok3 + _oej]).rgb, unpack4x8unorm(_o6n[_ok3 + _oek]).rgb, _oq5);
+      _o5k = mix(unpack4x8unorm(_o71[_ol2 + _ofe]).rgb, unpack4x8unorm(_o71[_ol2 + _off]).rgb, _orf);
+      _o5r = mix(unpack4x8unorm(_o71[_ol3 + _ofe]).rgb, unpack4x8unorm(_o71[_ol3 + _off]).rgb, _orf);
     }
-    _ohw._o7j = vec4f(mix(_o57, _o5e, _oq4), 1.0);
-    _ohw._o91 = _o6h._oss / z;
-    return _ohw;
+    _oiv._o7x = vec4f(mix(_o5k, _o5r, _ore), 1.0);
+    _oiv._o9f = _o6v._ou3 / z;
+    return _oiv;
   }
-  var _osd = 1.0;
-  if (_o6l._ong.w > 0.5) {
-    _osd = 4.0 * max(dot(_ohb, _o6l._ong.xyz), 0.0) * _o77(_oic, _ohb);
+  var _otn = 1.0;
+  if (_o6z._ool.w > 0.5) {
+    _otn = 4.0 * max(dot(_oia, _o6z._ool.xyz), 0.0) * _o7l(_ojb, _oia);
   }
-  var _oe4 = vec3f(_o6h._osc * _osd);
-  for (var _odc = 0u; _odc < 3u; _odc = _odc + 1u) {
-    let _ofm = _o6h._ofn[_odc];
-    let _oq7 = _ofm.position.xyz - _oic;
-    let _o8k = dot(_oq7, _oq7);
-    let _of2 = _oq7 * inverseSqrt(_o8k);
-    let _o7x = max(dot(_ohb, _of2), 0.0);
-    let _o7w = max(-dot(_ofm._o3r.xyz, _of2), 0.0);
-    _oe4 = _oe4 + _ofm._ojh.rgb * (_o7w * _o7x / _o8k);
+  var _oez = vec3f(_o6v._otm * _otn);
+  for (var _oe7 = 0u; _oe7 < 3u; _oe7 = _oe7 + 1u) {
+    let _ogk = _o6v._ogl[_oe7];
+    let _orh = _ogk.position.xyz - _ojb;
+    let _o8y = dot(_orh, _orh);
+    let _og0 = _orh * inverseSqrt(_o8y);
+    let _o8b = max(dot(_oia, _og0), 0.0);
+    let _o8a = max(-dot(_ogk._o42.xyz, _og0), 0.0);
+    _oez = _oez + _ogk._okh.rgb * (_o8a * _o8b / _o8y);
   }
-  let _okn = _odi._o38 * _oe4;
-  _ohw._o7j = vec4f(_o6t(clamp(_okn, vec3f(0.0), vec3f(1.0))), 1.0);
-  _ohw._o91 = _o6h._oss / z;
-  return _ohw;
+  let _olr = _oed._o3g * _oez;
+  _oiv._o7x = vec4f(_o77(clamp(_olr, vec3f(0.0), vec3f(1.0))), 1.0);
+  _oiv._o9f = _o6v._ou3 / z;
+  return _oiv;
 }
 @fragment
-fn clay_ao_fragment(_odi: _ox) -> @builtin(frag_depth) f32 {
-  let _od5 = _o6r(_odi, 0u);
-  return _o6h._oss / (_od5._ooz * _od5._o9g.z);
+fn clay_ao_fragment(_oed: _ox) -> @builtin(frag_depth) f32 {
+  let _oe0 = _o75(_oed, 0u);
+  return _o6v._ou3 / (_oe0._oq8 * _oe0._o9u.z);
 }
 @compute @workgroup_size(16, 16)
 fn clay_accumulate(@builtin(global_invocation_id) id: vec3u) {
-  let _oic = _o74;
-  if (id.x >= _oic._os7 || id.y >= _oic._ocy) {
+  let _ojb = _o7i;
+  if (id.x >= _ojb._oth || id.y >= _ojb._odt) {
     return;
   }
-  let _o56 = textureLoad(_o6x, vec2i(id.xy), 0);
-  let _oei = 4u * (id.y * _oic._os7 + id.x);
-  if (_oic._obl == 0u) {
-    _o73[_oei] = _o56.r;
-    _o73[_oei + 1u] = _o56.g;
-    _o73[_oei + 2u] = _o56.b;
-    _o73[_oei + 3u] = _o56.a;
+  let _o5j = textureLoad(_o7b, vec2i(id.xy), 0);
+  let _ofd = 4u * (id.y * _ojb._oth + id.x);
+  if (_ojb._oc3 == 0u) {
+    _o7h[_ofd] = _o5j.r;
+    _o7h[_ofd + 1u] = _o5j.g;
+    _o7h[_ofd + 2u] = _o5j.b;
+    _o7h[_ofd + 3u] = _o5j.a;
   } else {
-    _o73[_oei] = _o73[_oei] + _o56.r;
-    _o73[_oei + 1u] = _o73[_oei + 1u] + _o56.g;
-    _o73[_oei + 2u] = _o73[_oei + 2u] + _o56.b;
-    _o73[_oei + 3u] = _o73[_oei + 3u] + _o56.a;
+    _o7h[_ofd] = _o7h[_ofd] + _o5j.r;
+    _o7h[_ofd + 1u] = _o7h[_ofd + 1u] + _o5j.g;
+    _o7h[_ofd + 2u] = _o7h[_ofd + 2u] + _o5j.b;
+    _o7h[_ofd + 3u] = _o7h[_ofd + 3u] + _o5j.a;
   }
 }
 @vertex
-fn clay_present_vertex(@builtin(vertex_index) _odn: u32) -> @builtin(position) vec4f {
-  let x = f32((_odn << 1u) & 2u) * 2.0 - 1.0;
-  let y = f32(_odn & 2u) * 2.0 - 1.0;
+fn clay_present_vertex(@builtin(vertex_index) _oei: u32) -> @builtin(position) vec4f {
+  let x = f32((_oei << 1u) & 2u) * 2.0 - 1.0;
+  let y = f32(_oei & 2u) * 2.0 - 1.0;
   return vec4f(x, y, 0.0, 1.0);
 }
-fn _o75(x: u32, y: u32) -> vec4f {
-  let _oei = 4u * (y * _o6v._onx.x + x);
-  return vec4f(_o6s[_oei], _o6s[_oei + 1u], _o6s[_oei + 2u], _o6s[_oei + 3u]);
+fn _o7j(x: u32, y: u32) -> vec4f {
+  let _ofd = 4u * (y * _o79._op3.x + x);
+  return vec4f(_o76[_ofd], _o76[_ofd + 1u], _o76[_ofd + 2u], _o76[_ofd + 3u]);
 }
 @fragment
 fn clay_present_fragment(@builtin(position) position: vec4f) -> @location(0) vec4f {
-  let _oji = _o6v;
+  let _oki = _o79;
   var rgb: vec4f;
-  if (all(_oji._onx == _oji._o9w)) {
-    rgb = _o75(min(u32(position.x), _oji._onx.x - 1u), min(u32(position.y), _oji._onx.y - 1u));
+  if (all(_oki._op3 == _oki._oaa)) {
+    rgb = _o7j(min(u32(position.x), _oki._op3.x - 1u), min(u32(position.y), _oki._op3.y - 1u));
   } else {
-    let _olz = vec2f(_oji._onx) / vec2f(_oji._o9w);
-    let _ok1 = max(position.xy * _olz - 0.5, vec2f(0.0));
-    let _odc = vec2u(_ok1);
-    let _oar = _ok1 - vec2f(_odc);
-    let _ode = min(_odc + 1u, _oji._onx - 1u);
-    let _odd = min(_odc, _oji._onx - 1u);
-    let a = mix(_o75(_odd.x, _odd.y), _o75(_ode.x, _odd.y), _oar.x);
-    let b = mix(_o75(_odd.x, _ode.y), _o75(_ode.x, _ode.y), _oar.x);
-    rgb = mix(a, b, _oar.y);
+    let _on4 = vec2f(_oki._op3) / vec2f(_oki._oaa);
+    let _ol1 = max(position.xy * _on4 - 0.5, vec2f(0.0));
+    let _oe7 = vec2u(_ol1);
+    let _ob7 = _ol1 - vec2f(_oe7);
+    let _oe9 = min(_oe7 + 1u, _oki._op3 - 1u);
+    let _oe8 = min(_oe7, _oki._op3 - 1u);
+    let a = mix(_o7j(_oe8.x, _oe8.y), _o7j(_oe9.x, _oe8.y), _ob7.x);
+    let b = mix(_o7j(_oe8.x, _oe9.y), _o7j(_oe9.x, _oe9.y), _ob7.x);
+    rgb = mix(a, b, _ob7.y);
   }
-  var _o56 = rgb.rgb / _oji._obq;
-  if (_oji._o37 > 0.5) {
-    let a = rgb.a / _oji._obq;
-    var _oqd = vec3f(0.0);
+  var _o5j = rgb.rgb / _oki._oc8;
+  if (_oki._o3e > 0.5) {
+    let a = rgb.a / _oki._oc8;
+    var _orn = vec3f(0.0);
     if (a > 0.0) {
-      _oqd = _o6j(_o56 / a);
+      _orn = _o6x(_o5j / a);
     }
-    _o56 = _oqd * a + _oji._o41.rgb * (1.0 - a);
+    _o5j = _orn * a + _oki._o4c.rgb * (1.0 - a);
   }
-  return vec4f(clamp(_o56, vec3f(0.0), vec3f(1.0)), 1.0);
+  return vec4f(clamp(_o5j, vec3f(0.0), vec3f(1.0)), 1.0);
 }
