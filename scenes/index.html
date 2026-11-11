@@ -8,6 +8,7 @@
 </head>
 <body>
 <canvas id="view" tabindex="0"></canvas>
+<svg id="pivot-mark" aria-hidden="true"><circle class="ring-under" r="1"/><circle class="ring" r="1"/><circle class="dot" r="5"/></svg>
 
 <div id="top-left" class="panel">
   <div class="brand"><span class="logo"></span>Spaghetti&nbsp;Splatting</div>
@@ -24,6 +25,8 @@
   </div>
   <div id="tools" class="row">
     <button id="btn-home" class="icon" title="Reset view (R)">⌂</button>
+    <button id="btn-up" class="icon" title="Reset up: scene up axis to screen up (\)"><svg viewBox="0 0 16 16" width="15" height="15" fill="none"
+      stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 11V2M4.5 5.5L8 2l3.5 3.5M2 14h12"/></svg></button>
     <button id="btn-full" class="icon" title="Full screen (F)"><svg viewBox="0 0 16 16" width="15" height="15" fill="none"
       stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4"/></svg></button>
     <button id="btn-help" class="icon" title="Controls (H)">?</button>
@@ -62,23 +65,26 @@
 </div>
 
 <div id="toast" class="panel hidden"></div>
+<div id="orbit-note" class="panel"><b>Double click</b> a surface point to lock the orbit point (dot) there</div>
 
 <div id="help" class="panel hidden">
   <h2>Controls</h2>
   <div class="cols">
     <div>
-      <h3>Orbit</h3>
-      <p><b>Left drag</b> turn about the pivot</p>
-      <p><b>Right drag</b> / <b>Shift + drag</b> pan</p>
-      <p><b>Wheel</b> / <b>pinch</b> zoom toward the pivot</p>
-      <p><b>Double click</b> focus on a point</p>
+      <h3>Orbit (MeshLab trackball)</h3>
+      <p>The <b class="accent">dot</b> is the orbit point. The circle is the trackball.</p>
+      <p><b>Drag</b> inside the circle: turn about the dot</p>
+      <p><b>Drag around</b> the circle: roll</p>
+      <p><b>Double click</b> / <b>double tap</b>: put the dot on a surface point</p>
+      <p><b>Right drag</b> / <b>Shift + drag</b> / <b>two fingers</b>: pan (the dot moves too)</p>
+      <p><b>Wheel</b> / <b>pinch</b>: zoom toward the dot</p>
     </div>
     <div>
       <h3>Walk</h3>
       <p><b>W A S D</b> move · <b>Q E</b> down / up</p>
       <p><b>Arrows</b> turn · <b>Shift</b> 3× · <b>Ctrl</b> slow</p>
       <p><b>Drag</b> look · <b>Wheel</b> forward</p>
-      <p><b>[ ]</b> roll · <b>\</b> level horizon</p>
+      <p><b>[ ]</b> roll</p>
     </div>
     <div>
       <h3>Hair</h3>
@@ -89,6 +95,7 @@
     <div>
       <h3>General</h3>
       <p><b>Tab</b> orbit / walk · <b>R</b> reset view</p>
+      <p><b>\</b> / up-arrow button: reset up (scene up to screen up)</p>
       <p><b>, .</b> dataset views · <b>F</b> full screen</p>
       <p><b>C</b> primitives view · <b>H</b> this help</p>
     </div>
