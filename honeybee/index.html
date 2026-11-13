@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Spaghetti Splatting · WebGPU viewer</title>
+<link rel="stylesheet" href="app.css">
+<link rel="stylesheet" href="controls_help.css">
+</head>
+<body>
+<canvas id="view" tabindex="0"></canvas>
+<canvas id="shot-overlay" class="hidden"></canvas>
+<div id="split-ui" class="hidden"><div id="split-divider" title="Drag to move the split (V: split view on/off)"></div><span id="split-left" class="split-label">CURVES</span><span id="split-right" class="split-label">RENDER</span></div>
+
+<div id="top-left" class="panel">
+  <div class="brand"><span class="logo"></span>Spaghetti&nbsp;Splatting</div>
+  <select id="scene" title="Scene"></select>
+  <div class="credit">We thank <a href="https://x.com/DanyBittel" target="_blank" rel="noopener">Dany Bittel</a> for providing the bumblebee capture data, and Will Eastcott for showing a 3DGS reconstruction of it to the world</div>
+</div>
+
+<div id="top-right" class="panel row">
+  <div class="seg" role="radiogroup" title="Navigation mode (Tab)">
+    <button id="mode-orbit" class="on">Orbit</button><button id="mode-walk">Walk</button>
+  </div>
+  <select id="view-mode" title="View (P): the trained render, or the primitives (one pastel colour per connected polyline, relit)">
+    <option value="render">Render</option>
+    <option value="primitives">Primitives</option>
+    <option value="split">Split</option>
+  </select>
+  <label title="Wind on the fur (live simulation)"><input id="wind-loop" type="checkbox"> Wind</label>
+  <button id="btn-shot" title="Shot tool: 16:9 frame, views, camera paths (C)">🎬 Shot</button>
+  <button id="btn-pair" class="hidden" title="Same scene with the other renderer, same camera (T)">⇄ 3DGS</button>
+  <button id="btn-home" class="icon" title="Reset view (R)">⌂</button>
+  <button id="btn-full" class="icon" title="Full screen (F)">⛶</button>
+  <button id="btn-help" class="icon" title="Controls (H)">?</button>
+</div>
+
+<div id="hair-tools" class="panel hidden">
+  <div class="tools-title">Hair</div>
+  <button id="tool-grab" class="tool on" title="Drag a strand to pull a lock (G)"><span>✋</span>Grab</button>
+  <button id="tool-wind" class="tool" title="Wind from the left of the view (B)"><span>〰</span>Wind</button>
+  <button id="tool-reset" class="tool" title="Put the hair back (X)"><span>↺</span>Reset</button>
+  <label class="slider vertical" title="Size of the grabbed lock">lock size <span id="grab-size-v">4 cm</span>
+    <input id="grab-size" type="range" min="1" max="10" step="0.5" value="4"></label>
+</div>
+
+<div id="bottom-left" class="panel stats">
+  <div id="fps"></div>
+  <div id="info"></div>
+</div>
+
+<div id="bottom-right" class="panel row">
+  <button id="view-prev" class="icon" title="Previous dataset view (,)">‹</button>
+  <span id="view-label">view</span>
+  <button id="view-next" class="icon" title="Next dataset view (.)">›</button>
+  <label id="fov-label" class="slider" title="Field of view (in the shot tool: horizontal fov of the 16:9 frame)">fov 
+    <input id="fov" type="range" min="20" max="100" step="1" value="50"></label>
+  <select id="quality" title="Resolution">
+    <option value="auto">Auto res</option>
+    <option value="1">Full res</option>
+    <option value="0.75">75 %</option>
+    <option value="0.5">50 %</option>
+    <option value="720p">720p</option>
+    <option value="480p">480p</option>
+    <option value="360p">360p</option>
+  </select>
+</div>
+
+
+<div id="shot-panel" class="panel hidden">
+  <div class="tools-title">Shot · 16:9 frame = the 1920×1080 video frame</div>
+  <div class="row"><select id="shot-path" title="Path"></select></div>
+  <div class="row wrap">
+    <button id="shot-new">New</button><button id="shot-dup">Duplicate</button><button id="shot-rename">Rename</button><button id="shot-del">Delete</button>
+  </div>
+  <div id="shot-note" class="shot-note"></div>
+  <div class="row wrap">
+    <label class="slider" title="Number of video frames (30 fps)">frames <input id="shot-frames" type="number" min="2" step="1" style="width:64px"></label>
+    <label class="slider" title="Constant speed: length of the ease-in / ease-out ramps (fraction of the shot)">ramp <input id="shot-ramp" type="number" min="0" max="0.5" step="0.05" style="width:56px"></label>
+    <select id="shot-timing" title="Timing"><option value="constant">constant speed</option><option value="keys">frame per key</option></select>
+  </div>
+  <div class="row">
+    <button id="shot-key" class="tool" title="Add the current view as a key (K)">+ Key</button>
+    <button id="shot-view" title="Save the current view as a still (V)">+ View</button>
+    <button id="shot-play" class="icon" title="Play / pause (P)">▶</button>
+    <label class="slider" title="Loop"><input id="shot-loop" type="checkbox" checked>loop</label>
+  </div>
+  <div class="row"><input id="shot-scrub" type="range" min="0" max="1" value="0"><span id="shot-frame" class="mono"></span></div>
+  <div class="tools-title">Keys</div>
+  <div id="shot-keys" class="shot-list"></div>
+  <div class="tools-title">Views</div>
+  <div id="shot-views" class="shot-list"></div>
+  <div class="row wrap">
+    <select id="shot-module" title="Frame range of the cams file"><option value="m01">m01 orbit · 0–150</option><option value="m02">m02 zoom · 150–360</option><option value="m09">m09 fly-through · 1140–1320</option><option value="none">path only</option></select>
+    <button id="shot-export" title="Write a cams .npz (cams_v11 layout) on theia">Export cams</button>
+    <button id="shot-download" title="Download all paths and views as JSON">JSON</button>
+  </div>
+  <div class="row wrap small">
+    <label><input id="shot-show-grid" type="checkbox" checked>thirds</label>
+    <label><input id="shot-show-path" type="checkbox" checked>path</label>
+    <label><input id="shot-show-cams" type="checkbox" checked>capture cameras</label>
+  </div>
+  <div id="shot-hud" class="mono small"></div>
+  <div id="shot-status" class="mono small dim"></div>
+</div>
+
+<div id="toast" class="panel hidden"></div>
+
+<div id="help" class="panel hidden">
+  <h2>Controls</h2>
+  <div class="cols">
+    <div>
+      <h3>Orbit</h3>
+      <p><b>Left drag</b> turn about the pivot</p>
+      <p><b>Right drag</b> / <b>Shift + drag</b> pan</p>
+      <p><b>Wheel</b> / <b>pinch</b> zoom to the cursor</p>
+      <p><b>Double click</b> focus on a point</p>
+    </div>
+    <div>
+      <h3>Walk</h3>
+      <p><b>W A S D</b> move · <b>Q E</b> down / up</p>
+      <p><b>Arrows</b> turn · <b>Shift</b> 3× · <b>Ctrl</b> slow</p>
+      <p><b>Drag</b> look · <b>Wheel</b> forward</p>
+      <p><b>[ ]</b> roll · <b>\</b> level horizon</p>
+    </div>
+    <div>
+      <h3>Hair</h3>
+      <p><b>Drag a strand</b> pull a lock (Grab on)</p>
+      <p><b>Drag the background</b> navigate</p>
+      <p><b>B</b> wind · <b>X</b> reset · <b>G</b> grab on/off</p>
+    </div>
+    <div>
+      <h3>General</h3>
+      <p><b>Tab</b> orbit / walk · <b>R</b> reset view</p>
+      <p><b>F</b> full screen</p>
+      <p><b>T</b> same scene with the other renderer (ours / 3DGS), same camera</p>
+      <p><b>P</b> render / primitives</p>
+      <p><b>V</b> split view: primitives left, render right</p>
+      <p><b>H</b> this help</p>
+    </div>
+    <div>
+      <h3>Shot</h3>
+      <p><b>C</b> shot tool on/off</p>
+      <p><b>K</b> add key · <b>V</b> save view</p>
+      <p><b>P</b> play / pause the path</p>
+    </div>
+  </div>
+  <p class="note">The image is the colour-only evaluation render of the trained model, computed in
+    WebGPU (a WGSL port of the CUDA rasterizer). Pulled hair keeps its trained segments: each
+    segment moves rigidly with the simulated strand (DFTL), and its kernel frame and colour sites turn
+    with it.</p>
+</div>
+
+<!-- Status lines read by the loading screen (loader.js). -->
+<div id="status" aria-live="polite"><div id="progress">starting</div><div id="warning"></div></div>
+
+<script>window.KC_DATA = "https://huggingface.co/datasets/shaygeko/spaghetti-splatting-viewer/resolve/main/honeybee/";</script>
+<script type="module" src="./loader.js"></script>
+<script type="module" src="./main.js"></script>
+<script type="module" src="./controls_help.js"></script>
+</body>
+</html>
